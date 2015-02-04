@@ -1,6 +1,7 @@
 ﻿namespace RoseLadyLibertyOOPProject.Core
 {
-    class GameEngine
+    public class GameEngine
     {
+      
     }
 }

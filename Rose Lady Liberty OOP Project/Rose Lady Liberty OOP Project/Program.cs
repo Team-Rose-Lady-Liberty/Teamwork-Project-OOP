@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 #endregion
 
-namespace Rose_Lady_Liberty_OOP_Project
+namespace RoseLadyLibertyOOPProject
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -18,8 +18,8 @@ namespace Rose_Lady_Liberty_OOP_Project
         [STAThread]
         static void Main()
         {
-            using (var game = new TheGame())
-                game.Run();
+            TheGame game = new TheGame();
+            game.Run();
         }
     }
 #endif
