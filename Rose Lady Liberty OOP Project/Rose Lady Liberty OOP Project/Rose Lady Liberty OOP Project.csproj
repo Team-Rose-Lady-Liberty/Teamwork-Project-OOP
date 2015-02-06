@@ -36,8 +36,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\GameEngine.cs" />
+    <Compile Include="Enumerations\CharacterMovingState.cs" />
+    <Compile Include="Enumerations\GameState.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjects\Character.cs" />
+    <Compile Include="GameObjects\Characters\Wizard.cs" />
     <Compile Include="GameObjects\Item.cs" />
+    <Compile Include="GameObjects\Characters\Warrior.cs" />
+    <Compile Include="GameObjects\Tile.cs" />
+    <Compile Include="HelperClasses\Animation.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="TheGame.cs" />
@@ -52,13 +59,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\temp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Content\" />
-    <Folder Include="Enumerations\" />
     <Folder Include="GameObjects\Items\" />
+    <Folder Include="GameObjects\Tiles\" />
     <Folder Include="Structures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

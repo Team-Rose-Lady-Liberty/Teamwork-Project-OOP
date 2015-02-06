@@ -3,7 +3,7 @@
     using Interfaces;
     using Microsoft.Xna.Framework.Graphics;
     
-    abstract class GameObject
+    public abstract class GameObject
     {
         public GameObject(string id, int x, int y)
         {

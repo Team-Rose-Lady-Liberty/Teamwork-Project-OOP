@@ -1,9 +1,10 @@
 ﻿namespace RoseLadyLibertyOOPProject.GameObjects
 {
     using Interfaces;
+    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Tile : GameObject, IDrawable
+    public class Tile : GameObject, Interfaces.IDrawable
     {
         private Texture2D tileTexture;
 
@@ -30,7 +31,9 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(this.TileTexture, new Vector2(this.X, this.Y), Color.Black);
+            spriteBatch.End();
         }
     }
 }

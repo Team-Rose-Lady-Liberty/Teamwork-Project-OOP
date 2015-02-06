@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
+using RoseLadyLibertyOOPProject.GameObjects;
 #endregion
 
 namespace RoseLadyLibertyOOPProject
@@ -18,7 +19,7 @@ namespace RoseLadyLibertyOOPProject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Tile tile;
         public TheGame()
             : base()
         {
@@ -35,7 +36,8 @@ namespace RoseLadyLibertyOOPProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            tile = new Tile("temp", 10, 10, Content.Load<Texture2D>("temp.png"));
+            
             base.Initialize();
         }
 
@@ -83,7 +85,7 @@ namespace RoseLadyLibertyOOPProject
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            tile.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }

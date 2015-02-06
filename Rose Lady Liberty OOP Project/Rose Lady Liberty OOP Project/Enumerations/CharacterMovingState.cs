@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Rose_Lady_Liberty_OOP_Project.Enumerations
 {
-    class CharacterMovingState
+    enum CharacterMovingState
     {
+        Up,
+        Down,
+        Right,
+        Left
     }
 }

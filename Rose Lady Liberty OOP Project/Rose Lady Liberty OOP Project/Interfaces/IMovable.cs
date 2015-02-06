@@ -2,6 +2,6 @@
 {
     interface IMovable
     {
-        int Speed;
+        int Speed { get; set; }
     }
 }
