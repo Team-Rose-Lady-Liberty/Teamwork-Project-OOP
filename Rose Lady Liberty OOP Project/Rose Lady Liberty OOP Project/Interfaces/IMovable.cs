@@ -2,5 +2,6 @@
 {
     interface IMovable
     {
+        int Speed;
     }
 }

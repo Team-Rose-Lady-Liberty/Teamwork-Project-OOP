@@ -35,17 +35,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Core\CharacterManager.cs" />
-    <Compile Include="Core\EnemyManager.cs" />
     <Compile Include="Core\GameEngine.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="GameObjects\Enemy.cs" />
-    <Compile Include="GameObjects\Items\Bonus.cs" />
-    <Compile Include="GameObjects\Character.cs" />
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
-    <Compile Include="Inventory.cs" />
     <Compile Include="TheGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,7 +58,7 @@
     <Folder Include="Constants\" />
     <Folder Include="Content\" />
     <Folder Include="Enumerations\" />
-    <Folder Include="GameObjects\Items\Bonuses\" />
+    <Folder Include="GameObjects\Items\" />
     <Folder Include="Structures\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
