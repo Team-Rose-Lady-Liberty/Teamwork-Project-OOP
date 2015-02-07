@@ -1,14 +1,14 @@
 ﻿namespace RoseLadyLibertyOOPProject.GameObjects
 {
-    using System;
     using Interfaces;
+    using System;
     using Microsoft.Xna.Framework.Graphics;
 
-    public abstract class Character : GameObject, IMovable, IDrawable
+    public abstract class Agent : GameObject, IMovable, IDrawable
     {
         private int range;
 
-        public Character(string id, int x, int y, int health, int attack, int defense)
+        public Agent(string id, int x, int y, int health, int attack, int defense)
             : base(id, x, y)
         {
             this.IsAlive = true;
