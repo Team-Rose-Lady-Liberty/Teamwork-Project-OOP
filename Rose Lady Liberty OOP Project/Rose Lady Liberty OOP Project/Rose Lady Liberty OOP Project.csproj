@@ -41,6 +41,7 @@
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjects\Character.cs" />
     <Compile Include="GameObjects\Characters\Wizard.cs" />
+    <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Characters\Warrior.cs" />
     <Compile Include="GameObjects\Map\Map.cs" />
