@@ -17,6 +17,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         private int mapHeight;
         private Texture2D grassTexture;
         private Texture2D pathTexture;
+        private Texture2D dirtTexture;
         private Tile[,] map;
 
         public Map(TheGame game, int tileWidth, int tileHeight, int height = 16, int width = 16)
@@ -27,6 +28,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             this.MapWidth = width;
             grassTexture = game.Content.Load<Texture2D>("Terrain/grass");
             pathTexture = game.Content.Load<Texture2D>("Terrain/path");
+            dirtTexture = game.Content.Load<Texture2D>("Terrain/dirt");
             map = new Tile[this.MapWidth, this.MapHeight];
             this.CreateMap(grassTexture);
             
@@ -91,6 +93,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                     this.map[iX, iZ] = new Tile("grass_tile", iX * this.TileWidth, iZ * this.TileHeight, texture);
                 }
             }
+            this.GenerateBoards();
             this.GeneratePath();
         }
 
@@ -105,12 +108,26 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             var path = PathGenerator.GeneratePath(this.mapWidth, this.mapHeight);
             for (int i = 0; i < path.Count; i++)
             {
-                this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
+            this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
                 this.map[path[i].Item1, path[i].Item2].IsPath = true;
             }
             
         }
 
+        public void GenerateBoards()
+        {
+            for (int iX = 0; iX < this.MapWidth; iX++)
+            {
+                for (int iZ = 0; iZ < this.MapHeight; iZ++)
+                {
+                    if (iX == 0 || iX == this.mapWidth - 1 || iZ == 0 || iZ == this.MapHeight - 1)
+                    {
+                        this.map[iX, iZ].TileTexture = dirtTexture;
+                    }
+                }
+            }
+        }
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();

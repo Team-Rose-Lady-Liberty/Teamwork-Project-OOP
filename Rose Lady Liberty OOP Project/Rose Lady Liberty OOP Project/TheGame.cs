@@ -27,6 +27,8 @@ namespace RoseLadyLibertyOOPProject
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 832;
+            this.IsMouseVisible = true;
             Content.RootDirectory = "Content";
         }
 
@@ -39,7 +41,8 @@ namespace RoseLadyLibertyOOPProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            map = new Map(this, 32, 32, 12, 32);
+            map = new Map(this, 32, 32, 12, 26);
+            
             base.Initialize();
         }
 
