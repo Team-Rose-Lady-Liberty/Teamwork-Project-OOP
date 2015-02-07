@@ -44,6 +44,7 @@
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Characters\Warrior.cs" />
     <Compile Include="GameObjects\Map\Map.cs" />
+    <Compile Include="GameObjects\Map\PathGenerator.cs" />
     <Compile Include="GameObjects\Map\Tile.cs" />
     <Compile Include="HelperClasses\Animation.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />

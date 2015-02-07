@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
+
 namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
     public class Map : Interfaces.IDrawable
@@ -95,11 +96,19 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
         public void GeneratePath()
         {
-            for (int iX = 0; iX < this.MapWidth; iX++)
+            //for (int iX = 0; iX < this.MapWidth; iX++)
+            //{
+            //    this.map[iX, 2].TileTexture = pathTexture;
+            //    this.map[iX, 2].IsPath = true;
+            //}
+
+            var path = PathGenerator.GeneratePath(this.mapWidth, this.mapHeight);
+            for (int i = 0; i < path.Count; i++)
             {
-                this.map[iX, 2].TileTexture = pathTexture;
-                this.map[iX, 2].IsPath = true;
+                this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
+                this.map[path[i].Item1, path[i].Item2].IsPath = true;
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
