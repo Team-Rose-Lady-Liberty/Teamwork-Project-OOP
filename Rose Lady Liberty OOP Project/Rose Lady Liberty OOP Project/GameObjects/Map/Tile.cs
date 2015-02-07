@@ -34,9 +34,7 @@
 
         public void Draw(SpriteBatch spriteBatch, int drawWidth, int drawHeight)
         {
-           
-            spriteBatch.Draw(this.tileTexture, new Rectangle(this.X,this.Y,drawWidth,drawHeight), new Rectangle(0,0,this.Width,this.Height),Color.White);
-            
+            spriteBatch.Draw(this.tileTexture, new Rectangle(this.X, this.Y, drawWidth, drawHeight), new Rectangle(0, 0, this.Width, this.Height), Color.White); 
         }
     }
 }
