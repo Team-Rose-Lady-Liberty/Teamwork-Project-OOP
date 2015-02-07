@@ -1,16 +1,17 @@
-﻿namespace RoseLadyLibertyOOPProject.GameObjects
+﻿namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
     using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Tile : GameObject, Interfaces.IDrawable
+    public class Tile : GameObject
     {
         private Texture2D tileTexture;
 
         public Tile(string id, int x, int y, Texture2D texture)
             : base(id, x, y)
         {
+            this.IsPath = false;
             this.TileTexture = texture;
         }
 
@@ -29,11 +30,13 @@
 
         public int Height { get; private set; }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public bool IsPath { get; set; }
+
+        public void Draw(SpriteBatch spriteBatch, int drawWidth, int drawHeight)
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(this.TileTexture, new Vector2(this.X, this.Y), Color.Black);
-            spriteBatch.End();
+           
+            spriteBatch.Draw(this.tileTexture, new Rectangle(this.X,this.Y,drawWidth,drawHeight), new Rectangle(0,0,this.Width,this.Height),Color.White);
+            
         }
     }
 }
