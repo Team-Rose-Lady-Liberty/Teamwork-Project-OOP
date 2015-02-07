@@ -12,7 +12,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         public enum Direction
         {
             Down = 1,
-            Left = 2,
+            Up = 2,
             Right = 4
         }
 
@@ -38,32 +38,38 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 Path newpath = new Path();
                 Random rnd = new Random();
 
-                int curx = startx; int cury = starty; Direction curd = Direction.Right;
+                int curx = startx; 
+                int cury = starty;
+                Direction prevd = Direction.Right;
+                Direction curd = Direction.Right;
                 Direction newd = curd;
-               
-                while ((curx != endx) && (cury != endy))
-                {
 
-                   
+                while (curx != endx)
+                {
                     if (rnd.NextDouble() <= prob) // let's generate a turn
                     {
 
                         do
                         {
-                            if (curx == endx) newd = GetNewDirection(Direction.Left | Direction.Down, rnd);
-                            else if (cury == endy) newd = Direction.Right;
-                            else if (curx <= 0) newd = GetNewDirection(Direction.Right | Direction.Down, rnd);
-                            else newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Left, rnd);
+                            if (curd == prevd)
+                            {
+                                
+                                if (cury >= (endy-2)) newd = GetNewDirection(Direction.Up | Direction.Right, rnd);
+                                else if (cury <= 1) newd = GetNewDirection(Direction.Down | Direction.Right, rnd);
+                                else if (curx <= 0) newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd);
+                                else newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd);
+                            }
 
                         }
-                        while ((newd | curd) == (Direction.Left | Direction.Right)); // excluding going back
+                        while ((newd | curd) == (Direction.Up | Direction.Down)); // excluding going back
 
                         newpath.Add(newd);
+                        prevd = curd;
                         curd = newd;
                         switch (newd)
                         {
-                            case Direction.Left:
-                                curx--;
+                            case Direction.Up:
+                                cury--;
                                 break;
                             case Direction.Right:
                                 curx++;
@@ -83,22 +89,10 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         {
 
             Random rand = new Random();
-            int chooseSideStart = rand.Next(1, 3);
 
-            switch (chooseSideStart)
-            {
-                default:
-                case 1: startPoint = new Tuple<int, int>(0, rand.Next(2, maxHeight - 1)); break; // startpoint = leftside
-                case 2: startPoint = new Tuple<int, int>(rand.Next(2, maxWidth - 1), 0); break; // startpoint is = upside    
+            startPoint = new Tuple<int, int>(0, rand.Next(2, maxHeight - 1)); // startpoint = leftside
+            endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1));  // startpoint = rightside
 
-            }
-            switch (chooseSideStart)
-            {
-                default:
-                case 1: endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1)); break; // startpoint = rightside
-                case 2: endPoint = new Tuple<int, int>(rand.Next(2, maxWidth - 1), maxHeight); break; // startpoint is = downside
-
-            }
 
 
         }
@@ -108,7 +102,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             Tuple<int, int> endPoint;
 
             PathGenerator.InitializeStartEndPoints(maxHeight, maxWidth, out startPoint, out endPoint);
-            Path path = Path.GenerateRandomPath(startPoint.Item1, startPoint.Item2, maxWidth-1, maxHeight-1, 0.1);
+            Path path = Path.GenerateRandomPath(startPoint.Item1, startPoint.Item2, maxWidth - 1, maxHeight - 1, 0.1);
             List<Tuple<int, int>> nodeCordinates = new List<Tuple<int, int>>();
             nodeCordinates.Add(startPoint);
             for (int i = 0; i < path.Count; i++)
@@ -119,8 +113,8 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                     case Direction.Down:
                         nodeCordinates.Add(new Tuple<int, int>(lastCordinate.Item1, lastCordinate.Item2 + 1));
                         break;
-                    case Direction.Left:
-                        nodeCordinates.Add(new Tuple<int, int>(lastCordinate.Item1 - 1, lastCordinate.Item2));
+                    case Direction.Up:
+                        nodeCordinates.Add(new Tuple<int, int>(lastCordinate.Item1, lastCordinate.Item2-1));
                         break;
                     case Direction.Right:
                         nodeCordinates.Add(new Tuple<int, int>(lastCordinate.Item1 + 1, lastCordinate.Item2));
