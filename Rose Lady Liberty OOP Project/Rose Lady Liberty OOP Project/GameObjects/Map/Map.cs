@@ -19,6 +19,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         private Texture2D pathTexture;
         private Texture2D dirtTexture;
         private Tile[,] map;
+        private List<PathGenerator.Direction> mobDirections;
 
         public Map(TheGame game, int tileWidth, int tileHeight, int height = 16, int width = 16)
         {
@@ -99,18 +100,14 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
         public void GeneratePath()
         {
-            //for (int iX = 0; iX < this.MapWidth; iX++)
-            //{
-            //    this.map[iX, 2].TileTexture = pathTexture;
-            //    this.map[iX, 2].IsPath = true;
-            //}
 
-            var path = PathGenerator.GeneratePath(this.mapWidth, this.mapHeight);
+            var path = PathGenerator.GeneratePath(this.mapWidth, this.mapHeight, out mobDirections);
             for (int i = 0; i < path.Count; i++)
             {
             this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
                 this.map[path[i].Item1, path[i].Item2].IsPath = true;
             }
+            
             
         }
 

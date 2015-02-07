@@ -93,7 +93,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
 
         }
-        public static List<Tuple<int, int>> GeneratePath(int maxWidth, int maxHeight)
+        public static List<Tuple<int, int>> GeneratePath(int maxWidth, int maxHeight, out List<Direction> directions)
         {
             Tuple<int, int> startPoint;
             Tuple<int, int> endPoint;
@@ -118,6 +118,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                         break;
                 }
             }
+            directions = path;
             return nodeCordinates;
 
         }
