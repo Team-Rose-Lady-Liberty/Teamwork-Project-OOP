@@ -5,36 +5,34 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-
 namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
     public class Map : Interfaces.IDrawable
     {
-
         private int tileWidth;
         private int tileHeight;
-        private int mapWidth;
-        private int mapHeight;
+        private int mapRowCells;
+        private int mapColumnCells;
         private Texture2D grassTexture;
         private Texture2D pathTexture;
         private Texture2D dirtTexture;
         private Tile[,] map;
 
-        public Map(TheGame game, int tileWidth, int tileHeight, int height = 16, int width = 16)
+        public Map(TheGame game, int tileWidth, int tileHeight, int rowCells = 16, int columnCells = 16)
         {
             this.TileWidth = tileWidth;
             this.TileHeight = tileHeight;
-            this.MapHeight = height;
-            this.MapWidth = width;
+            this.MapRowCells = rowCells;
+            this.MapColumnCells = columnCells;
             grassTexture = game.Content.Load<Texture2D>("Terrain/grass");
             pathTexture = game.Content.Load<Texture2D>("Terrain/path");
             dirtTexture = game.Content.Load<Texture2D>("Terrain/dirt");
-            map = new Tile[this.MapWidth, this.MapHeight];
+            map = new Tile[this.MapRowCells, this.MapColumnCells];
             this.CreateMap(grassTexture);
-            
-
         }
 
+        public Tile[,] MapCells { get { return this.map; } }
+        
         public int TileWidth
         {
             get { return this.tileWidth; }
@@ -59,43 +57,56 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 this.tileHeight = value;
             }
         }
-        public int MapWidth
+        public int MapRowCells
         {
-            get { return this.mapWidth; }
-            set
+            get { return this.mapRowCells; }
+            private set
             {
                 if (value < 1)
                 {
                     throw new ArgumentOutOfRangeException("Map width can not be negative or zero!");
                 }
-                this.mapWidth = value;
+                this.mapRowCells = value;
             }
         }
-        public int MapHeight
+        public int MapColumnCells
         {
-            get { return this.mapHeight; }
+            get { return this.mapColumnCells; }
             set
             {
                 if (value < 1)
                 {
                     throw new ArgumentOutOfRangeException("Map height can not be negative or zero!");
                 }
-                this.mapHeight = value;
+                this.mapColumnCells = value;
             }
+        }
+
+        public int MapWidth 
+        {
+            get { return this.MapRowCells * this.TileWidth; } 
+        }
+
+        public int MapHeight
+        {
+            get { return this.MapColumnCells * this.TileHeight; }
         }
 
         public void CreateMap(Texture2D texture)
         {
-            for (int iX = 0; iX < this.MapWidth; iX++)
+            for (int row = 0; row < this.MapRowCells; row++)
             {
-                for (int iZ = 0; iZ < this.MapHeight; iZ++)
+                for (int column = 0; column < this.MapColumnCells; column++)
                 {
-                    this.map[iX, iZ] = new Tile("grass_tile", iX * this.TileWidth, iZ * this.TileHeight, texture);
+                    this.map[row, column] = new Tile("grass_tile", row * this.TileWidth, column * this.TileHeight, TileWidth, TileHeight, texture);
                 }
             }
             this.GenerateBoards();
             this.GeneratePath();
         }
+
+        public Tile[] PathTiles
+        { get; private set; }
 
         public void GeneratePath()
         {
@@ -105,24 +116,27 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             //    this.map[iX, 2].IsPath = true;
             //}
 
-            var path = PathGenerator.GeneratePath(this.mapWidth, this.mapHeight);
+            List<Tile> pathTiles = new List<Tile>();
+
+            var path = PathGenerator.GeneratePath(this.MapRowCells, this.MapColumnCells);
             for (int i = 0; i < path.Count; i++)
             {
-            this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
-                this.map[path[i].Item1, path[i].Item2].IsPath = true;
+                this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
+                this.map[path[i].Item1, path[i].Item2].TileType = Enumerations.TileType.Path;
+                pathTiles.Add(this.map[path[i].Item1, path[i].Item2]);
             }
-            
+            this.PathTiles = pathTiles.ToArray();
         }
 
         public void GenerateBoards()
         {
-            for (int iX = 0; iX < this.MapWidth; iX++)
+            for (int row = 0; row < this.MapRowCells; row++)
             {
-                for (int iZ = 0; iZ < this.MapHeight; iZ++)
+                for (int column = 0; column < this.MapColumnCells; column++)
                 {
-                    if (iX == 0 || iX == this.mapWidth - 1 || iZ == 0 || iZ == this.MapHeight - 1)
+                    if (row == 0 || row == this.MapRowCells - 1 || column == 0 || column == this.MapColumnCells - 1)
                     {
-                        this.map[iX, iZ].TileTexture = dirtTexture;
+                        this.map[row, column].TileTexture = dirtTexture;
                     }
                 }
             }
@@ -131,11 +145,11 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            for (int iX = 0; iX < this.MapWidth; iX++)
+            for (int row = 0; row < this.MapRowCells; row++)
             {
-                for (int iZ = 0; iZ < this.MapHeight; iZ++)
+                for (int column = 0; column < this.MapColumnCells; column++)
                 {
-                    this.map[iX, iZ].Draw(spriteBatch, TileWidth, TileHeight);
+                    this.map[row, column].Draw(spriteBatch);
                 }
             }
             spriteBatch.End();

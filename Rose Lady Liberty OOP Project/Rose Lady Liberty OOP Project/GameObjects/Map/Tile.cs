@@ -3,15 +3,16 @@
     using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using Enumerations;
 
     public class Tile : GameObject
     {
         private Texture2D tileTexture;
 
-        public Tile(string id, int x, int y, Texture2D texture)
-            : base(id, x, y)
+        public Tile(string id, int x, int y, int width, int height, Texture2D texture)
+            : base(id, x, y, width, height)
         {
-            this.IsPath = false;
+            this.TileType = TileType.Decoration;
             this.TileTexture = texture;
         }
 
@@ -30,11 +31,13 @@
 
         public int Height { get; private set; }
 
-        public bool IsPath { get; set; }
+        public TileType TileType { get; set; }
 
-        public void Draw(SpriteBatch spriteBatch, int drawWidth, int drawHeight)
+        public MoveDirection Direction { get; set; }
+
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.tileTexture, new Rectangle(this.X, this.Y, drawWidth, drawHeight), new Rectangle(0, 0, this.Width, this.Height), Color.White); 
+            spriteBatch.Draw(this.tileTexture, this.Rectangle, Color.White); 
         }
     }
 }

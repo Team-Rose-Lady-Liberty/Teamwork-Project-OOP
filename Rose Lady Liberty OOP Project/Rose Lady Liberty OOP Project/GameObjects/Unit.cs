@@ -1,17 +1,18 @@
 ﻿namespace RoseLadyLibertyOOPProject.GameObjects
 {
-    using Interfaces;
     using System;
     using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework;
 
-    public abstract class Agent : GameObject, IMovable, IDrawable
+    using Interfaces;
+
+    public abstract class Unit : GameObject, IMovable, Interfaces.IDrawable
     {
         private int range;
 
-        public Agent(string id, int x, int y, int health, int attack, int defense)
-            : base(id, x, y)
+        public Unit(string id, Rectangle unitRectangle, int health, int attack, int defense)
+            : base(id, unitRectangle)
         {
-            this.IsAlive = true;
             this.Health = health;
             this.Attack = attack;
             this.Defense = defense;
@@ -22,8 +23,6 @@
         public int Attack { get; set; }
 
         public int Defense { get; set; }
-
-        public bool IsAlive { get; set; }
 
         public int Speed { get; set; }
 
@@ -43,9 +42,6 @@
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-
-        }
+        public abstract void Draw(SpriteBatch spriteBatch);
     }
 }

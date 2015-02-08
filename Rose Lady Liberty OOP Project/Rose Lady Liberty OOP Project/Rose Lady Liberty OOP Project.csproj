@@ -36,13 +36,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\GameEngine.cs" />
-    <Compile Include="Enumerations\CharacterMovingState.cs" />
+    <Compile Include="Enumerations\MoveDirection.cs" />
     <Compile Include="Enumerations\GameState.cs" />
+    <Compile Include="Enumerations\TileType.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjects\Units\Characters\SampleCharacter.cs" />
+    <Compile Include="GameObjects\Unit.cs" />
+    <Compile Include="GameObjects\Units\Character.cs" />
     <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Map\Map.cs" />
     <Compile Include="GameObjects\Map\PathGenerator.cs" />
     <Compile Include="GameObjects\Map\Tile.cs" />
+    <Compile Include="GameObjects\Units\Enemies\SampleEnemy.cs" />
+    <Compile Include="GameObjects\Units\Enemy.cs" />
     <Compile Include="HelperClasses\Animation.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
@@ -74,7 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="GameObjects\Characters\" />
     <Folder Include="GameObjects\Items\" />
     <Folder Include="Structures\" />
   </ItemGroup>

@@ -7,8 +7,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
     public class PathGenerator
     {
-
-
         public enum Direction
         {
             Down = 1,
@@ -18,7 +16,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
         public class Path : List<Direction>
         {
-
             public static Direction GetNewDirection(Direction allowed, Random rnd)
             {
                 Direction newd;
@@ -50,7 +47,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                     {
                         if (curd == prevd)
                         {
-
                             if (cury >= (endy - 2)) newd = GetNewDirection(Direction.Up | Direction.Right, rnd);
                             else if (cury <= 2) newd = GetNewDirection(Direction.Down | Direction.Right, rnd);
                             else if (curx <= 0) newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd);
@@ -75,8 +71,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                             cury++;
                             break;
                     }
-
-
                 }
                 return newpath;
             }
@@ -84,15 +78,12 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
         public static void InitializeStartEndPoints(int maxHeight, int maxWidth, out Tuple<int, int> startPoint, out Tuple<int, int> endPoint)
         {
-
             Random rand = new Random();
 
             startPoint = new Tuple<int, int>(0, rand.Next(2, maxHeight - 1)); // startpoint = leftside
             endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1));  // startpoint = rightside
-
-
-
         }
+
         public static List<Tuple<int, int>> GeneratePath(int maxWidth, int maxHeight)
         {
             Tuple<int, int> startPoint;
@@ -102,6 +93,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             Path path = Path.GenerateRandomPath(startPoint.Item1, startPoint.Item2, maxWidth -1, maxHeight - 1);
             List<Tuple<int, int>> nodeCordinates = new List<Tuple<int, int>>();
             nodeCordinates.Add(startPoint);
+
             for (int i = 0; i < path.Count; i++)
             {
                 var lastCordinate = nodeCordinates.Last();
@@ -119,8 +111,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 }
             }
             return nodeCordinates;
-
         }
-
     }
 }

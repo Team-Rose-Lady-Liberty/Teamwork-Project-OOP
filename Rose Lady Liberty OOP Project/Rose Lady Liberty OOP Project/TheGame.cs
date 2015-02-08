@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Storage;
 using Microsoft.Xna.Framework.GamerServices;
 using RoseLadyLibertyOOPProject.GameObjects;
 using RoseLadyLibertyOOPProject.GameObjects.Map;
+using RoseLadyLibertyOOPProject.GameObjects.Units.Characters;
+using RoseLadyLibertyOOPProject.GameObjects.Units.Enemies;
+using RoseLadyLibertyOOPProject.GameObjects.Units;
 
 #endregion
 
@@ -22,7 +25,13 @@ namespace RoseLadyLibertyOOPProject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
-        
+        KeyboardState keyBoard;
+        SampleCharacter character;
+        Tile[] enemyPath;
+        List<Enemy> enemies;
+
+
+        bool ePressed;
         public TheGame()
             : base()
         {
@@ -41,8 +50,12 @@ namespace RoseLadyLibertyOOPProject
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            map = new Map(this, 32, 32, 12, 26);
-            
+            map = new Map(this, 32, 32, 26, 12);
+            enemyPath = map.PathTiles;
+            character = new SampleCharacter("temp", new Rectangle(0, 0, 32, 32), 10, 10, 10);
+            enemies = new List<Enemy>();
+            character.Speed = 2;
+            ePressed = false;
             base.Initialize();
         }
 
@@ -74,11 +87,84 @@ namespace RoseLadyLibertyOOPProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            keyBoard = Keyboard.GetState();
+            
+            if(keyBoard.IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
+            if(keyBoard.IsKeyDown(Keys.E))
+            {
+                if (ePressed == false)
+                {
+                    enemies.Add(new SampleEnemy("sd", enemyPath[0].Rectangle, 10, 10, 10));
+                    ePressed = true;
+                }
+            }
+            if(keyBoard.IsKeyUp(Keys.E))
+            {
+                ePressed = false;
+            }
+            Enumerations.MoveDirection direction = Enumerations.MoveDirection.None;
+            if(keyBoard.IsKeyDown(Keys.D))
+            {
+                direction = Enumerations.MoveDirection.Right;
+            }
+            else if (keyBoard.IsKeyDown(Keys.A))
+            {
+                direction = Enumerations.MoveDirection.Left;
+            }
+            else if (keyBoard.IsKeyDown(Keys.W))
+            {
+                direction = Enumerations.MoveDirection.Up;
+            }
+            else if (keyBoard.IsKeyDown(Keys.S))
+            {
+                direction = Enumerations.MoveDirection.Down;
+            }
+            this.character.Move(direction);
+            if(character.Rectangle.X < 0)
+            {
+                character.Move(Enumerations.MoveDirection.Right);
+            }
+            else if (character.Rectangle.X + character.Rectangle.Width > this.map.MapWidth)
+            {
+                character.Move(Enumerations.MoveDirection.Left);
+            }
+            if (character.Rectangle.Y < 0)
+            {
+                character.Move(Enumerations.MoveDirection.Down);
+            }
+            else if (character.Rectangle.Y + character.Rectangle.Height > this.map.MapHeight)
+            {
+                character.Move(Enumerations.MoveDirection.Up);
+            }
 
-            // TODO: Add your update logic here
-            base.Update(gameTime);
+            for (int i = 0; i < this.map.MapRowCells; i++)
+            {
+                for (int y = 0; y < this.map.MapColumnCells; y++)
+                {
+                    if(this.map.MapCells[i,y].TileType == Enumerations.TileType.Path && character.Rectangle.Intersects(this.map.MapCells[i, y].Rectangle))
+                    {
+                        if (direction == Enumerations.MoveDirection.Left)
+                            character.Move(Enumerations.MoveDirection.Right);
+                        else if (direction == Enumerations.MoveDirection.Right)
+                            character.Move(Enumerations.MoveDirection.Left);
+                        else if (direction == Enumerations.MoveDirection.Up)
+                            character.Move(Enumerations.MoveDirection.Down);
+                        else if (direction == Enumerations.MoveDirection.Down)
+                            character.Move(Enumerations.MoveDirection.Up);
+                    }
+                }
+            }
+            for(int i = 0; i < enemies.Count;i++)
+            {
+                enemies[i].Update(enemyPath);
+                if (enemies[i].AtFinish)
+                    enemies.Remove(enemies[i]);
+            }
+                // TODO: Add your update logic here
+                base.Update(gameTime);
         }
 
         /// <summary>
@@ -91,6 +177,11 @@ namespace RoseLadyLibertyOOPProject
 
             // TODO: Add your drawing code here
             map.Draw(spriteBatch);
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Draw(spriteBatch);
+            }
+            character.Draw(spriteBatch);
             base.Draw(gameTime);
         }
     }
