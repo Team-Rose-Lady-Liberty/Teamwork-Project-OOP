@@ -110,7 +110,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                         break;
                 }
             }
-            directions = path;
             return nodeCordinates;
         }
     }
