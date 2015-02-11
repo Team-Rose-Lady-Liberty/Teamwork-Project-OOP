@@ -9,13 +9,14 @@
     public abstract class Unit : GameObject, IMovable, Interfaces.IDrawable
     {
         private int range;
-
+        protected Rectangle rangeRectangle;
         public Unit(string id, Rectangle unitRectangle, int health, int attack, int defense)
             : base(id, unitRectangle)
         {
             this.Health = health;
             this.Attack = attack;
             this.Defense = defense;
+            this.rangeRectangle = new Rectangle(0,0,300,300);
         }
 
         public int Health { get; set; }
@@ -43,5 +44,10 @@
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);
+
+        public virtual void Update()
+        {
+            
+        }
     }
 }

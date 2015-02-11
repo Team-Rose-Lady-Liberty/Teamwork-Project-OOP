@@ -35,7 +35,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\EnemyManager.cs" />
     <Compile Include="Core\GameEngine.cs" />
+    <Compile Include="Core\InputHandler.cs" />
+    <Compile Include="Core\Menu.cs" />
+    <Compile Include="Core\MenuItem.cs" />
     <Compile Include="Enumerations\MoveDirection.cs" />
     <Compile Include="Enumerations\GameState.cs" />
     <Compile Include="Enumerations\TileType.cs" />
@@ -43,13 +47,11 @@
     <Compile Include="GameObjects\Units\Characters\SampleCharacter.cs" />
     <Compile Include="GameObjects\Unit.cs" />
     <Compile Include="GameObjects\Units\Character.cs" />
-    <Compile Include="GameObjects\Item.cs" />
     <Compile Include="GameObjects\Map\Map.cs" />
     <Compile Include="GameObjects\Map\PathGenerator.cs" />
     <Compile Include="GameObjects\Map\Tile.cs" />
     <Compile Include="GameObjects\Units\Enemies\SampleEnemy.cs" />
     <Compile Include="GameObjects\Units\Enemy.cs" />
-    <Compile Include="HelperClasses\Animation.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="TheGame.cs" />
@@ -78,11 +80,7 @@
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Constants\" />
-    <Folder Include="GameObjects\Items\" />
-    <Folder Include="Structures\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

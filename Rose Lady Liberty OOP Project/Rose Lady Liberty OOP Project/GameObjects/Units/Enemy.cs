@@ -1,6 +1,7 @@
 ﻿namespace RoseLadyLibertyOOPProject.GameObjects.Units
 {
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
     using GameObjects.Map;
     using Enumerations;
 
@@ -13,7 +14,7 @@
             AtFinish = false;
         }
 
-        public void Update(Tile[] path)
+        public void Update(ref Tile[] path)
         {
             if(currentPathNode + 1 < path.Length)
             {
@@ -58,5 +59,13 @@
         }
 
         public bool AtFinish { get; set; }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            Texture2D temp = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            temp.SetData(new[] { Color.White });
+
+            spriteBatch.Draw(temp, this.Rectangle, Color.White);
+        }
     }
 }

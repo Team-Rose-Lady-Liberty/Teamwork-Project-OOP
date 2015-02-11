@@ -10,15 +10,5 @@
         {
             
         }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            Texture2D temp = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
-            temp.SetData(new[] { Color.White });
-
-            spriteBatch.Begin();
-            spriteBatch.Draw(temp, this.Rectangle, Color.White);
-            spriteBatch.End();
-        }
     }
 }
