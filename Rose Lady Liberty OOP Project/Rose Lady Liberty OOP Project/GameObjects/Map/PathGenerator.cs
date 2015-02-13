@@ -19,6 +19,8 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         {
 
             private static double curve = 1.0;
+            private static double curveDecreaser;
+
             public static Direction GetNewDirection(Direction allowed, Random rnd)
             {
                 Direction newd;
@@ -38,7 +40,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             {
                 Path newpath = new Path();
                 Random rnd = new Random();
-                
+                curveDecreaser = 0.15;
 
                 int curx = startx;
                 int cury = starty;
@@ -54,7 +56,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
                         if (curd != prevd)
                         {
-                            curve -= 0.15;
+                            curve -= curveDecreaser;
                         }
                         if (curve <= 0)
                         {
