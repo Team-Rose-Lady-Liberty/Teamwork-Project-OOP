@@ -11,16 +11,20 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         {
             Down = 1,
             Up = 2,
-            Right = 4
+            Right = 4,
+
         }
 
         public class Path : List<Direction>
         {
+
+            private static double curve = 1.0;
             public static Direction GetNewDirection(Direction allowed, Random rnd)
             {
                 Direction newd;
                 int maxd = Enum.GetValues(typeof(Direction)).Length;
                 int[] vals = (int[])Enum.GetValues(typeof(Direction));
+
                 do
                 {
                     var t = rnd.Next(0, maxd);
@@ -34,29 +38,42 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             {
                 Path newpath = new Path();
                 Random rnd = new Random();
+                
 
                 int curx = startx;
                 int cury = starty;
+                Direction doublePrevd = Direction.Down;
                 Direction prevd = Direction.Down;
                 Direction curd = Direction.Right;
                 Direction newd = curd;
 
                 while (curx != endx)
                 {
-                    do
-                    {
-                        if (curd == prevd)
+                    
+                    do{
+
+                        if (curd != prevd)
                         {
-                            if (cury >= (endy - 2)) newd = GetNewDirection(Direction.Up | Direction.Right, rnd);
-                            else if (cury <= 2) newd = GetNewDirection(Direction.Down | Direction.Right, rnd);
-                            else if (curx <= 0) newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd);
-                            else newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd);
+                            curve -= 0.15;
                         }
+                        if (curve <= 0)
+                        {
+                            newd = Direction.Right;
+                        }
+                        else if(curd == prevd && prevd == doublePrevd)
+                        {
+                            if (cury >= (endy -3)) newd = GetNewDirection(Direction.Up | Direction.Right, rnd); //bottom border is reached, only up and right allowed
+                            else if (cury <= 3) newd = GetNewDirection(Direction.Down | Direction.Right, rnd);  //top border is rached, only down and right allowed
+                            else newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd); //all directions are possible
+                            
+                        }
+                      
 
                     }
                     while ((newd | curd) == (Direction.Up | Direction.Down)); // excluding going back
 
                     newpath.Add(newd);
+                    doublePrevd = prevd;
                     prevd = curd;
                     curd = newd;
                     switch (newd)
@@ -80,7 +97,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         {
             Random rand = new Random();
 
-            startPoint = new Tuple<int, int>(0, rand.Next(2, maxHeight - 1)); // startpoint = leftside
+            startPoint = new Tuple<int, int>(0, rand.Next(3, maxHeight - 2)); // startpoint = leftside
             endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1));  // startpoint = rightside
         }
 
