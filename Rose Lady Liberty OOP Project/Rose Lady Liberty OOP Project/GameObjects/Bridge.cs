@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using RoseLadyLibertyOOPProject.Core;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace RoseLadyLibertyOOPProject.GameObjects
 {
@@ -16,7 +17,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects
         private bool isMoovable = true;
         private Rectangle rectangle;
 
-        public BridgeContentManager contentManager, string id, Rectangle rect) 
+        public Bridge(ContentManager contentManager, string id, Rectangle rect) 
         {
             this.texture = contentManager.Load<Texture2D>("Terrain/bridge");         
             this.rotation = true;

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Graphics;
-<<<<<<< HEAD
-using Microsoft.Xna.Framework.Content;
-=======
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
->>>>>>> origin/master
 
 namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
@@ -38,7 +35,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             map = new Tile[this.MapRowCells, this.MapColumnCells];
 
             this.CreateMap(grassTexture);
-            bridge = new Bridge(game, "bridge", new Rectangle(32, 32, 64, 96));
+            bridge = new Bridge(contentManager, "bridge", new Rectangle(32, 32, 64, 96));
           
         }
 

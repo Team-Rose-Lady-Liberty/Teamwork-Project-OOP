@@ -30,6 +30,8 @@ namespace RoseLadyLibertyOOPProject.Core
         public void Update()
         {
             this.inputHandler.Update();
+            theMap.Update();
+            enemyManager.Update();
             HandleGameInput();
             DoPlayerBoundaries();
             HandleCollisions();
