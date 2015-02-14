@@ -40,9 +40,11 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
         private void OnPress()
         {
-            var bridgeCordinates = Mouse.GetState().Position;
-            this.PlaceBridge(bridgeCordinates);
-            
+            if (bridge.IsMoovable)
+            {
+                var bridgeCordinates = Mouse.GetState().Position;
+                this.PlaceBridge(bridgeCordinates);
+            }
         }
 
         public void Update()
@@ -180,6 +182,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             bridge.IsActive = true;
             Rectangle rect = new Rectangle(cordinates.X, cordinates.Y, bridge.Rectangle.Width, bridge.Rectangle.Height);
             bridge.Rectangle = rect;
+            bridge.IsMoovable = false;
 
 
         }

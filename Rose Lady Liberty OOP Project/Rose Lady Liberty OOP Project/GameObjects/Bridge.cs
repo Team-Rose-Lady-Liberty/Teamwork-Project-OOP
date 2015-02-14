@@ -13,6 +13,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects
         private Texture2D texture;
         private bool rotation;
         private bool isActive;
+        private bool isMoovable = true;
         private Rectangle rectangle;
 
         public Bridge(TheGame game, string id, Rectangle rect) 
@@ -24,6 +25,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects
 
         }
         public Rectangle Rectangle { get { return this.rectangle; } set { this.rectangle = value; } }
+        public bool IsMoovable { get { return this.isMoovable; } set { this.isMoovable = value; } }
         public void Draw(SpriteBatch sprite)
         {
             if(isActive){
