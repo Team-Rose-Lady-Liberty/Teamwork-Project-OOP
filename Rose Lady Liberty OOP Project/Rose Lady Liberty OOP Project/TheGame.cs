@@ -47,7 +47,7 @@ namespace RoseLadyLibertyOOPProject
 
         protected override void Initialize()
         {
-            map = new Map(this, 32, 32, 26, 12);
+            map = new Map(this, 32, 32, 26, 12);      
             enemyManager = new EnemyManager(map.PathTiles);
             inputHandler.AddKeyToHandle(Keys.E, enemyManager.AddEnemy);
             inputHandler.AddKeyToHandle(Keys.Escape, this.Exit);
@@ -74,7 +74,7 @@ namespace RoseLadyLibertyOOPProject
             inputHandler.Update();
             keyBoard = Keyboard.GetState();
             theMenu.Update(InputHandler.MouseState);
-            
+            map.Update();
             HandleGameInput();
             DoPlayerBoundaries();
             HandleCollisions();

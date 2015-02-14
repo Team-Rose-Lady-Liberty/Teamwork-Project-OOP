@@ -8,10 +8,11 @@
     public class Menu
     {
         private List<MenuItem> menuItems;
-        
+       
         public Menu()
         {
             menuItems = new List<MenuItem>();
+ 
         }
 
         public void Update(MouseState mouseState)
@@ -34,6 +35,7 @@
             {
                 item.Draw(spriteBatch);
             }
+       
             spriteBatch.End();
         }
     }

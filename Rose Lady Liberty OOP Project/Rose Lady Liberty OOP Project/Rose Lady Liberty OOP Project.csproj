@@ -44,6 +44,7 @@
     <Compile Include="Enumerations\GameState.cs" />
     <Compile Include="Enumerations\TileType.cs" />
     <Compile Include="GameObject.cs" />
+    <Compile Include="GameObjects\Bridge.cs" />
     <Compile Include="GameObjects\Units\Characters\SampleCharacter.cs" />
     <Compile Include="GameObjects\Unit.cs" />
     <Compile Include="GameObjects\Units\Character.cs" />
@@ -66,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Terrain\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Terrain\dirt.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
