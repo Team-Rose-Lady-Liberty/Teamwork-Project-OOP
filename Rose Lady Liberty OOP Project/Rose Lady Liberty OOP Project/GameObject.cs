@@ -8,7 +8,7 @@
         {
             this.ID = id;
         }
-
+            
         public GameObject(string id, int x, int y, int width, int height)
             : this(id)
         {

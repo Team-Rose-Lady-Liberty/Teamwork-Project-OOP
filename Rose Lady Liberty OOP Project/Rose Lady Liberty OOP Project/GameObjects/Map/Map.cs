@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Graphics;
+<<<<<<< HEAD
 using Microsoft.Xna.Framework.Content;
+=======
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+>>>>>>> origin/master
 
 namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
     public class Map : Interfaces.IDrawable
     {
+
         private int tileWidth;
         private int tileHeight;
         private int mapRowCells;
@@ -16,6 +22,8 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         private Texture2D dirtTexture;
         private Tile[,] map;
         private List<PathGenerator.Direction> mobDirections;
+        private Bridge bridge;
+
 
         public Map(ContentManager contentManager, int tileWidth, int tileHeight, int rowCells = 16, int columnCells = 16)
         {
@@ -23,11 +31,32 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             this.TileHeight = tileHeight;
             this.MapRowCells = rowCells;
             this.MapColumnCells = columnCells;
+
             grassTexture = contentManager.Load<Texture2D>("Terrain/grass");
             pathTexture = contentManager.Load<Texture2D>("Terrain/path");
             dirtTexture = contentManager.Load<Texture2D>("Terrain/dirt");
             map = new Tile[this.MapRowCells, this.MapColumnCells];
+
             this.CreateMap(grassTexture);
+            bridge = new Bridge(game, "bridge", new Rectangle(32, 32, 64, 96));
+          
+        }
+
+        private void OnPress()
+        {
+            if (bridge.IsMoovable)
+            {
+                var bridgeCordinates = Mouse.GetState().Position;
+                this.PlaceBridge(bridgeCordinates);
+            }
+        }
+
+        public void Update()
+        {
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+            {
+                this.OnPress();
+            }
         }
 
         public Tile[,] MapCells { get { return this.map; } }
@@ -44,6 +73,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 this.tileWidth = value;
             }
         }
+
         public int TileHeight
         {
             get { return this.tileHeight; }
@@ -56,6 +86,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 this.tileHeight = value;
             }
         }
+
         public int MapRowCells
         {
             get { return this.mapRowCells; }
@@ -68,6 +99,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 this.mapRowCells = value;
             }
         }
+
         public int MapColumnCells
         {
             get { return this.mapColumnCells; }
@@ -109,7 +141,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
 
         public void GeneratePath()
         {
-
             List<Tile> pathTiles = new List<Tile>();
 
             var path = PathGenerator.GeneratePath(this.MapRowCells, this.MapColumnCells);
@@ -147,7 +178,15 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                     this.map[row, column].Draw(spriteBatch);
                 }
             }
-            //spriteBatch.End();
+            this.bridge.Draw(spriteBatch);
+        }
+
+        public void PlaceBridge(Point cordinates)
+        {
+            bridge.IsActive = true;
+            Rectangle rect = new Rectangle(cordinates.X, cordinates.Y, bridge.Rectangle.Width, bridge.Rectangle.Height);
+            bridge.Rectangle = rect;
+            bridge.IsMoovable = false;
         }
     }
 }
