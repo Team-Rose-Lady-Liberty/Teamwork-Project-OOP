@@ -1,8 +1,8 @@
 ﻿namespace RoseLadyLibertyOOPProject.Enumerations
 {
-    enum GameState
+    public enum GameState
     {
-        Playing,
-        InMenu
+        Menu,
+        Game
     }
 }

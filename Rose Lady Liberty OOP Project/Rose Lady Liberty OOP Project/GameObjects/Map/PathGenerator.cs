@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
     public class PathGenerator
@@ -12,12 +11,10 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
             Down = 1,
             Up = 2,
             Right = 4,
-
         }
 
         public class Path : List<Direction>
         {
-
             private static double curve = 1.0;
             private static double curveDecreaser;
 
@@ -50,10 +47,9 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                 Direction newd = curd;
 
                 while (curx != endx)
-                {
-                    
-                    do{
-
+                { 
+                    do
+                    {
                         if (curd != prevd)
                         {
                             curve -= curveDecreaser;
@@ -69,8 +65,6 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                             else newd = GetNewDirection(Direction.Right | Direction.Down | Direction.Up, rnd); //all directions are possible
                             
                         }
-                      
-
                     }
                     while ((newd | curd) == (Direction.Up | Direction.Down)); // excluding going back
 
@@ -78,6 +72,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                     doublePrevd = prevd;
                     prevd = curd;
                     curd = newd;
+
                     switch (newd)
                     {
                         case Direction.Up:

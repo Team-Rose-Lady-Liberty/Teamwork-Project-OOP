@@ -10,6 +10,7 @@
     {
         private int range;
         protected Rectangle rangeRectangle;
+
         public Unit(string id, Rectangle unitRectangle, int health, int attack, int defense)
             : base(id, unitRectangle)
         {

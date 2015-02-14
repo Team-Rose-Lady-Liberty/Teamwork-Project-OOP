@@ -10,6 +10,7 @@
     {
         private List<Enemy> enemies;
         private Tile[] enemyPath;
+
         public EnemyManager(Tile[] enemyPath)
         {
             enemies = new List<Enemy>();

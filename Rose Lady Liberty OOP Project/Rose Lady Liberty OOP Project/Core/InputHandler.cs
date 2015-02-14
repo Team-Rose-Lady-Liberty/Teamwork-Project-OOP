@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Input;
 
 namespace RoseLadyLibertyOOPProject.Core
 {
     public class InputHandler
     {
-        private KeyboardState keyboardState;
         private Dictionary<Keys, bool> handledKeys;
         private Dictionary<Keys, Action> handledKeysActions;
  
@@ -20,7 +18,12 @@ namespace RoseLadyLibertyOOPProject.Core
 
         public static MouseState MouseState
         {
-            get; private set;
+            get { return Mouse.GetState(); }
+        }
+
+        public static KeyboardState KeyboardState
+        {
+            get { return Keyboard.GetState(); }
         }
 
         public void AddKeyToHandle(Keys key, Action actionToPerform)
@@ -38,18 +41,15 @@ namespace RoseLadyLibertyOOPProject.Core
 
         public void Update()
         {
-            MouseState = Mouse.GetState();
-            this.keyboardState = Keyboard.GetState();
-
             for (int key = 0; key < handledKeys.Keys.Count; key++)
             {
-                if (this.keyboardState.IsKeyDown(handledKeys.Keys.ElementAt(key)) 
+                if (KeyboardState.IsKeyDown(handledKeys.Keys.ElementAt(key)) 
                     && handledKeys[handledKeys.Keys.ElementAt(key)] == false)
                 {
                     this.handledKeysActions[handledKeys.Keys.ElementAt(key)]();
                     this.handledKeys[handledKeys.Keys.ElementAt(key)] = true;
                 }
-                else if (this.keyboardState.IsKeyUp(handledKeys.Keys.ElementAt(key)) 
+                else if (KeyboardState.IsKeyUp(handledKeys.Keys.ElementAt(key)) 
                     && handledKeys[handledKeys.Keys.ElementAt(key)] == true)
                 {
                     this.handledKeys[handledKeys.Keys.ElementAt(key)] = false;

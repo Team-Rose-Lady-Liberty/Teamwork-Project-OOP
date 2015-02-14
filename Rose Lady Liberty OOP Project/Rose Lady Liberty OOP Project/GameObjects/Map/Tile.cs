@@ -1,6 +1,5 @@
 ﻿namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
-    using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Enumerations;

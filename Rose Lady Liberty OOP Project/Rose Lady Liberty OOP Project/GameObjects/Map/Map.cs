@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace RoseLadyLibertyOOPProject.GameObjects.Map
 {
@@ -19,15 +17,15 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         private Tile[,] map;
         private List<PathGenerator.Direction> mobDirections;
 
-        public Map(TheGame game, int tileWidth, int tileHeight, int rowCells = 16, int columnCells = 16)
+        public Map(ContentManager contentManager, int tileWidth, int tileHeight, int rowCells = 16, int columnCells = 16)
         {
             this.TileWidth = tileWidth;
             this.TileHeight = tileHeight;
             this.MapRowCells = rowCells;
             this.MapColumnCells = columnCells;
-            grassTexture = game.Content.Load<Texture2D>("Terrain/grass");
-            pathTexture = game.Content.Load<Texture2D>("Terrain/path");
-            dirtTexture = game.Content.Load<Texture2D>("Terrain/dirt");
+            grassTexture = contentManager.Load<Texture2D>("Terrain/grass");
+            pathTexture = contentManager.Load<Texture2D>("Terrain/path");
+            dirtTexture = contentManager.Load<Texture2D>("Terrain/dirt");
             map = new Tile[this.MapRowCells, this.MapColumnCells];
             this.CreateMap(grassTexture);
         }
@@ -141,7 +139,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
         
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             for (int row = 0; row < this.MapRowCells; row++)
             {
                 for (int column = 0; column < this.MapColumnCells; column++)
@@ -149,7 +147,7 @@ namespace RoseLadyLibertyOOPProject.GameObjects.Map
                     this.map[row, column].Draw(spriteBatch);
                 }
             }
-            spriteBatch.End();
+            //spriteBatch.End();
         }
     }
 }

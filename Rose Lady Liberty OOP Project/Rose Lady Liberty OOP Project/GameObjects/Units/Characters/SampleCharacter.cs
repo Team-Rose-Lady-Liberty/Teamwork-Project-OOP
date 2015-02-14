@@ -16,9 +16,9 @@
             Texture2D temp = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
             temp.SetData(new[] { Color.White });
 
-            spriteBatch.Begin();
+            //spriteBatch.Begin();
             spriteBatch.Draw(temp, this.Rectangle, Color.Black);
-            spriteBatch.End();
+            //spriteBatch.End();
         }
     }
 }
