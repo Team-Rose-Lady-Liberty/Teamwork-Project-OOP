@@ -42,7 +42,7 @@ namespace RouteDefense
 
         protected override void Update(GameTime gameTime)
         {
-            engine.Update();
+            engine.Update(gameTime);
 
             base.Update(gameTime);
         }

@@ -25,8 +25,8 @@ namespace RouteDefense.Core
 
         public static ContentManager ContentManager;
 
-        private Animation[] testAnimations;
-        
+        private Animation testAnimation;
+
         public SubGameEngine(ContentManager contentManager)
         {
             ContentManager = contentManager;
@@ -45,17 +45,11 @@ namespace RouteDefense.Core
             menuState = MenuState.MainMenu;
             //this.menuScreens.Add(MenuState.OptionsMenu, new OptionsMenu());
 
-            testAnimations = new Animation[]{
-                new Animation(ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png"), 9,
-                new Vector2(62, 62), new Vector2(0, 646), 5, 0, 0),
-                new Animation(ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png"), 9,
-                new Vector2(62, 62), new Vector2(0, 710), 5, 400, 0),
-                new Animation(ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png"), 9,
-                new Vector2(62, 62), new Vector2(0, 582), 5, 0, 400),
-            };
+            testAnimation = new Animation(ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png"),
+                1, 582, 64, 62, 9, 0.1f);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             switch (gameState)
             {
@@ -67,10 +61,7 @@ namespace RouteDefense.Core
                     menuScreens[menuState].Update();
                     break;
             }
-            foreach (var animation in testAnimations)
-            {
-                animation.Update();
-            }
+            testAnimation.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -85,11 +76,13 @@ namespace RouteDefense.Core
                     menuScreens[menuState].Draw(spriteBatch);
                     break;
             }
-            foreach (var animation in testAnimations)
-            {
-                animation.Draw(spriteBatch);
-            }
+            testAnimation.Draw(spriteBatch);
             spriteBatch.End();
+        }
+
+        public void Update()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

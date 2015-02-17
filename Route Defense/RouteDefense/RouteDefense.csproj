@@ -35,7 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Animation.cs" />
+    <Compile Include="HelperClasses\Animation.cs" />
     <Compile Include="Core\GameLogic.cs" />
     <Compile Include="Core\Gameplay\Map.cs" />
     <Compile Include="Core\Gameplay\PathGenerator.cs" />
@@ -48,7 +48,6 @@
     <Compile Include="Enumerations\MenuState.cs" />
     <Compile Include="Enumerations\MoveDirection.cs" />
     <Compile Include="Enumerations\TileType.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="MainGameEngine.cs" />
@@ -124,6 +123,9 @@
     <Content Include="Content\Fonts\TestFont.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\GameplayScreens\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
