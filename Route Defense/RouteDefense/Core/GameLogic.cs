@@ -18,24 +18,25 @@ namespace RouteDefense.Core
         public GameLogic(ContentManager contentManager)
         {
             this.TheMap = new Map(contentManager, 32, 32, 26, 12);
-            //TheCharacter = new SampleCharacter("temp", new Rectangle(0, 0, 32, 32), 10, 10, 10);
-            //TheCharacter.Speed = 2;
+            TheCharacter = new Character("test", new Rectangle(0, 0, 48, 48));
+            TheCharacter.Speed = 2;
 
             waveManager = new WaveManager(this.TheMap.PathTiles);
 
             this.inputHandler = new InputHandler();
-            //this.inputHandler.AddKeyToHandle(Keys.E, enemyManager.AddEnemy);
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             this.inputHandler.Update();
             TheMap.Update();
             waveManager.Update();
 
-            //HandleGameInput();
-            //DoPlayerBoundaries();
-            //HandleCollisions();
+            TheCharacter.Update(gameTime);
+
+            HandleGameInput();
+            DoPlayerBoundaries();
+            HandleCollisions();
         }
 
         public void HandleCollisions()
@@ -89,22 +90,36 @@ namespace RouteDefense.Core
         }
 
         public void HandleGameInput()
-        {  
-            if (InputHandler.KeyboardState.IsKeyDown(Keys.D))
+        {
+            if (InputHandler.KeyboardState.IsKeyDown(Keys.A) || InputHandler.KeyboardState.IsKeyDown(Keys.S)
+                || InputHandler.KeyboardState.IsKeyDown(Keys.W) || InputHandler.KeyboardState.IsKeyDown(Keys.D))
             {
-                this.TheCharacter.Move(MoveDirection.Right);
+                TheCharacter.IsMoving = true;
+                if (InputHandler.KeyboardState.IsKeyDown(Keys.D))
+                {
+                    this.TheCharacter.Move(MoveDirection.Right);
+                    this.TheCharacter.AnimState = MoveDirection.Right;
+                }
+                else if (InputHandler.KeyboardState.IsKeyDown(Keys.A))
+                {
+                    this.TheCharacter.Move(MoveDirection.Left);
+                    this.TheCharacter.AnimState = MoveDirection.Left;
+                }
+                else if (InputHandler.KeyboardState.IsKeyDown(Keys.W))
+                {
+                    this.TheCharacter.Move(MoveDirection.Up);
+                    this.TheCharacter.AnimState = MoveDirection.Up;
+                }
+                else if (InputHandler.KeyboardState.IsKeyDown(Keys.S))
+                {
+                    this.TheCharacter.Move(MoveDirection.Down);
+                    this.TheCharacter.AnimState = MoveDirection.Down;
+                }
             }
-            else if (InputHandler.KeyboardState.IsKeyDown(Keys.A))
+            else if (InputHandler.KeyboardState.IsKeyUp(Keys.A) && InputHandler.KeyboardState.IsKeyUp(Keys.S)
+                     && InputHandler.KeyboardState.IsKeyUp(Keys.W) && InputHandler.KeyboardState.IsKeyUp(Keys.D))
             {
-                this.TheCharacter.Move(MoveDirection.Left);
-            }
-            else if (InputHandler.KeyboardState.IsKeyDown(Keys.W))
-            {
-                this.TheCharacter.Move(MoveDirection.Up);
-            }
-            else if (InputHandler.KeyboardState.IsKeyDown(Keys.S))
-            {
-                this.TheCharacter.Move(MoveDirection.Down);
+                TheCharacter.IsMoving = false;
             }
         }
     }

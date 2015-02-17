@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using RouteDefense.Enumerations;
+using RouteDefense.Models.GameObjects.Units;
 using RouteDefense.Models.GameScreens;
 using RouteDefense.UI.MenuScreens;
 using IDrawable = RouteDefense.Interfaces.IDrawable;
@@ -25,8 +26,6 @@ namespace RouteDefense.Core
 
         public static ContentManager ContentManager;
 
-        private Animation testAnimation;
-
         public SubGameEngine(ContentManager contentManager)
         {
             ContentManager = contentManager;
@@ -34,7 +33,8 @@ namespace RouteDefense.Core
             this.gameCoreLogic = new GameLogic(contentManager);
             this.gameplayScreen = new GameplayScreen(new IDrawable[]
             {
-                gameCoreLogic.TheMap
+                gameCoreLogic.TheMap,
+                gameCoreLogic.TheCharacter
             });
 
             this.menuScreens = new Dictionary<MenuState, Menu>();
@@ -44,9 +44,6 @@ namespace RouteDefense.Core
             gameState = GameState.Menu;
             menuState = MenuState.MainMenu;
             //this.menuScreens.Add(MenuState.OptionsMenu, new OptionsMenu());
-
-            testAnimation = new Animation(ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png"),
-                1, 582, 64, 62, 9, 0.1f);
         }
 
         public void Update(GameTime gameTime)
@@ -54,14 +51,13 @@ namespace RouteDefense.Core
             switch (gameState)
             {
                 case GameState.Game:
-                    this.gameCoreLogic.Update();
+                    this.gameCoreLogic.Update(gameTime);
                     this.gameplayScreen.Update();
                     break;
                 case GameState.Menu:
                     menuScreens[menuState].Update();
                     break;
             }
-            testAnimation.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -76,7 +72,6 @@ namespace RouteDefense.Core
                     menuScreens[menuState].Draw(spriteBatch);
                     break;
             }
-            testAnimation.Draw(spriteBatch);
             spriteBatch.End();
         }
 

@@ -33,9 +33,9 @@ namespace RouteDefense.Models.GameObjects
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Update()

@@ -8,20 +8,22 @@ namespace RouteDefense
         Texture2D spriteSheet;
         // the elapsed amount of time the frame has been shown for
         float time;
-        // duration of time to show each frame
+
         private float frameTime;
-        // an index of the current frame being shown
+
         private int frameIndex;
-        // total number of frames in our spritesheet
+
         private int totalFrames;
+        // stating position of the first frame in the spritesheet
         private int startPositionX;
         private int startPositionY;
-        // define the size of our animation frame
+
         private int frameWidth;
         private int frameHeight;
-        
 
-        private Rectangle drawRectangle;
+        public Rectangle drawRectangle { get; private set; }
+
+        public bool IsLooping { get; set; }
 
         public Animation(Texture2D spriteSheet, int startPositionX, int startPositionY,
             int frameWidth, int frameHeight, int totalFrames, float frameTime)
@@ -34,23 +36,46 @@ namespace RouteDefense
             this.totalFrames = totalFrames;
             this.frameTime = frameTime;
 
-            frameIndex = 1; 
+            frameIndex = 1;
+
+            this.drawRectangle = new Rectangle(startPositionX + frameWidth * frameIndex, startPositionY,
+                        frameWidth, frameHeight);
+            IsLooping = true;
         }
 
         public void Update(GameTime gameTime)
         {
-            time += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            while (time > frameTime)
+            if (IsLooping)
             {
-                frameIndex++;
-                if (frameIndex >= totalFrames)
+                time += (float) gameTime.ElapsedGameTime.TotalSeconds;
+                while (time > frameTime)
                 {
-                    frameIndex = 1;
+                    frameIndex++;
+                    if (frameIndex >= totalFrames)
+                    {
+                        frameIndex = 1;
+                    }
+                    this.drawRectangle = new Rectangle(startPositionX + frameWidth*frameIndex, startPositionY,
+                        frameWidth, frameHeight);
+                    time = 0f;
                 }
-                this.drawRectangle = new Rectangle(startPositionX + frameWidth * frameIndex, startPositionY,
-                    frameWidth, frameHeight);
-                time = 0f;
             }
+        }
+
+        public void Stop()
+        {
+            this.frameIndex = 1;
+        }
+
+        public void Start()
+        {
+            this.IsLooping = true;
+        }
+
+        public void StayAtFirst()
+        {
+            frameIndex = 1;
+            IsLooping = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)

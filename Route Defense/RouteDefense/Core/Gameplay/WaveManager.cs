@@ -1,4 +1,5 @@
-﻿using RouteDefense.Interfaces;
+﻿using Microsoft.Xna.Framework.Graphics;
+using RouteDefense.Interfaces;
 using RouteDefense.Models.GameObjects;
 
 namespace RouteDefense.Core.Gameplay
@@ -7,6 +8,7 @@ namespace RouteDefense.Core.Gameplay
     {
         private Wave[] waves;
         private Tile[] enemyPath;
+        public int CurrentWave { get; private set; }
 
         public WaveManager(Tile[] pathTile)
         {
@@ -21,6 +23,10 @@ namespace RouteDefense.Core.Gameplay
         public void NextWave()
         {
             
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
         }
     }
 }
