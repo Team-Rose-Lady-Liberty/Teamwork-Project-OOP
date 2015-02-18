@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using RouteDefense.Core;
@@ -18,7 +19,13 @@ namespace RouteDefense.UI.MenuScreens
         {
             elements = new List<GUIElement>()
             {
-                new GUIElement(new Rectangle(300, 0, 70, 30), SubGameEngine.ContentManager.Load<Texture2D>("Terrain\\water.png"),
+                new GUIElement(new Rectangle(366, 178, 100, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/new game.png"),
+                    delegate(){SubGameEngine.gameState = GameState.Game;}),
+
+                new GUIElement(new Rectangle(357, 228, 118, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/game story.png"),
+                    delegate(){SubGameEngine.gameState = GameState.Game;}),
+
+                new GUIElement(new Rectangle(364, 278, 104, 29), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/quit game.png"),
                     delegate(){SubGameEngine.gameState = GameState.Game;})
             };
         }
