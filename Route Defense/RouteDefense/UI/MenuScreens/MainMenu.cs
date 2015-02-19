@@ -20,13 +20,13 @@ namespace RouteDefense.UI.MenuScreens
             elements = new List<GUIElement>()
             {
                 new GUIElement(new Rectangle(366, 178, 100, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/new game.png"),
-                    delegate(){SubGameEngine.gameState = GameState.Game;}),
+                    delegate(){SubGameEngine.menuState = MenuState.CharacterSelectionMenu;}),
 
                 new GUIElement(new Rectangle(357, 228, 118, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/game story.png"),
                     delegate(){SubGameEngine.gameState = GameState.Game;}),
 
                 new GUIElement(new Rectangle(364, 278, 104, 29), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/quit game.png"),
-                    delegate(){SubGameEngine.gameState = GameState.Game;})
+                    delegate(){}),
             };
         }
 
@@ -38,11 +38,11 @@ namespace RouteDefense.UI.MenuScreens
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update()
         {
             foreach (GUIElement item in elements)
             {
-                item.Update(gameTime);
+                item.Update();
             }
         }
     }
