@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using RouteDefense.Core;
 using RouteDefense.Enumerations;
-using RouteDefense.Interfaces;
+using IDrawable = RouteDefense.Interfaces.IDrawable;
 
 namespace RouteDefense.Models.GameScreens
 {
@@ -24,7 +25,7 @@ namespace RouteDefense.Models.GameScreens
             }
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             HandleInput();
         }

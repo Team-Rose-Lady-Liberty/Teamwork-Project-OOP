@@ -1,10 +1,12 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RouteDefense.Core;
-using RouteDefense.Interfaces;
+using IDrawable = RouteDefense.Interfaces.IDrawable;
+using IUpdateable = RouteDefense.Interfaces.IUpdateable;
 
 namespace RouteDefense.Models
 {
-    public abstract class GameScreen : IDrawable
+    public abstract class GameScreen : IDrawable, IUpdateable
     {
         public GameScreen()
         {
@@ -13,7 +15,7 @@ namespace RouteDefense.Models
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        public abstract void Update();
+        public abstract void Update(GameTime gameTime);
 
         public abstract void HandleInput(InputHandler inputHandler);
     }

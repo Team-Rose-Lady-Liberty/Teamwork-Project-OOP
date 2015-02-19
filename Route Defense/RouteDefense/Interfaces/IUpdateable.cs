@@ -1,7 +1,9 @@
-﻿namespace RouteDefense.Interfaces
+﻿using Microsoft.Xna.Framework;
+
+namespace RouteDefense.Interfaces
 {
     interface IUpdateable
     {
-        void Update();
+        void Update(GameTime gameTime);
     }
 }

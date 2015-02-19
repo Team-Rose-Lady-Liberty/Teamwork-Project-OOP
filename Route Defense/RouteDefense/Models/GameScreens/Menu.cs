@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RouteDefense.Core;
 
 namespace RouteDefense.Models.GameScreens
@@ -10,7 +11,7 @@ namespace RouteDefense.Models.GameScreens
             throw new System.NotImplementedException();
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             throw new System.NotImplementedException();
         }

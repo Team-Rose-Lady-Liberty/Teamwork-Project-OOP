@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
@@ -15,6 +16,8 @@ namespace RouteDefense.Core
         private WaveManager waveManager;
         private InputHandler inputHandler;
 
+        public Wave tempWave;
+
         public GameLogic(ContentManager contentManager)
         {
             this.TheMap = new Map(contentManager, 32, 32, 26, 12);
@@ -22,7 +25,7 @@ namespace RouteDefense.Core
             TheCharacter.Speed = 2;
 
             waveManager = new WaveManager(this.TheMap.PathTiles);
-
+            tempWave = new Wave(10);
             this.inputHandler = new InputHandler();
         }
 
@@ -30,13 +33,28 @@ namespace RouteDefense.Core
         {
             this.inputHandler.Update();
             TheMap.Update();
-            waveManager.Update();
-
+            waveManager.Update(gameTime);
+            tempWave.Update(gameTime, this.TheMap.PathTiles);
             TheCharacter.Update(gameTime);
-
+            InteractionWithEnemis();
             HandleGameInput();
             DoPlayerBoundaries();
             HandleCollisions();
+        }
+
+        private void InteractionWithEnemis()
+        {
+            if (InputHandler.MouseState.LeftButton == ButtonState.Pressed)
+            {
+                var enemies = TheCharacter.GetTargets(tempWave.GetEnemies());
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    if (enemies[i].Rectangle.Contains(InputHandler.MouseState.Position))
+                    {
+                        enemies[i].AtFinish = true;
+                    }
+                }
+            }
         }
 
         public void HandleCollisions()

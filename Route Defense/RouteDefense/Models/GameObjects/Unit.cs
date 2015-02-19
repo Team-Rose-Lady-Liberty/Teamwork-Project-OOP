@@ -14,6 +14,8 @@ namespace RouteDefense.Models.GameObjects
         {
         }
 
+        public Rectangle RectangleCollision { get; set; }
+
         public int Speed { get; set; }
 
         public int Defense { get; set; }
@@ -38,9 +40,9 @@ namespace RouteDefense.Models.GameObjects
             
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+
         }
     }
 }

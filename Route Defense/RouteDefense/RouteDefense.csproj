@@ -76,6 +76,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\EnemiesSprites\EnemyBaby0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemyBaby1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc0.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc2ndUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
     <Content Include="Content\Terrain\bridge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

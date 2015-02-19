@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RouteDefense.Core;
@@ -32,8 +33,10 @@ namespace RouteDefense.Models.GameObjects.Units
             movingAnimations.Add(MoveDirection.Right,
                 new Animation(SubGameEngine.ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png"),
                 1, 710, 64, 62, 9, 0.05f));
-
+            this.Range = 32;
             texture = SubGameEngine.ContentManager.Load<Texture2D>("WarriorSprites\\Warrior0.png");
+            this.RectangleCollision = new Rectangle(this.Rectangle.X - Range, this.Rectangle.Y - Range,
+                this.Rectangle.Width + 2 * this.Range, this.Rectangle.Height + 2 * Range);
         }
 
         public MoveDirection MoveState { get; private set; }
@@ -66,6 +69,8 @@ namespace RouteDefense.Models.GameObjects.Units
             }
             this.Rectangle = new Rectangle(this.Rectangle.X + speedX, this.Rectangle.Y + speedY,
                 this.Rectangle.Width, this.Rectangle.Height);
+            this.RectangleCollision = new Rectangle(this.Rectangle.X - Range, this.Rectangle.Y  - Range,
+                this.RectangleCollision.Width, this.RectangleCollision.Height);
         }
 
         public virtual void Update(GameTime gameTime)
@@ -77,8 +82,19 @@ namespace RouteDefense.Models.GameObjects.Units
             this.movingAnimations[AnimState].Update(gameTime);
         }
 
+        public List<Enemy> GetTargets(IEnumerable<Enemy> enemies)
+        {
+            return (from enemy in enemies
+                where this.RectangleCollision.Intersects(enemy.Rectangle)
+                select enemy).ToList();
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
+            Texture2D temp = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
+            temp.SetData(new[] { Color.White });
+
+            //spriteBatch.Draw(temp, this.RectangleCollision, Color.White);
             spriteBatch.Draw(texture, this.Rectangle, this.movingAnimations[AnimState].drawRectangle, Color.White);
         }
     }

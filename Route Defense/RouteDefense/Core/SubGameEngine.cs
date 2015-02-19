@@ -34,6 +34,7 @@ namespace RouteDefense.Core
             this.gameplayScreen = new GameplayScreen(new IDrawable[]
             {
                 gameCoreLogic.TheMap,
+                gameCoreLogic.tempWave,
                 gameCoreLogic.TheCharacter
             });
 
@@ -52,10 +53,10 @@ namespace RouteDefense.Core
             {
                 case GameState.Game:
                     this.gameCoreLogic.Update(gameTime);
-                    this.gameplayScreen.Update();
+                    this.gameplayScreen.Update(gameTime);
                     break;
                 case GameState.Menu:
-                    menuScreens[menuState].Update();
+                    menuScreens[menuState].Update(gameTime);
                     break;
             }
         }
