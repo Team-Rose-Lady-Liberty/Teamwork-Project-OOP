@@ -83,10 +83,16 @@
     <Content Include="Content\EnemiesSprites\EnemyBaby1stUpgrade.png" />
     <Content Include="Content\EnemiesSprites\EnemyOrc0.png" />
     <Content Include="Content\EnemiesSprites\EnemyOrc1stUpgrade.png" />
-    <Content Include="Content\EnemiesSprites\EnemyOrc2ndUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc2ndUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
-    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
-    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\game story.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -106,6 +112,45 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Terrain\path.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile018.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile020.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile024.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile029.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile036.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile037.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile038.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile039.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile052.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile061.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Terrain\water.png">
