@@ -38,11 +38,11 @@ namespace RouteDefense.UI.MenuScreens
             }
         }
 
-        public override void Update()
+        public override void Update(GameTime gameTime)
         {
             foreach (GUIElement item in elements)
             {
-                item.Update();
+                item.Update(gameTime);
             }
         }
     }

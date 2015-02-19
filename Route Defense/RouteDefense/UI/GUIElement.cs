@@ -31,7 +31,7 @@ namespace RouteDefense.UI
 
         public Action OnClick { get; set; }
 
-        public void Update()
+        public void Update(GameTime game)
         {
             if (this.Rectangle.Contains(InputHandler.MouseState.Position)
                 && InputHandler.MouseState.LeftButton == ButtonState.Pressed)
