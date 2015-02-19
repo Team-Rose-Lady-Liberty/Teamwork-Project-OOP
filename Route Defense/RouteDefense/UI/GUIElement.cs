@@ -31,7 +31,7 @@ namespace RouteDefense.UI
 
         public Action OnClick { get; set; }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             if (this.Rectangle.Contains(InputHandler.MouseState.Position)
                 && InputHandler.MouseState.LeftButton == ButtonState.Pressed)
@@ -42,7 +42,7 @@ namespace RouteDefense.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.guiTexture, this.Rectangle, Color.DeepSkyBlue); 
+            spriteBatch.Draw(this.guiTexture, this.Rectangle, Color.White); 
         }
     }
 }
