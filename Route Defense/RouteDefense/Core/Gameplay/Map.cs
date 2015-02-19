@@ -21,6 +21,14 @@ namespace RouteDefense.Core.Gameplay
         private Texture2D dirtTexture;
         private Tile[,] map;
         private List<PathGenerator.Direction> mobDirections;
+        private Texture2D topLeftCorner;
+        private Texture2D topBorder;
+        private Texture2D topRightCorner;
+        private Texture2D leftCorner;
+        private Texture2D rightCorner;
+        private Texture2D bottomLeftCorner;
+        private Texture2D bottomRightCorner;
+        private Texture2D bottomBorder;
         //private Bridge bridge;
 
 
@@ -31,11 +39,19 @@ namespace RouteDefense.Core.Gameplay
             this.MapRowCells = rowCells;
             this.MapColumnCells = columnCells;
 
-            grassTexture = contentManager.Load<Texture2D>("Terrain/grass");
-            pathTexture = contentManager.Load<Texture2D>("Terrain/path");
-            dirtTexture = contentManager.Load<Texture2D>("Terrain/dirt");
-            map = new Tile[this.MapRowCells, this.MapColumnCells];
+            grassTexture = contentManager.Load<Texture2D>("Terrain/rpgTile039.png");
+            pathTexture = contentManager.Load<Texture2D>("Terrain/rpgTile052.png");
 
+            topLeftCorner = contentManager.Load<Texture2D>("Terrain/rpgTile000.png");
+            topBorder = contentManager.Load<Texture2D>("Terrain/rpgTile001.png");
+            topRightCorner = contentManager.Load<Texture2D>("Terrain/rpgTile002.png");
+            leftCorner = contentManager.Load<Texture2D>("Terrain/rpgTile018.png");
+            rightCorner = contentManager.Load<Texture2D>("Terrain/rpgTile020.png");
+            bottomLeftCorner = contentManager.Load<Texture2D>("Terrain/rpgTile036.png");
+            bottomRightCorner = contentManager.Load<Texture2D>("Terrain/rpgTile038.png");
+            bottomBorder = contentManager.Load<Texture2D>("Terrain/rpgTile037.png");
+            map = new Tile[this.MapRowCells, this.MapColumnCells];
+            
             this.CreateMap(grassTexture);
             //bridge = new Bridge(contentManager, "bridge", new Rectangle(32, 32, 64, 96));
         }
@@ -162,7 +178,38 @@ namespace RouteDefense.Core.Gameplay
                 {
                     if (row == 0 || row == this.MapRowCells - 1 || column == 0 || column == this.MapColumnCells - 1)
                     {
-                        this.map[row, column].TileTexture = dirtTexture;
+                        if (row == 0 && column == 0)
+                        {
+                            this.map[row, column].TileTexture = topLeftCorner;
+                        }
+                        else if (row > 0 && row != this.MapRowCells - 1 && column == 0)
+                        {
+                            this.map[row, column].TileTexture = topBorder;
+                        }
+                        else if (row == this.MapRowCells - 1 && column == 0)
+                        {
+                            this.map[row, column].TileTexture = topRightCorner;
+                        }
+                        else if (row == 0 && column > 0 && column != this.MapColumnCells - 1)
+                        {
+                            this.map[row, column].TileTexture = leftCorner;
+                        }
+                        else if (row == this.mapRowCells - 1 && column > 0 && column != this.MapColumnCells - 1)
+                        {
+                            this.map[row, column].TileTexture = rightCorner;
+                        }
+                        else if (row == 0 && column == this.mapColumnCells - 1)
+                        {
+                            this.map[row, column].TileTexture = bottomLeftCorner;
+                        }
+                        else if (row == this.mapRowCells - 1 && column == this.mapColumnCells - 1)
+                        {
+                            this.map[row, column].TileTexture = bottomRightCorner;
+                        }
+                        else
+                        {
+                            this.map[row, column].TileTexture = bottomBorder;
+                        }
                     }
                 }
             }
