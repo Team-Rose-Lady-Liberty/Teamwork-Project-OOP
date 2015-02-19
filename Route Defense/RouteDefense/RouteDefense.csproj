@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="Content\EnemiesSprites\EnemyBaby0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -86,6 +87,17 @@
     <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
     <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
     <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+=======
+    <Content Include="Content\Menu Items\game story.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\new game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\quit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+>>>>>>> origin/master
     <Content Include="Content\Terrain\bridge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

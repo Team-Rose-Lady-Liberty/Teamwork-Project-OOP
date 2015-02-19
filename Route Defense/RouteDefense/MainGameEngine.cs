@@ -1,6 +1,6 @@
 ﻿using RouteDefense.Core;
 
-namespace RouteDefense
+namespace RouteDefense  
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -49,7 +49,7 @@ namespace RouteDefense
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             engine.Draw(spriteBatch);
 

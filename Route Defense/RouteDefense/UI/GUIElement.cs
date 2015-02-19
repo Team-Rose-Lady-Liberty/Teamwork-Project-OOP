@@ -42,7 +42,7 @@ namespace RouteDefense.UI
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.guiTexture, this.Rectangle, Color.White);
+            spriteBatch.Draw(this.guiTexture, this.Rectangle, Color.DeepSkyBlue); 
         }
     }
 }
