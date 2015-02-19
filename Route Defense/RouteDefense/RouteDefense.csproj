@@ -87,6 +87,12 @@
     <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
     <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
     <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+    <Content Include="Content\Menu Items\character select.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\charTest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\game story.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
