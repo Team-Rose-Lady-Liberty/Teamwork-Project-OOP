@@ -42,18 +42,28 @@ namespace RouteDefense.Core
             HandleCollisions();
         }
 
+        private bool clicked = false;
         private void InteractionWithEnemis()
         {
-            if (InputHandler.MouseState.LeftButton == ButtonState.Pressed)
+            if (InputHandler.MouseState.LeftButton == ButtonState.Pressed && clicked == false)
             {
+                clicked = true;
                 var enemies = TheCharacter.GetTargets(tempWave.GetEnemies());
+                
                 for (int i = 0; i < enemies.Count; i++)
                 {
                     if (enemies[i].Rectangle.Contains(InputHandler.MouseState.Position))
                     {
-                        enemies[i].AtFinish = true;
+                        enemies[i].Health -= 50;
+                        if (enemies[i].Health <= 0)
+                            enemies[i].AtFinish = true;
                     }
                 }
+            }
+
+            if (InputHandler.MouseState.LeftButton == ButtonState.Released)
+            {
+                clicked = false;
             }
         }
 

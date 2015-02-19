@@ -17,6 +17,7 @@ namespace RouteDefense.Models.GameObjects.Units
         public Enemy(string id, Rectangle rectangle) 
             : base(id, rectangle)
         {
+            this.Health = 100;
             currentPathNode = 0;
             this.texture = SubGameEngine.ContentManager.Load<Texture2D>("EnemiesSprites\\EnemyBaby0.png");
             animations.Add(MoveDirection.Right, new Animation(this.texture, 1, 710, 64, 60, 9, 0.1f));
