@@ -93,6 +93,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\charTest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
