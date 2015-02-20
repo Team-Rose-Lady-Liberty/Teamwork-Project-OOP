@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using RouteDefense.Core;
 using RouteDefense.Enumerations;
 using RouteDefense.UI;
+using RouteDefense.UI.GUIElements;
 
 namespace RouteDefense.Models.GameScreens
 {
@@ -17,14 +18,15 @@ namespace RouteDefense.Models.GameScreens
         {
             elements = new List<GUIElement>()
             {
-                new GUIElement(new Rectangle(366, 178, 100, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/new game.png"),
+                new Button(new Rectangle(366, 178, 100, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/new game.png"),
                     delegate(){SubGameEngine.CurrentGameState = GameState.CharacterSelection;}),
 
-                new GUIElement(new Rectangle(357, 228, 118, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/game story.png"),
+                new Button(new Rectangle(357, 228, 118, 24), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/game story.png"),
                     delegate(){SubGameEngine.CurrentGameState = GameState.Game;}),
 
-                new GUIElement(new Rectangle(364, 278, 104, 29), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/quit game.png"),
+                new Button(new Rectangle(364, 278, 104, 29), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/quit game.png"),
                     delegate(){}),
+                new Label(new Rectangle(10,20, 0, 0), "Test")
             };
         }
 

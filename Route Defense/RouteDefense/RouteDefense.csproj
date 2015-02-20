@@ -68,7 +68,7 @@
     <Compile Include="UI\GUIElement.cs" />
     <Compile Include="UI\GUIElements\Button.cs" />
     <Compile Include="UI\GUIElements\Label.cs" />
-    <Compile Include="UI\GUIText.cs" />
+    <Compile Include="UI\GUIElementType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

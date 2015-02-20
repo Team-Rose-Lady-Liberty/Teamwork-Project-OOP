@@ -93,7 +93,8 @@ namespace RouteDefense.Models.GameObjects.Units
             Texture2D temp = new Texture2D(spriteBatch.GraphicsDevice, 1, 1);
             temp.SetData(new[] { Color.White });
 
-           // spriteBatch.Draw(temp, this.ActualRectangle, Color.White);
+            // spriteBatch.Draw(temp, this.ActualRectangle, Color.White);
+            // spriteBatch.Draw(temp, this.RangeRectangle, Color.White);
             spriteBatch.Draw(texture, this.Rectangle, this.movingAnimations[AnimState].drawRectangle, Color.White);
         }
     }

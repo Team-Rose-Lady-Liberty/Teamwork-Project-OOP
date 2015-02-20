@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,6 +7,7 @@ using RouteDefense.Core;
 using RouteDefense.Core.Gameplay;
 using RouteDefense.Enumerations;
 using RouteDefense.Models.GameObjects.Units;
+using RouteDefense.UI;
 
 namespace RouteDefense.Models.GameScreens
 {
@@ -15,8 +17,15 @@ namespace RouteDefense.Models.GameScreens
         private Character theCharacter;
         private WaveManager waveManager;
 
+        private List<GUIElement> uiElements; 
+
         public GameplayScreen()
         {
+            uiElements = new List<GUIElement>()
+            {
+                
+            };
+
             this.theMap = new Map(SubGameEngine.ContentManager, 32, 32, 26, 12);
             theCharacter = new Character("test", new Rectangle(0, 0, 48, 48));
             theCharacter.Speed = 2;
@@ -71,6 +80,10 @@ namespace RouteDefense.Models.GameScreens
 
         public override void Update(GameTime gameTime)
         {
+            foreach (var element in uiElements)
+            {
+                element.Update(gameTime);
+            }
             waveManager.Update(gameTime);
 
             theCharacter.Update(gameTime);
@@ -81,6 +94,10 @@ namespace RouteDefense.Models.GameScreens
  
         public override void Draw(SpriteBatch spriteBatch)
         {
+            foreach (var element in uiElements)
+            {
+                element.Draw(spriteBatch);
+            }
             theMap.Draw(spriteBatch);
             waveManager.Draw(spriteBatch);
             theCharacter.Draw(spriteBatch);
