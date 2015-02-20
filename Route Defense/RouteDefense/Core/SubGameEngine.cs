@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 using RouteDefense.Enumerations;
-using RouteDefense.Models.GameObjects.Units;
+using RouteDefense.Models;
 using RouteDefense.Models.GameScreens;
-using RouteDefense.UI.MenuScreens;
+
 using IDrawable = RouteDefense.Interfaces.IDrawable;
 using IUpdateable = RouteDefense.Interfaces.IUpdateable;
 
@@ -16,69 +17,38 @@ namespace RouteDefense.Core
     {
         private InputHandler inputHandler;
 
-        public static GameState gameState;
-        public static MenuState menuState;
-
-        private GameLogic gameCoreLogic;
-
-        private GameplayScreen gameplayScreen;
-        private Dictionary<MenuState, Menu> menuScreens;
-
+        public static GameState CurrentGameState;
         public static ContentManager ContentManager;
+
+        private Dictionary<GameState, GameScreen> gameScreens;
 
         public SubGameEngine(ContentManager contentManager)
         {
             ContentManager = contentManager;
 
-            this.gameCoreLogic = new GameLogic(contentManager);
-            this.gameplayScreen = new GameplayScreen(new IDrawable[]
-            {
-                gameCoreLogic.TheMap,
-                gameCoreLogic.tempWave,
-                gameCoreLogic.TheCharacter
-            });
+            inputHandler = new InputHandler();
+           
+            this.gameScreens = new Dictionary<GameState, GameScreen>();
+            this.gameScreens.Add(GameState.MainMenu, new MainMenu());
+            this.gameScreens.Add(GameState.CharacterSelection, new CharacterSelectionMenu());
+            this.gameScreens.Add(GameState.Game, new GameplayScreen());
 
-            this.menuScreens = new Dictionary<MenuState, Menu>();
-            this.menuScreens.Add(MenuState.MainMenu, new MainMenu());
-            this.menuScreens.Add(MenuState.CharacterSelectionMenu, new CharacterSelectionMenu());
-
-            gameState = GameState.Menu;
-            menuState = MenuState.MainMenu;
-            //this.menuScreens.Add(MenuState.OptionsMenu, new OptionsMenu());
+            CurrentGameState = GameState.MainMenu;
         }
 
         public void Update(GameTime gameTime)
         {
-            switch (gameState)
-            {
-                case GameState.Game:
-                    this.gameCoreLogic.Update(gameTime);
-                    this.gameplayScreen.Update(gameTime);
-                    break;
-                case GameState.Menu:
-                    menuScreens[menuState].Update(gameTime);
-                    break;
-            }
+            inputHandler.Update();
+            this.gameScreens[CurrentGameState].HandleInput(inputHandler);
+
+            this.gameScreens[CurrentGameState].Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            switch (gameState)
-            {
-                case GameState.Game:
-                    this.gameplayScreen.Draw(spriteBatch);
-                    break;
-                case GameState.Menu:
-                    menuScreens[menuState].Draw(spriteBatch);
-                    break;
-            }
+            this.gameScreens[CurrentGameState].Draw(spriteBatch);
             spriteBatch.End();
-        }
-
-        public void Update()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -14,13 +14,19 @@ namespace RouteDefense.Core.Gameplay
         private List<Enemy> enemies;
         private int numberEnemies;
 
+        private int spawnedEnemiesCount;
+
         private int spawnRate = 70;
         private int time = 0;
+
+        public bool IsOver;
 
         public Wave(int numEnemies)
         {
             enemies = new List<Enemy>();
             this.numberEnemies = numEnemies;
+            spawnedEnemiesCount = 0;
+            IsOver = false;
         }
 
         public List<Enemy> GetEnemies()
@@ -30,11 +36,16 @@ namespace RouteDefense.Core.Gameplay
 
         public void Update(GameTime gameTime, Tile[] enemyPath)
         {
-            time++;
-            if (time >= spawnRate)
+            if (spawnedEnemiesCount < numberEnemies)
             {
-                enemies.Add(new Enemy("temp", new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32,32)));
-                time = 0;
+                time++;
+                if (time >= spawnRate)
+                {
+                    enemies.Add(new Enemy("temp",
+                        new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32)));
+                    time = 0;
+                    spawnedEnemiesCount++;
+                }
             }
             for (int enemy = 0; enemy < enemies.Count; enemy++)
             {

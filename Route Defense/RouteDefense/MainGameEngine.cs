@@ -1,4 +1,5 @@
-﻿using RouteDefense.Core;
+﻿using System.Collections.Generic;
+using RouteDefense.Core;
 
 namespace RouteDefense  
 {
@@ -10,7 +11,7 @@ namespace RouteDefense
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        private SubGameEngine engine;
+        private SubGameEngine engine; 
 
         public MainGameEngine()
         {
@@ -31,7 +32,6 @@ namespace RouteDefense
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
             base.LoadContent();
         }
 

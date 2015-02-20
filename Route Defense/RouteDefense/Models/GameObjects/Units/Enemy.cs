@@ -20,9 +20,9 @@ namespace RouteDefense.Models.GameObjects.Units
             this.Health = 100;
             currentPathNode = 0;
             this.texture = SubGameEngine.ContentManager.Load<Texture2D>("EnemiesSprites\\EnemyBaby0.png");
-            animations.Add(MoveDirection.Right, new Animation(this.texture, 1, 710, 64, 60, 9, 0.1f));
-            animations.Add(MoveDirection.Up, new Animation(this.texture, 1, 645, 64, 60, 9, 0.1f));
-            animations.Add(MoveDirection.Down, new Animation(this.texture, 1, 520, 64, 60, 9, 0.1f));
+            animations.Add(MoveDirection.Right, new Animation(1, 710, 64, 60, 9, 0.1f));
+            animations.Add(MoveDirection.Up, new Animation(1, 645, 64, 60, 9, 0.1f));
+            animations.Add(MoveDirection.Down, new Animation(1, 520, 64, 60, 9, 0.1f));
         }
 
         private MoveDirection direction;

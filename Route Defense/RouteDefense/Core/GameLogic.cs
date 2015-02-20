@@ -13,10 +13,8 @@ namespace RouteDefense.Core
     {
         public Map TheMap { get; private set; }
         public Character TheCharacter { get; private set; }
-        private WaveManager waveManager;
+        public WaveManager waveManager;
         private InputHandler inputHandler;
-
-        public Wave tempWave;
 
         public GameLogic(ContentManager contentManager)
         {
@@ -25,7 +23,7 @@ namespace RouteDefense.Core
             TheCharacter.Speed = 2;
 
             waveManager = new WaveManager(this.TheMap.PathTiles);
-            tempWave = new Wave(10);
+
             this.inputHandler = new InputHandler();
         }
 
@@ -34,7 +32,7 @@ namespace RouteDefense.Core
             this.inputHandler.Update();
             TheMap.Update();
             waveManager.Update(gameTime);
-            tempWave.Update(gameTime, this.TheMap.PathTiles);
+
             TheCharacter.Update(gameTime);
             InteractionWithEnemis();
             HandleGameInput();
@@ -43,12 +41,13 @@ namespace RouteDefense.Core
         }
 
         private bool clicked = false;
+
         private void InteractionWithEnemis()
         {
             if (InputHandler.MouseState.LeftButton == ButtonState.Pressed && clicked == false)
             {
                 clicked = true;
-                var enemies = TheCharacter.GetTargets(tempWave.GetEnemies());
+                var enemies = TheCharacter.GetTargets(waveManager.GetSpawnedList());
                 
                 for (int i = 0; i < enemies.Count; i++)
                 {
@@ -148,6 +147,11 @@ namespace RouteDefense.Core
                      && InputHandler.KeyboardState.IsKeyUp(Keys.W) && InputHandler.KeyboardState.IsKeyUp(Keys.D))
             {
                 TheCharacter.IsMoving = false;
+            }
+
+            if (InputHandler.KeyboardState.IsKeyDown(Keys.S))
+            {
+                waveManager.Start();
             }
         }
     }

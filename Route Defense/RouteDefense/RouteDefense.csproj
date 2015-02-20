@@ -59,15 +59,16 @@
     <Compile Include="Models\GameObjects\Units\Character.cs" />
     <Compile Include="Models\GameObjects\Units\Enemy.cs" />
     <Compile Include="Models\GameScreen.cs" />
+    <Compile Include="Models\GameScreens\CharacterSelectionMenu.cs" />
     <Compile Include="Models\GameScreens\GameplayScreen.cs" />
+    <Compile Include="Models\GameScreens\MainMenu.cs" />
     <Compile Include="Models\GameScreens\Menu.cs" />
     <Compile Include="RouteDefense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\GUIElement.cs" />
+    <Compile Include="UI\GUIElements\Button.cs" />
+    <Compile Include="UI\GUIElements\Label.cs" />
     <Compile Include="UI\GUIText.cs" />
-    <Compile Include="UI\MenuScreens\CharacterSelectionMenu.cs" />
-    <Compile Include="UI\MenuScreens\MainMenu.cs" />
-    <Compile Include="UI\MenuScreens\OptionsMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -1,12 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace RouteDefense
 {
     public class Animation
     {
-        Texture2D spriteSheet;
-        // the elapsed amount of time the frame has been shown for
         float time;
 
         private float frameTime;
@@ -25,10 +22,9 @@ namespace RouteDefense
 
         public bool IsLooping { get; set; }
 
-        public Animation(Texture2D spriteSheet, int startPositionX, int startPositionY,
+        public Animation(int startPositionX, int startPositionY,
             int frameWidth, int frameHeight, int totalFrames, float frameTime)
         {
-            this.spriteSheet = spriteSheet;
             this.startPositionX = startPositionX;
             this.startPositionY = startPositionY;
             this.frameWidth = frameWidth;
@@ -76,12 +72,6 @@ namespace RouteDefense
         {
             frameIndex = 1;
             IsLooping = false;
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(spriteSheet, new Rectangle(0, 0, frameWidth, frameHeight),
-                drawRectangle, Color.White);
         }
     }
 }

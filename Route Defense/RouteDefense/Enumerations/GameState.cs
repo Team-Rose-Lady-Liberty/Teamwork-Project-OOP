@@ -2,7 +2,8 @@
 {
     public enum GameState
     {
+        MainMenu,
         Game,
-        Menu
+        CharacterSelection
     }
 }

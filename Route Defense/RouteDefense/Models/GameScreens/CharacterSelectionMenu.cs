@@ -1,17 +1,15 @@
 ﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RouteDefense.Core;
 using RouteDefense.Enumerations;
-using RouteDefense.Models.GameScreens;
 using RouteDefense.UI;
 
-namespace RouteDefense.UI.MenuScreens
+namespace RouteDefense.Models.GameScreens
 {
-    public class CharacterSelectionMenu : Menu
+    public class CharacterSelectionMenu : GameScreen
     {
         private List<GUIElement> characters;
 
@@ -23,7 +21,7 @@ namespace RouteDefense.UI.MenuScreens
                     delegate() {}),
 
                 new GUIElement(new Rectangle(35, 90, 206, 356), SubGameEngine.ContentManager.Load<Texture2D>("Menu Items/charTest.png"),
-                    delegate() { SubGameEngine.gameState = GameState.Game; })
+                    delegate() { SubGameEngine.CurrentGameState = GameState.Game; })
             };
         }
 
@@ -48,7 +46,7 @@ namespace RouteDefense.UI.MenuScreens
         {
             if (InputHandler.KeyboardState.IsKeyDown(Keys.Escape))
             {
-                SubGameEngine.menuState = MenuState.MainMenu;
+                SubGameEngine.CurrentGameState = GameState.MainMenu;
             }
         }
     }

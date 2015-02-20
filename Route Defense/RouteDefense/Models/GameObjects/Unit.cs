@@ -14,7 +14,7 @@ namespace RouteDefense.Models.GameObjects
         {
         }
 
-        public Rectangle RectangleCollision { get; set; }
+        public Rectangle RangeRectangle { get; set; }
 
         public int Speed { get; set; }
 
@@ -40,7 +40,7 @@ namespace RouteDefense.Models.GameObjects
             
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
 
         }
