@@ -37,7 +37,7 @@ namespace RouteDefense.Core.Gameplay
             {
                 Path newpath = new Path();
                 Random rnd = new Random();
-                curveDecreaser = 0.15;
+                curveDecreaser = 0.1;
 
                 int curx = startx;
                 int cury = starty;
@@ -58,7 +58,7 @@ namespace RouteDefense.Core.Gameplay
                         {
                             newd = Direction.Right;
                         }
-                        else if(curd == prevd && prevd == doublePrevd)
+                        else if((curd == prevd && prevd == doublePrevd) || cury == 1)
                         {
                             if (cury >= (endy -3)) newd = GetNewDirection(Direction.Up | Direction.Right, rnd); //bottom border is reached, only up and right allowed
                             else if (cury <= 3) newd = GetNewDirection(Direction.Down | Direction.Right, rnd);  //top border is rached, only down and right allowed
@@ -94,7 +94,7 @@ namespace RouteDefense.Core.Gameplay
         {
             Random rand = new Random();
 
-            startPoint = new Tuple<int, int>(0, rand.Next(3, maxHeight - 2)); // startpoint = leftside
+            startPoint = new Tuple<int, int>(0, maxHeight/2); // startpoint = leftside
             endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1));  // startpoint = rightside
         }
 

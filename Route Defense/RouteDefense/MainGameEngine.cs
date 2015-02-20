@@ -16,7 +16,8 @@ namespace RouteDefense
         public MainGameEngine()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 832;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 672;
             this.IsMouseVisible = true;
 
             Content.RootDirectory = "Content";
