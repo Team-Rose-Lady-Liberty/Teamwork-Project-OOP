@@ -42,7 +42,7 @@ namespace RouteDefense.Core.Gameplay
                 int curx = startx;
                 int cury = starty;
                 Direction doublePrevd = Direction.Down;
-                Direction prevd = Direction.Down;
+                Direction prevd = Direction.Right;
                 Direction curd = Direction.Right;
                 Direction newd = curd;
 
@@ -58,7 +58,7 @@ namespace RouteDefense.Core.Gameplay
                         {
                             newd = Direction.Right;
                         }
-                        else if((curd == prevd && prevd == doublePrevd) || cury == 1)
+                        else if(curd == prevd && prevd == doublePrevd)
                         {
                             if (cury >= (endy -3)) newd = GetNewDirection(Direction.Up | Direction.Right, rnd); //bottom border is reached, only up and right allowed
                             else if (cury <= 3) newd = GetNewDirection(Direction.Down | Direction.Right, rnd);  //top border is rached, only down and right allowed
@@ -67,6 +67,12 @@ namespace RouteDefense.Core.Gameplay
                         }
                     }
                     while ((newd | curd) == (Direction.Up | Direction.Down)); // excluding going back
+
+                    if ((newd == Direction.Up) && (cury-1 == 1))
+                    {
+                        newd = Direction.Right;
+                        curve -= curveDecreaser;
+                    }
 
                     newpath.Add(newd);
                     doublePrevd = prevd;
@@ -85,6 +91,7 @@ namespace RouteDefense.Core.Gameplay
                             cury++;
                             break;
                     }
+          
                 }
                 return newpath;
             }
@@ -94,7 +101,7 @@ namespace RouteDefense.Core.Gameplay
         {
             Random rand = new Random();
 
-            startPoint = new Tuple<int, int>(0, maxHeight/2); // startpoint = leftside
+            startPoint = new Tuple<int, int>(0,maxHeight/2); // startpoint = leftside
             endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1));  // startpoint = rightside
         }
 
