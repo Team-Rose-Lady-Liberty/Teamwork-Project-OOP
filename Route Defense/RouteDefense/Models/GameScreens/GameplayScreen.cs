@@ -21,12 +21,14 @@ namespace RouteDefense.Models.GameScreens
 
         public GameplayScreen()
         {
+
             uiElements = new List<GUIElement>()
             {
                 
             };
 
-            this.theMap = new Map(SubGameEngine.ContentManager, 32, 32, 26, 12);
+            this.theMap = new Map(SubGameEngine.ContentManager, 32, 32, 32, 16);
+
             theCharacter = new Character("test", new Rectangle(0, 0, 48, 48));
             theCharacter.Speed = 2;
 

@@ -37,12 +37,12 @@ namespace RouteDefense.Core.Gameplay
             {
                 Path newpath = new Path();
                 Random rnd = new Random();
-                curveDecreaser = 0.15;
+                curveDecreaser = 0.1;
 
                 int curx = startx;
                 int cury = starty;
                 Direction doublePrevd = Direction.Down;
-                Direction prevd = Direction.Down;
+                Direction prevd = Direction.Right;
                 Direction curd = Direction.Right;
                 Direction newd = curd;
 
@@ -68,6 +68,12 @@ namespace RouteDefense.Core.Gameplay
                     }
                     while ((newd | curd) == (Direction.Up | Direction.Down)); // excluding going back
 
+                    if ((newd == Direction.Up) && (cury-1 == 1))
+                    {
+                        newd = Direction.Right;
+                        curve -= curveDecreaser;
+                    }
+
                     newpath.Add(newd);
                     doublePrevd = prevd;
                     prevd = curd;
@@ -85,6 +91,7 @@ namespace RouteDefense.Core.Gameplay
                             cury++;
                             break;
                     }
+          
                 }
                 return newpath;
             }
@@ -94,7 +101,7 @@ namespace RouteDefense.Core.Gameplay
         {
             Random rand = new Random();
 
-            startPoint = new Tuple<int, int>(0, rand.Next(3, maxHeight - 2)); // startpoint = leftside
+            startPoint = new Tuple<int, int>(0,maxHeight/2); // startpoint = leftside
             endPoint = new Tuple<int, int>(maxWidth, rand.Next(2, maxHeight - 1));  // startpoint = rightside
         }
 
