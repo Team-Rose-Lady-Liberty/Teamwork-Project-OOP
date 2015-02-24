@@ -81,20 +81,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\ArcherSprites\Archer0Armor0Weapon.png" />
-    <Content Include="Content\ArcherSprites\Archer0Armor1stWeaponUpgrade.png">
+    <Content Include="Content\ArcherSprites\Armor0Weapon0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ArcherSprites\Archer0Armor2ndWeaponUpgrade.png" />
-    <Content Include="Content\ArcherSprites\Archer0Armor3rdWeaponUpgrade.png" />
-    <Content Include="Content\ArcherSprites\Archer1stArmor0Weapon.png" />
-    <Content Include="Content\ArcherSprites\Archer1stArmor1stWeapon.png" />
-    <Content Include="Content\ArcherSprites\Archer1stArmor2ndWeapon.png" />
-    <Content Include="Content\ArcherSprites\Archer1stArmor3rdWeapon.png" />
-    <Content Include="Content\ArcherSprites\Archer2ndArmor0Weapon.png" />
-    <Content Include="Content\ArcherSprites\Archer2ndArmor1stWeapon.png" />
-    <Content Include="Content\ArcherSprites\Archer2ndArmor2ndWeapon.png" />
-    <Content Include="Content\ArcherSprites\Archer2ndArmor3rdWeapon.png" />
+    <Content Include="Content\ArcherSprites\Armor0Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor0Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor0Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor1Weapon0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor1Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor1Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor1Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor2Weapon0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor2Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor2Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Armor2Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\arrows\arrowDown.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\arrows\arrowLeft.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\arrows\arrowRight.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\arrows\arrowUp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\EnemiesSprites\EnemyBaby0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

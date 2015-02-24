@@ -22,11 +22,11 @@ namespace RouteDefense.Models.GameObjects.Units
 
         protected int weaponLevel;
 
+        public MoveDirection FaceDirection { get; set; }
+
         public Rectangle ActualRectangle;
 
         public MoveDirection MoveState { get; private set; }
-
-        public MoveDirection AnimState { get; set; }
 
         public CharacterState CharacterState { get; private set; }
 
@@ -47,8 +47,12 @@ namespace RouteDefense.Models.GameObjects.Units
             Attack = attack;
             AttackSpeed = attackSpeed;
 
+
+            weaponLevel = 0;
+            armorLevel = 0;
             IsMoving = false;
-            AnimState = MoveDirection.Down;
+
+            FaceDirection = MoveDirection.Down;
 
             movingAnimations = new Dictionary<MoveDirection, Animation>();
             movingAnimations.Add(MoveDirection.Down, new Animation(0, 640, Constants.FrameWidth, Constants.FrameHeight, 9, 0.07f));
@@ -64,14 +68,19 @@ namespace RouteDefense.Models.GameObjects.Units
             LastPosition = new Point(ActualRectangle.X, ActualRectangle.Y);
         }
 
+        public virtual void PerformAttack()
+        {
+            
+        }
+
         public void Move(MoveDirection direction)
         {
             int speedX = 0;
             int speedY = 0;
 
-            MoveState = direction;
+            FaceDirection = direction;
 
-            switch (direction)
+            switch (FaceDirection)
             {
                 case MoveDirection.Up:
                     speedY = -this.Speed;
@@ -101,20 +110,21 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public override void Update(GameTime gameTime)
         {
-            if(IsMoving == true && movingAnimations[AnimState].IsLooping == false)
-                movingAnimations[AnimState].Start();
+            if(IsMoving == true && movingAnimations[FaceDirection].IsLooping == false)
+                movingAnimations[FaceDirection].Start();
             else if(IsMoving == false)
-                movingAnimations[AnimState].Stop();
+                movingAnimations[FaceDirection].Stop();
             if (IsAttacking)
             {
-                attackAnimations[AnimState].Update(gameTime);
-                if (attackAnimations[AnimState].IsFinished)
+                attackAnimations[FaceDirection].Update(gameTime);
+                if (attackAnimations[FaceDirection].IsFinished)
                 {
                     IsAttacking = false;
-                    attackAnimations[AnimState].IsFinished = false;
+                    attackAnimations[FaceDirection].IsFinished = false;
+                    PerformAttack();
                 }
             }
-            this.movingAnimations[AnimState].Update(gameTime);
+            this.movingAnimations[FaceDirection].Update(gameTime);
         }
 
         public List<Enemy> GetTargets(IEnumerable<Enemy> enemies)
@@ -135,9 +145,19 @@ namespace RouteDefense.Models.GameObjects.Units
             //spriteBatch.Draw(temp, this.RangeRectangle, Color.White);
 
             if(IsAttacking)
-                spriteBatch.Draw(texture, this.Rectangle, this.attackAnimations[AnimState].drawRectangle, Color.White);
+                spriteBatch.Draw(texture, this.Rectangle, this.attackAnimations[FaceDirection].drawRectangle, Color.White);
             else
-                spriteBatch.Draw(texture, this.Rectangle, movingAnimations[AnimState].drawRectangle, Color.White);
+                spriteBatch.Draw(texture, this.Rectangle, movingAnimations[FaceDirection].drawRectangle, Color.White);
+        }
+
+        public virtual void UpgradeArmor()
+        {
+            this.armorLevel++;
+        }
+
+        public virtual void UpgradeWeapon()
+        {
+            this.weaponLevel++;
         }
     }
 }

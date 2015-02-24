@@ -69,8 +69,14 @@ namespace RouteDefense.MasterStates
 
                 new Label(new Rectangle(750, 510, 100,40), "Gold:"),
                 new Label(new Rectangle(800, 540, 100,40), "Upgrades:"),
-                new Button(new Rectangle(750, 580, 100,40), Context.Textures["button"], "Castle", delegate(){}),
-                new Button(new Rectangle(870, 580, 100,40), Context.Textures["button"], "Weapon", delegate(){}),
+                new Button(new Rectangle(750, 580, 100,40), Context.Textures["button"], "Castle", delegate()
+                {
+                    theCharacter.UpgradeArmor();
+                }),
+                new Button(new Rectangle(870, 580, 100,40), Context.Textures["button"], "Weapon", delegate()
+                {
+                    theCharacter.UpgradeWeapon();
+                }),
                 
             };
 
@@ -92,22 +98,18 @@ namespace RouteDefense.MasterStates
                 if (InputHandler.KeyboardState.IsKeyDown(Keys.D))
                 {
                     this.theCharacter.Move(MoveDirection.Right);
-                    this.theCharacter.AnimState = MoveDirection.Right;
                 }
                 else if (InputHandler.KeyboardState.IsKeyDown(Keys.A))
                 {
                     this.theCharacter.Move(MoveDirection.Left);
-                    this.theCharacter.AnimState = MoveDirection.Left;
                 }
                 else if (InputHandler.KeyboardState.IsKeyDown(Keys.W))
                 {
                     this.theCharacter.Move(MoveDirection.Up);
-                    this.theCharacter.AnimState = MoveDirection.Up;
                 }
                 else if (InputHandler.KeyboardState.IsKeyDown(Keys.S))
                 {
                     this.theCharacter.Move(MoveDirection.Down);
-                    this.theCharacter.AnimState = MoveDirection.Down;
                 }
             }
             else if (InputHandler.KeyboardState.IsKeyUp(Keys.A) && InputHandler.KeyboardState.IsKeyUp(Keys.S)
@@ -143,10 +145,12 @@ namespace RouteDefense.MasterStates
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
+
             foreach (var element in uiElements)
             {
                 element.Draw(spriteBatch);
             }
+
             theMap.Draw(spriteBatch);
             waveManager.Draw(spriteBatch);
             theCharacter.Draw(spriteBatch);
@@ -185,8 +189,7 @@ namespace RouteDefense.MasterStates
                     if (first != second)
                     {
                         if (gameObjects[first] is Character && gameObjects[second] is Tile
-                            &&
-                            ((Character) gameObjects[first]).ActualRectangle.Intersects(gameObjects[second].Rectangle))
+                            && ((Character) gameObjects[first]).ActualRectangle.Intersects(gameObjects[second].Rectangle))
                         {
                             ((Character)gameObjects[first]).ReturnLastPosition();
                         }
@@ -203,7 +206,7 @@ namespace RouteDefense.MasterStates
                 || theCharacter.ActualRectangle.Y + theCharacter.ActualRectangle.Height > this.theMap.MapHeight)
             {
                 theCharacter.ReturnLastPosition();
-            }  
+            }
         }
     }
 }
