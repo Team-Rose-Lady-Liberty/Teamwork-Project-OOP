@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E82E9DA-EF73-4B31-9200-F446C0DAB261}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RouteDefense</RootNamespace>
+    <AssemblyName>RouteDefense</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Windows\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Windows\Release\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="MasterStates\PauseMenuState.cs" />
+    <Compile Include="Models\GameObjects\Arrow.cs" />
+    <Compile Include="Models\GameObjects\Units\Characters\Archer.cs" />
+    <Compile Include="Models\GameObjects\Units\Characters\Warrior.cs" />
+    <Compile Include="Models\MasterState.cs" />
+    <Compile Include="HelperClasses\Animation.cs" />
+    <Compile Include="Core\Gameplay\Map.cs" />
+    <Compile Include="Core\Gameplay\PathGenerator.cs" />
+    <Compile Include="Core\Gameplay\Wave.cs" />
+    <Compile Include="Core\Gameplay\WaveManager.cs" />
+    <Compile Include="Core\InputHandler.cs" />
+    <Compile Include="Enumerations\CharacterState.cs" />
+    <Compile Include="Enumerations\GameState.cs" />
+    <Compile Include="Enumerations\MenuState.cs" />
+    <Compile Include="Enumerations\MoveDirection.cs" />
+    <Compile Include="Enumerations\TileType.cs" />
+    <Compile Include="Interfaces\IMasterState.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
+    <Compile Include="Interfaces\IUpdateable.cs" />
+    <Compile Include="GameEngine.cs" />
+    <Compile Include="MasterStates\CharacterSelectionState.cs" />
+    <Compile Include="MasterStates\GameplayState.cs" />
+    <Compile Include="MasterStates\MainMenuState.cs" />
+    <Compile Include="Models\GameObject.cs" />
+    <Compile Include="Models\GameObjects\Item.cs" />
+    <Compile Include="Models\GameObjects\Items\Bridge.cs" />
+    <Compile Include="Models\GameObjects\Tile.cs" />
+    <Compile Include="Models\GameObjects\Unit.cs" />
+    <Compile Include="Models\GameObjects\Units\Character.cs" />
+    <Compile Include="Models\GameObjects\Units\Enemy.cs" />
+    <Compile Include="RouteDefense.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\GUIElement.cs" />
+    <Compile Include="UI\GUIElements\Button.cs" />
+    <Compile Include="UI\GUIElements\Label.cs" />
+    <Compile Include="UI\GUIElementType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\ArcherSprites\Archer0Armor0Weapon.png" />
+    <Content Include="Content\ArcherSprites\Archer0Armor1stWeaponUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\ArcherSprites\Archer0Armor2ndWeaponUpgrade.png" />
+    <Content Include="Content\ArcherSprites\Archer0Armor3rdWeaponUpgrade.png" />
+    <Content Include="Content\ArcherSprites\Archer1stArmor0Weapon.png" />
+    <Content Include="Content\ArcherSprites\Archer1stArmor1stWeapon.png" />
+    <Content Include="Content\ArcherSprites\Archer1stArmor2ndWeapon.png" />
+    <Content Include="Content\ArcherSprites\Archer1stArmor3rdWeapon.png" />
+    <Content Include="Content\ArcherSprites\Archer2ndArmor0Weapon.png" />
+    <Content Include="Content\ArcherSprites\Archer2ndArmor1stWeapon.png" />
+    <Content Include="Content\ArcherSprites\Archer2ndArmor2ndWeapon.png" />
+    <Content Include="Content\ArcherSprites\Archer2ndArmor3rdWeapon.png" />
+    <Content Include="Content\EnemiesSprites\EnemyBaby0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemyBaby1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemyOrc1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc2ndUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+    <Content Include="Content\Menu Items\button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\character select.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\charTest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\game story.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\new game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\quit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Mouse\normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Mouse\attack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\bridge.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\dirt.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\grass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\path.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile018.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile020.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile024.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile029.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile036.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile037.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile038.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile039.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile052.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\rpgTile061.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Terrain\water.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Warrior0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Warrior0Armor1stWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior0Armor2ndWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior0Armor3rdWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior0Armor4thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior0Armor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior1stArmor1stWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior1stArmor2ndWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior1stArmor3rdWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior1stArmor4thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior1stArmor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior1stArmorUpgradeNoWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior2ndArmor1stWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior2ndArmor2ndWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior2ndArmor3rdWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior2ndArmor4thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior2ndArmor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior2ndArmorUpgradeNoWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior3rdArmor1stWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior3rdArmor2ndWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior3rdArmor3rdWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior3rdArmor4thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior3rdArmor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Warrior3rdArmorUpgradeNoWeaponUpgrade.png" />
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Fonts\TestFont.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\GameObjects\Units\Enemies\" />
+    <Folder Include="UI\GameplayScreens\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
