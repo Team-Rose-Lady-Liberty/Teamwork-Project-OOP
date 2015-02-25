@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,6 +24,23 @@ namespace RouteDefense.Models.GameObjects.Units
         {
             arrows = new List<Arrow>();
             textures = new Dictionary<string, Texture2D>();
+            LoadContent(contentManager);
+
+            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
+ 
+            attackAnimations.Add(MoveDirection.Down, new Animation(0, 1152, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
+            attackAnimations.Add(MoveDirection.Up, new Animation(0, 1024, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
+            attackAnimations.Add(MoveDirection.Left, new Animation(0, 1088, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
+            attackAnimations.Add(MoveDirection.Right, new Animation(0, 1216, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
+        }
+
+        public override void LoadContent(ContentManager contentManager)
+        {
+            arrowUp = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowUp.png");
+            arrowRight = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowRight.png");
+            arrowLeft = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowLeft.png");
+            arrowDown = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowDown.png");
+
             textures.Add("Armor0Weapon0", contentManager.Load<Texture2D>("ArcherSprites\\Armor0Weapon0.png"));
             textures.Add("Armor0Weapon1", contentManager.Load<Texture2D>("ArcherSprites\\Armor0Weapon1.png"));
             textures.Add("Armor0Weapon2", contentManager.Load<Texture2D>("ArcherSprites\\Armor0Weapon2.png"));
@@ -39,18 +55,6 @@ namespace RouteDefense.Models.GameObjects.Units
             textures.Add("Armor2Weapon1", contentManager.Load<Texture2D>("ArcherSprites\\Armor2Weapon1.png"));
             textures.Add("Armor2Weapon2", contentManager.Load<Texture2D>("ArcherSprites\\Armor2Weapon2.png"));
             textures.Add("Armor2Weapon3", contentManager.Load<Texture2D>("ArcherSprites\\Armor2Weapon3.png"));
-
-            texture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
-
-            arrowUp = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowUp.png");
-            arrowRight = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowRight.png");
-            arrowLeft = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowLeft.png");
-            arrowDown = contentManager.Load<Texture2D>("ArcherSprites\\arrows\\arrowDown.png");
-            
-            attackAnimations.Add(MoveDirection.Down, new Animation(0, 1152, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
-            attackAnimations.Add(MoveDirection.Up, new Animation(0, 1024, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
-            attackAnimations.Add(MoveDirection.Left, new Animation(0, 1088, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
-            attackAnimations.Add(MoveDirection.Right, new Animation(0, 1216, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
         }
 
         public override void PerformAttack()
@@ -81,24 +85,35 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public override void Update(GameTime gameTime)
         {
+            if (IsAttacking)
+            {
+                currentAnimation = attackAnimations[FaceDirection];
+                
+                if (currentAnimation.IsFinished)
+                {
+                    PerformAttack();
+                    IsAttacking = false;
+                    currentAnimation.IsFinished = false;
+                    currentAnimation = movingAnimations[FaceDirection];  
+                }
+            }
             foreach (var arrow in arrows)
             {
                 arrow.Update();
             }
             base.Update(gameTime);
-
         }
 
         public override void UpgradeWeapon()
         {
             base.UpgradeWeapon();
-            texture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
+            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
         }
 
         public override void UpgradeArmor()
         {
             base.UpgradeArmor();
-            texture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
+            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
         }
 
         public override void Draw(SpriteBatch spriteBatch)

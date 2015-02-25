@@ -32,7 +32,7 @@ namespace RouteDefense
             this.totalFrames = totalFrames;
             this.frameTime = frameTime;
 
-            frameIndex = 1;
+            frameIndex = 0;
 
             this.drawRectangle = new Rectangle(startPositionX + frameWidth * frameIndex, startPositionY,
                         frameWidth, frameHeight);
@@ -49,32 +49,36 @@ namespace RouteDefense
                     frameIndex++;
                     if (frameIndex >= totalFrames)
                     {
-                        frameIndex = 1;
+                        frameIndex = 0;
                         IsFinished = true;
                     }
-                    this.drawRectangle = new Rectangle(startPositionX + frameWidth*frameIndex, startPositionY,
+                    this.drawRectangle = new Rectangle(startPositionX + frameWidth * frameIndex, startPositionY,
                         frameWidth, frameHeight);
                     time = 0f;
                 }
             }
         }
 
+        public void Reset()
+        {
+            this.frameIndex = 0;
+            this.drawRectangle = new Rectangle(startPositionX + frameWidth * frameIndex, startPositionY,
+                        frameWidth, frameHeight);
+        }
+
         public void Stop()
         {
-            this.frameIndex = 1;
+            this.frameIndex = 0;
+            IsLooping = false;
+            this.drawRectangle = new Rectangle(startPositionX + frameWidth * frameIndex, startPositionY,
+                        frameWidth, frameHeight);
         }
 
         public bool IsFinished { get; set; }
 
         public void Start()
         {
-            this.IsLooping = true;
-        }
-
-        public void StayAtFirst()
-        {
-            frameIndex = 1;
-            IsLooping = false;
+            IsLooping = true;
         }
     }
 }

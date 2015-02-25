@@ -84,7 +84,6 @@ namespace RouteDefense.MasterStates
             gameObjects.AddRange(theMap.PathTiles);
         }
 
-
         public override IMasterState HandleInput()
         {
             if (InputHandler.KeyboardState.IsKeyDown(Keys.Escape))
@@ -134,9 +133,13 @@ namespace RouteDefense.MasterStates
             }
 
             theCharacter.Update(gameTime);
+
             HandleCollisions();
+
             DoPlayerBoundaries();
+
             waveManager.Update(gameTime);
+
             InteractionWithEnemies();
             
             return null;

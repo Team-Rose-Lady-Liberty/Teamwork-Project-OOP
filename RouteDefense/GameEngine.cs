@@ -71,28 +71,6 @@ namespace RouteDefense
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            
-            /*
-            Textures.Add("Warrior1", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior2", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior3", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior4", Content.Load<Texture2D>(""));
-
-            Textures.Add("Archer", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior1", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior2", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior3", Content.Load<Texture2D>(""));
-            Textures.Add("Warrior4", Content.Load<Texture2D>(""));
-
-            Textures.Add("Enemy0,", Content.Load<Texture2D>("EnemiesSprites\\"));
-            Textures.Add("Enemy1,", Content.Load<Texture2D>("EnemiesSprites\\"));
-            Textures.Add("Enemy2,", Content.Load<Texture2D>("EnemiesSprites\\"));
-            Textures.Add("Enemy3,", Content.Load<Texture2D>("EnemiesSprites\\"));
-            Textures.Add("Enemy4,", Content.Load<Texture2D>("EnemiesSprites\\"));
-
-            Textures.Add("dirtTile", Content.Load<Texture2D>(""));
-            Textures.Add("pathTile", Content.Load<Texture2D>(""));*/
 
             base.LoadContent();
         }
@@ -155,7 +133,7 @@ namespace RouteDefense
 
             spriteBatch.Draw(MouseCursor, new Vector2(CurrentMouseState.X, CurrentMouseState.Y), Color.White);
 
-            spriteBatch.Draw(Textures["button"], new Rectangle(CurrentMouseState.X, CurrentMouseState.Y, 3,3), Color.White);
+            //spriteBatch.Draw(Textures["button"], new Rectangle(CurrentMouseState.X, CurrentMouseState.Y, 3,3), Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);

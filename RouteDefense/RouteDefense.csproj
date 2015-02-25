@@ -236,28 +236,68 @@
     <Content Include="Content\WarriorSprites\Warrior0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\WarriorSprites\Warrior0Armor1stWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior0Armor2ndWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior0Armor3rdWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior0Armor4thWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior0Armor5thWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior1stArmor1stWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior1stArmor2ndWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior1stArmor3rdWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior1stArmor4thWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior1stArmor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Armor0Weapon0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor0Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor0Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor0Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor0Weapon4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor1Weapon0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor1Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor1Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor1Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor1Weapon4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\WarriorSprites\Warrior1stArmorUpgradeNoWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior2ndArmor1stWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior2ndArmor2ndWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior2ndArmor3rdWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior2ndArmor4thWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior2ndArmor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Armor2Weapon0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor2Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor2Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor2Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor2Weapon4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\WarriorSprites\Warrior2ndArmorUpgradeNoWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior3rdArmor1stWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior3rdArmor2ndWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior3rdArmor3rdWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior3rdArmor4thWeaponUpgrade.png" />
-    <Content Include="Content\WarriorSprites\Warrior3rdArmor5thWeaponUpgrade.png" />
+    <Content Include="Content\WarriorSprites\Armor3Weapon0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor3Weapon1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor3Weapon2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor3Weapon3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\WarriorSprites\Armor3Weapon4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\WarriorSprites\Warrior3rdArmorUpgradeNoWeaponUpgrade.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
