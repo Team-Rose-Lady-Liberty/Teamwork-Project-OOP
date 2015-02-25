@@ -31,11 +31,19 @@ namespace RouteDefense.MasterStates
                         new Warrior("temp", new Rectangle(0, 0, 48, 48), Context.Content))); }),
 
                 new Label(new Rectangle(276, 180, 120, 50), "Warrior"), 
+                new Label(new Rectangle(230, 370, 120, 50), "Melee Fighter"), 
+                new Label(new Rectangle(230, 400, 120, 50), "Using Spears &"), 
+                new Label(new Rectangle(230, 425, 120, 50), "Swords"), 
 
                 new Button(new Rectangle(612, 150, 200, 400),
-                    Context.Content.Load<Texture2D>("Menu Items/archerSelectionMenu.png"), "Archer",
+                    Context.Content.Load<Texture2D>("Menu Items/archerSelectionMenu.png"), "",
                     delegate() { this.Context.ChangeState(new GameplayState(Context, 
                         new Archer("temp", new Rectangle(0, 0, 48, 48), Context.Content)));}),
+
+                new Label(new Rectangle(682, 180, 120, 50), "Archer"), 
+                new Label(new Rectangle(632, 370, 120, 50), "Range Fighter"), 
+                new Label(new Rectangle(632, 400, 120, 50), "Using Bows"), 
+
             };
         }
 
