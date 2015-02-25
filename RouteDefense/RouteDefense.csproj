@@ -143,6 +143,9 @@
     <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
     <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
     <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+    <Content Include="Content\Menu Items\archerSelectionMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -165,6 +168,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\quit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\warriorSelectionMenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Mouse\normal.png">
@@ -263,6 +269,11 @@
   <ItemGroup>
     <Folder Include="Models\GameObjects\Units\Enemies\" />
     <Folder Include="UI\GameplayScreens\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Fonts\Font.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,17 +21,19 @@ namespace RouteDefense.MasterStates
             this.Context = context;
             characters = new List<GUIElement>()
             {
-                new Button(new Rectangle(263, 30, 305, 42),
+                new Button(new Rectangle(360, 50, 305, 42),
                     Context.Content.Load<Texture2D>("Menu Items/character select.png"), "",
                     delegate() {}),
 
-                new Button(new Rectangle(35, 90, 206, 356), 
-                    Context.Content.Load<Texture2D>("Menu Items/charTest.png"), "",
+                new Button(new Rectangle(212, 150, 200, 400), 
+                    Context.Content.Load<Texture2D>("Menu Items/warriorSelectionMenu.png"), "",
                     delegate() { this.Context.ChangeState(new GameplayState(Context, 
                         new Warrior("temp", new Rectangle(0, 0, 48, 48), Context.Content))); }),
 
-                new Button(new Rectangle(450, 90, 206, 356),
-                    Context.Textures["button"], "Archer",
+                new Label(new Rectangle(276, 180, 120, 50), "Warrior"), 
+
+                new Button(new Rectangle(612, 150, 200, 400),
+                    Context.Content.Load<Texture2D>("Menu Items/archerSelectionMenu.png"), "Archer",
                     delegate() { this.Context.ChangeState(new GameplayState(Context, 
                         new Archer("temp", new Rectangle(0, 0, 48, 48), Context.Content)));}),
             };

@@ -16,7 +16,7 @@ namespace RouteDefense.MasterStates
             
             elements = new List<GUIElement>()
             {
-                new Button(new Rectangle(450, 300, 130, 40), Context.Textures["button"], "Resume",
+                new Button(new Rectangle(447, 300, 130, 40), Context.Textures["button"], "Resume",
                     delegate()
                     {
                         Context.ChangeState(new GameplayState(context, null));

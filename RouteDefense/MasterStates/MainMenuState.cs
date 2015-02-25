@@ -17,15 +17,15 @@ namespace RouteDefense.MasterStates
             this.Context = context; 
             elements = new List<GUIElement>()
             {
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 -  65, 178, 130, 40),
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 -  65, 266, 130, 40),
                     Context.Textures["button"], "Start",
                     delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }),
 
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2  -  65, 228, 130, 40),
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2  -  65, 316, 130, 40),
                     Context.Textures["button"], "Temp",
                     delegate(){this.Context.ChangeState(new CharacterSelectionState(Context));}),
 
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 -  65, 278, 130, 40), 
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 65, 366, 130, 40), 
                     Context.Textures["button"], "Quit",
                     delegate(){Context.Exit();}),
             };
