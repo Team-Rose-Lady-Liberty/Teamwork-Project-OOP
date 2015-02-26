@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using RouteDefense.Core.Gameplay;
 using RouteDefense.Enumerations;
 
 namespace RouteDefense.Models.GameObjects.Units
@@ -17,21 +18,22 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public List<Arrow> arrows;
 
-        private Dictionary<string, Texture2D> textures; 
-
         public Archer(string id, Rectangle rectangle, ContentManager contentManager)
             : base(id, rectangle, contentManager, 64, 2, 20, 4)
         {
             arrows = new List<Arrow>();
-            textures = new Dictionary<string, Texture2D>();
+            
             LoadContent(contentManager);
+
+            maxArmorLevel = 2;
+            maxWeaponLevel = 3;
 
             currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
  
-            attackAnimations.Add(MoveDirection.Down, new Animation(0, 1152, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
-            attackAnimations.Add(MoveDirection.Up, new Animation(0, 1024, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
-            attackAnimations.Add(MoveDirection.Left, new Animation(0, 1088, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
-            attackAnimations.Add(MoveDirection.Right, new Animation(0, 1216, Constants.FrameWidth, Constants.FrameHeight, 13, 0.1f));
+            attackAnimations.Add(MoveDirection.Down, new Animation(0, 1152, Constants.FrameWidth, Constants.FrameHeight, 13, 0.03f));
+            attackAnimations.Add(MoveDirection.Up, new Animation(0, 1024, Constants.FrameWidth, Constants.FrameHeight, 13, 0.03f));
+            attackAnimations.Add(MoveDirection.Left, new Animation(0, 1088, Constants.FrameWidth, Constants.FrameHeight, 13, 0.03f));
+            attackAnimations.Add(MoveDirection.Right, new Animation(0, 1216, Constants.FrameWidth, Constants.FrameHeight, 13, 0.03f));
         }
 
         public override void LoadContent(ContentManager contentManager)
@@ -75,15 +77,16 @@ namespace RouteDefense.Models.GameObjects.Units
                         new Point(speed, 0), arrowRight));
                     break;
                 case MoveDirection.Left:
-                    arrows.Add(new Arrow("temp", new Rectangle(ActualRectangle.X + 32, ActualRectangle.Y + 28, 24, 4),
+                    arrows.Add(new Arrow("temp", new Rectangle(ActualRectangle.X + 16, ActualRectangle.Y + 28, 24, 4),
                         new Point(-speed, 0), arrowLeft));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            base.PerformAttack();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Map map, IList<Enemy> enemies )
         {
             if (IsAttacking)
             {
@@ -97,23 +100,35 @@ namespace RouteDefense.Models.GameObjects.Units
                     currentAnimation = movingAnimations[FaceDirection];  
                 }
             }
-            foreach (var arrow in arrows)
+
+            for (int i = 0; i < arrows.Count; i++)
             {
-                arrow.Update();
+                arrows[i].Update();
+                if (arrows[i].Rectangle.X + arrows[i].Rectangle.Width / 2 > map.MapWidth
+                    || arrows[i].Rectangle.X < 0 || arrows[i].Rectangle.Y < 0
+                    || arrows[i].Rectangle.Y + arrows[i].Rectangle.Height> map.MapHeight)
+                {
+                    arrows.Remove(arrows[i]);
+                }
             }
-            base.Update(gameTime);
-        }
 
-        public override void UpgradeWeapon()
-        {
-            base.UpgradeWeapon();
-            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
-        }
-
-        public override void UpgradeArmor()
-        {
-            base.UpgradeArmor();
-            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
+            for (int j = 0; j < enemies.Count; j++)
+            {
+                for (int i = 0; i < arrows.Count; i++)
+                {
+                    if (arrows[i].Rectangle.Intersects(enemies[j].Rectangle) && enemies[j].IsAlive)
+                    {
+                        arrows.Remove(arrows[i]);
+                        enemies[j].Health -= this.Attack;
+                        if (enemies[j].Health <= 0)
+                        {
+                            Gold += enemies[j].Gold;
+                            enemies[j].Kill();
+                        }     
+                    }
+                }
+            }
+            base.Update(gameTime, map, enemies);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

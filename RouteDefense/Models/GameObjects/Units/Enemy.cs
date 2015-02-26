@@ -17,13 +17,20 @@ namespace RouteDefense.Models.GameObjects.Units
 
         private const float animationFrameRate = 0.1f;
 
-        public Enemy(string id, Rectangle rectangle, Texture2D texture) 
+        public Enemy(string id, Rectangle rectangle, Texture2D texture, int health, int gold, int attack, int speed) 
             : base(id, rectangle)
         {
-            this.Health = 100;
             currentPathNode = 0;
+
+            this.Health = health;
+            this.Gold = gold;
+            this.Attack = Attack;
+            this.Speed = speed;
+
             this.texture = texture;
+
             IsAlive = true;
+
             animations.Add(MoveDirection.Right, new Animation(0, 704, Constants.FrameWidth, Constants.FrameHeight, 9, animationFrameRate));
             animations.Add(MoveDirection.Up, new Animation(0, 640, Constants.FrameWidth, Constants.FrameHeight, 9, animationFrameRate));
             animations.Add(MoveDirection.Down, new Animation(0, 512, Constants.FrameWidth, Constants.FrameHeight, 9, animationFrameRate));

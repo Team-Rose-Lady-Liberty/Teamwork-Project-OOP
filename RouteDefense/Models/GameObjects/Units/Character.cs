@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Timers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using RouteDefense.Core.Gameplay;
 using RouteDefense.Enumerations;
 
 namespace RouteDefense.Models.GameObjects.Units
@@ -24,7 +26,7 @@ namespace RouteDefense.Models.GameObjects.Units
 
         protected int weaponLevel;
 
-        public int AttackSpeed { get; set; }
+        public float AttackSpeed { get; set; }
 
         public MoveDirection FaceDirection { get; set; }
 
@@ -38,10 +40,28 @@ namespace RouteDefense.Models.GameObjects.Units
 
         protected Animation currentAnimation;
 
+        protected Dictionary<string, Texture2D> textures;
+
+        protected int maxArmorLevel;
+        protected int maxWeaponLevel;
+
+        public int Gold;
+
+        public bool CanAttack;
+
+        private Timer timer;
+
+        private float seconds;
+
         public Character(string id, Rectangle rectangle,  ContentManager contentManager,
             int range, int movementSpeed, int attack, int attackSpeed)
             : base(id, rectangle)
         {
+            seconds = 0;
+            timer = new Timer(100);
+            timer.Start();
+            timer.Elapsed += timer_Elapsed;
+
             Speed = movementSpeed;
             Range = range;
             Attack = attack;
@@ -50,8 +70,10 @@ namespace RouteDefense.Models.GameObjects.Units
             weaponLevel = 0;
             armorLevel = 0;
             IsMoving = false;
-
+            CanAttack = true;
             FaceDirection = MoveDirection.Down;
+
+            textures = new Dictionary<string, Texture2D>();
 
             movingAnimations = new Dictionary<MoveDirection, Animation>();
 
@@ -78,9 +100,15 @@ namespace RouteDefense.Models.GameObjects.Units
             currentAnimation = movingAnimations[FaceDirection];
         }
 
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.seconds += 0.1f;
+        }
+
         public virtual void PerformAttack()
         {
-            
+            seconds = 0;
+            CanAttack = false;
         }
 
         public void Move(MoveDirection direction)
@@ -132,13 +160,23 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public override void Update(GameTime gameTime)
         {
-            if(IsMoving && currentAnimation.IsLooping == false)
+            
+        }
+
+        public virtual void Update(GameTime gameTime, Map map, IList<Enemy> enemies)
+        {
+            if (seconds > AttackSpeed)
+            {
+                CanAttack = true;
+            }
+
+            if (IsMoving && currentAnimation.IsLooping == false)
                 currentAnimation.Start();
             if (IsMoving == false && IsAttacking == false)
             {
                 currentAnimation.Stop();
             }
-            
+
             currentAnimation.Update(gameTime);
         }
 
@@ -167,12 +205,20 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public virtual void UpgradeArmor()
         {
-            this.armorLevel++;
+            if (armorLevel < maxArmorLevel)
+            {
+                this.armorLevel++;
+                currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
+            }
         }
 
         public virtual void UpgradeWeapon()
         {
-            this.weaponLevel++;
+            if (weaponLevel < maxWeaponLevel)
+            {
+                this.weaponLevel++;
+                currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
+            }
         }
     }
 }

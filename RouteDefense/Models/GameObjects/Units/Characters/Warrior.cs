@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using RouteDefense.Core.Gameplay;
 using RouteDefense.Enumerations;
 
 namespace RouteDefense.Models.GameObjects.Units
 {
     class Warrior : Character
     {
-        private Dictionary<string, Texture2D> textures;
         private Dictionary<string, Dictionary<MoveDirection, Animation>> specificAnimations;
 
         public string WeaponType;
@@ -21,6 +21,9 @@ namespace RouteDefense.Models.GameObjects.Units
             WeaponType = "";
             textures = new Dictionary<string, Texture2D>();
             specificAnimations = new Dictionary<string, Dictionary<MoveDirection, Animation>>();
+
+            maxWeaponLevel = 4;
+            maxArmorLevel = 3;
 
             LoadContent(contentManager);
 
@@ -77,23 +80,12 @@ namespace RouteDefense.Models.GameObjects.Units
             textures.Add("Armor3Weapon4", contentManager.Load<Texture2D>("WarriorSprites\\Armor3Weapon4.png"));
         }
 
-        public override void UpgradeWeapon()
-        {
-            base.UpgradeWeapon();
-            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
-        }
-
-        public override void UpgradeArmor()
-        {
-            base.UpgradeArmor();
-            currentTexture = textures["Armor" + armorLevel + "Weapon" + weaponLevel];
-        }
-
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Map map, IList<Enemy> enemies)
         {
             if (IsAttacking)
             {
                 temp = new Rectangle(Rectangle.X - 48, Rectangle.Y - 48, 144, 144);
+                
                 if (weaponLevel == 3 || weaponLevel == 4)
                 {
                     WeaponType = "sword";
@@ -104,7 +96,7 @@ namespace RouteDefense.Models.GameObjects.Units
                 }
 
                 currentAnimation = specificAnimations[WeaponType][FaceDirection];
-
+                
                 if (currentAnimation.IsFinished)
                 {
                     IsAttacking = false;
@@ -113,7 +105,7 @@ namespace RouteDefense.Models.GameObjects.Units
                     currentAnimation = movingAnimations[FaceDirection];
                 }
             }
-            base.Update(gameTime);
+            base.Update(gameTime, map, enemies);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

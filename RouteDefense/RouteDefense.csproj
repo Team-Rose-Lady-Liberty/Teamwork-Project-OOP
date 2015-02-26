@@ -35,7 +35,9 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="UI\GameplayScreens\CharacterInfoUI.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Interfaces\ICollidable.cs" />
     <Compile Include="MasterStates\PauseMenuState.cs" />
     <Compile Include="Models\GameObjects\Arrow.cs" />
     <Compile Include="Models\GameObjects\Units\Characters\Archer.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Models\GameObjects\Units\Enemy.cs" />
     <Compile Include="RouteDefense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\GameplayScreens\WaveInfoUI.cs" />
     <Compile Include="UI\GUIElement.cs" />
     <Compile Include="UI\GUIElements\Button.cs" />
     <Compile Include="UI\GUIElements\Label.cs" />
@@ -333,7 +336,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\GameObjects\Units\Enemies\" />
-    <Folder Include="UI\GameplayScreens\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\Fonts\Font.xnb">

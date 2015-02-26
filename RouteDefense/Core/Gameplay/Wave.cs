@@ -33,9 +33,13 @@ namespace RouteDefense.Core.Gameplay
 
         public int EnemyMovementMax { get; set; }
 
+        public int EnemyHealthMin { get; set; }
+
+        public int EnemyHealthMax { get; set; }
+
         private Texture2D waveTexture;
 
-        public Wave(Texture2D enemyTexture,int numEnemies)
+        public Wave(Texture2D enemyTexture, int numEnemies)
         {
             waveTexture = enemyTexture;
             enemies = new List<Enemy>();
@@ -60,7 +64,7 @@ namespace RouteDefense.Core.Gameplay
                 if (time >= spawnRate)
                 {
                     enemies.Add(new Enemy("temp",
-                        new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32), waveTexture));
+                        new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32), waveTexture, 20, 10, 5, 1));
                     time = 0;
                     spawnedEnemiesCount++;
                 }

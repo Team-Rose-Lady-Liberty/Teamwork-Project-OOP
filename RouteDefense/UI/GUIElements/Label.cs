@@ -6,7 +6,7 @@ namespace RouteDefense.UI.GUIElements
 {
     public class Label : GUIElement
     {
-        private string text;
+        public string text;
 
         public Label(Rectangle rectangle, string text)
             : base(rectangle)

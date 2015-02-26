@@ -11,6 +11,7 @@ using RouteDefense.Models;
 using RouteDefense.Models.GameObjects;
 using RouteDefense.Models.GameObjects.Units;
 using RouteDefense.UI;
+using RouteDefense.UI.GameplayScreens;
 using RouteDefense.UI.GUIElements;
 
 namespace RouteDefense.MasterStates
@@ -21,13 +22,14 @@ namespace RouteDefense.MasterStates
         private Character theCharacter;
         private WaveManager waveManager;
 
-        private const int timeBetweenWave = 10;
-
         private List<GUIElement> uiElements;
 
         private Stopwatch timer;
 
-        private List<GameObject> gameObjects; 
+        private List<GameObject> gameObjects;
+
+        private CharacterInfoUI characterBar;
+        private WaveInfoUI waveBar;
 
         public GameplayState(GameEngine context, Character selectedCharacter)
         {
@@ -43,29 +45,23 @@ namespace RouteDefense.MasterStates
             
             waveManager = new WaveManager(this.theMap.PathTiles, Context.Content);
 
+            characterBar = new CharacterInfoUI(Vector2.Zero);
+            waveBar = new WaveInfoUI(Vector2.Zero);
+
+
             uiElements = new List<GUIElement>()
             {
                 new Button(new Rectangle(0, 515, 130, 40), Context.Textures["button"], "Next Wave",
                     delegate() { waveManager.Start();  }),
 
                 new Label(new Rectangle(0, 550, 100,40), "Wave Info:"),
-                new Label(new Rectangle(0, 575, 100,40), "Enemy Health:"),
-                new Label(new Rectangle(0, 600, 100,40), "Gold per unit:"),
-                new Label(new Rectangle(0, 625, 100,40), "Enemy Damage:"),
-                new Label(new Rectangle(0, 650, 100,40), "Enemy Speed:"),
-
 
                 new Label(new Rectangle(250, 510, 100,40), "Castle Info:"),
                 new Label(new Rectangle(250, 535, 100,40), "Health:"),
                 new Label(new Rectangle(250, 570, 100,40), "Level:"),
                 new Label(new Rectangle(250, 595, 100,40), "Gold to upgrade:"),
 
-
                 new Label(new Rectangle(500, 510, 100,40), "Character Info:"),
-                new Label(new Rectangle(500, 535, 100,40), "Class:"),
-                new Label(new Rectangle(500, 570, 100,40), "Attack damage:"),
-                new Label(new Rectangle(500, 595, 100,40), "Attack speed:"),
-                new Label(new Rectangle(500, 620, 100,40), "Movement speed:"),
 
                 new Label(new Rectangle(750, 510, 100,40), "Gold:"),
                 new Label(new Rectangle(800, 540, 100,40), "Upgrades:"),
@@ -119,7 +115,8 @@ namespace RouteDefense.MasterStates
 
             if (InputHandler.KeyboardState.IsKeyDown(Keys.Space))
             {
-                theCharacter.IsAttacking = true;
+                if(theCharacter.CanAttack)
+                    theCharacter.IsAttacking = true;
             }
 
             return null;
@@ -127,12 +124,15 @@ namespace RouteDefense.MasterStates
 
         public override IMasterState Update(GameTime gameTime)
         {
+            characterBar.Update(theCharacter);
+            waveBar.Update(waveManager.CurrentWave);
+
             foreach (var element in uiElements)
             {
                 element.Update(gameTime);
             }
 
-            theCharacter.Update(gameTime);
+            theCharacter.Update(gameTime, theMap, waveManager.GetSpawnedList());
 
             HandleCollisions();
 
@@ -141,14 +141,16 @@ namespace RouteDefense.MasterStates
             waveManager.Update(gameTime);
 
             InteractionWithEnemies();
-            
             return null;
         }
  
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
+            characterBar.Draw(spriteBatch);
+            waveBar.Draw(spriteBatch);
 
+            spriteBatch.Begin();
+            
             foreach (var element in uiElements)
             {
                 element.Draw(spriteBatch);
@@ -171,7 +173,7 @@ namespace RouteDefense.MasterStates
                     if (GameEngine.CurrentMouseState.LeftButton == ButtonState.Pressed &&
                         GameEngine.OldMouseState.LeftButton == ButtonState.Released)
                     {
-                        enemies[i].Health -= 50;
+                        enemies[i].Health -= theCharacter.Attack;
                         if (enemies[i].Health <= 0)
                             enemies[i].Kill();
                     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,11 +23,17 @@ namespace RouteDefense.Core.Gameplay
 
         public int WaveLevel { get; private set; }
 
+        private const int timeBetweenWave = 10;
+
+        private Timer timer;
+
         public WaveManager(Tile[] pathTile, ContentManager content)
         {
             this.enemyPath = pathTile;
             canUpdate = false;
             LoadContent(content);
+            WaveLevel = 1;
+            
             NextWave();
         }
 
@@ -54,8 +61,8 @@ namespace RouteDefense.Core.Gameplay
 
         public void NextWave()
         {
-            CurrentWave = new Wave(EnemyTextures[(new Random()).Next(0, EnemyTextures.Count)], 10);
             WaveLevel++;
+            CurrentWave = new Wave(EnemyTextures[(new Random()).Next(0, EnemyTextures.Count)], 10);
         }
 
         public List<Enemy> GetSpawnedList()
