@@ -148,17 +148,23 @@ namespace RouteDefense.Core.Gameplay
                 }
             }
             this.GenerateBoards();
-            this.GeneratePath();
+            this.DrawPath();
         }
 
-        public Tile[] PathTiles
-        { get; private set; }
+        public Tile[] PathTiles { get; private set; }
 
-        public void GeneratePath()
+        public List<Tuple<int, int>> GeneratePath()
         {
-            List<Tile> pathTiles = new List<Tile>();
 
             var path = PathGenerator.GeneratePath(this.MapRowCells, this.MapColumnCells);
+            return path;
+           
+        }
+
+        private void DrawPath()
+        {
+            List<Tile> pathTiles = new List<Tile>();
+            var path = GeneratePath();
 
             for (int i = 0; i < path.Count; i++)
             {
