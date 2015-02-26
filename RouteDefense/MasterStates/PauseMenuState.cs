@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RouteDefense.UI;
@@ -22,6 +23,13 @@ namespace RouteDefense.MasterStates
                     delegate()
                     {
                         Context.ChangeState(new GameplayState(context, null));
+                    }),
+                new Button(new Rectangle(447, 350, 130, 40), Context.Textures["button"], "Main menu",
+                    delegate()
+                    {
+                        Context.DeleteState(Context.GetStates().Where(state => state.GetType().Name == "GameplayState").First());
+                        
+                        Context.ChangeState(new MainMenuState(context));
                     })
             };
         }

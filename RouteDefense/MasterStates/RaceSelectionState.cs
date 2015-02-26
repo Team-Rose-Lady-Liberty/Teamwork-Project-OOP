@@ -26,7 +26,7 @@ namespace RouteDefense.MasterStates
                     delegate() {}),
 
                 new Button(new Rectangle(250, 150, 200, 200), 
-                    Context.Content.Load<Texture2D>("Menu Items/human select.png"), "",
+                    Context.Content.Load<Texture2D>("Menu Items/human select.png"), "", delegate(){}
                     /*delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }*/),
                 new Label(new Rectangle(325, 180, 120, 50), "Human"), 
 

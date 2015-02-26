@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -182,6 +183,13 @@ namespace RouteDefense.MasterStates
                     enemy.Kill();
                 }
             }
+
+            if (castleHealth <= 0)
+            {
+                Context.DeleteState(this);
+                return new MainMenuState(Context);
+            }
+
             return null;
         }
  

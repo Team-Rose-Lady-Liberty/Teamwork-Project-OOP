@@ -57,6 +57,11 @@ namespace RouteDefense
             base.Initialize();
         }
 
+        public void DeleteState(IMasterState state)
+        {
+            masterStates.Remove(state);
+        }
+
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);

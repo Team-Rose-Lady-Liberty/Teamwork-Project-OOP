@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -104,6 +105,33 @@ namespace RouteDefense.Models.GameObjects.Units
                     IsAttacking = false;
                     currentAnimation.IsFinished = false;
                     PerformAttack();
+                    if (WeaponType == "spear")
+                    {
+                        List<Enemy> returnedEnemies = GetTargets(enemies);
+                        if (returnedEnemies != null && returnedEnemies.Count > 0)
+                        {
+                            Enemy enemy = returnedEnemies.Last();
+                            enemy.Health -= Attack;
+                            if (enemy.Health <= 0)
+                            {
+                                enemy.Kill();
+                                Gold += enemy.Gold;
+                            }
+                        }
+                    }
+                    else if (WeaponType == "sword")
+                    {
+                        List<Enemy> returnedEnemies = GetTargets(enemies);
+                        foreach (var enemy in returnedEnemies)
+                        {
+                            enemy.Health -= Attack / returnedEnemies.Count;
+                            if (enemy.Health <= 0)
+                            {
+                                enemy.Kill();
+                                Gold += enemy.Gold;
+                            }
+                        }
+                    }
                     currentAnimation = movingAnimations[FaceDirection];
                 }
             }
@@ -116,6 +144,12 @@ namespace RouteDefense.Models.GameObjects.Units
                 spriteBatch.Draw(currentTexture, this.temp, currentAnimation.drawRectangle, Color.White);
             else
                 spriteBatch.Draw(currentTexture, this.Rectangle, currentAnimation.drawRectangle, Color.White);
+        }
+
+        public override void PerformAttack()
+        {
+            base.PerformAttack();
+            
         }
     }
 }
