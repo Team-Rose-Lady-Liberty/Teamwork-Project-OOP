@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RouteDefense.Core;
-using RouteDefense.Models.GameObjects.Units;
 using RouteDefense.UI;
 using RouteDefense.UI.GUIElements;
 
@@ -28,7 +27,7 @@ namespace RouteDefense.MasterStates
 
                 new Button(new Rectangle(250, 150, 200, 200), 
                     Context.Content.Load<Texture2D>("Menu Items/human select.png"), "",
-                    delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }),
+                    /*delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }*/),
                 new Label(new Rectangle(325, 180, 120, 50), "Human"), 
 
                 new Picture(new Rectangle(550, 150, 200, 200), Context.Content.Load<Texture2D>("Menu Items/skeleton select.png")),
@@ -68,7 +67,7 @@ namespace RouteDefense.MasterStates
 
         public override IMasterState HandleInput()
         {
-            if (InputHandler.KeyboardState.IsKeyDown(Keys.Escape))
+            if (InputHandler.IsClicked(Keys.Escape))
             {
                 return new MainMenuState(Context);
             }

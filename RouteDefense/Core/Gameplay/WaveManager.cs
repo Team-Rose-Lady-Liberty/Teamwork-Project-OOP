@@ -42,13 +42,7 @@ namespace RouteDefense.Core.Gameplay
             timer = new Timer(1000);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
-	}
-
-        private void LoadContent(ContentManager content)
-        {
-            EnemyTextures = new List<Texture2D>();
-            EnemyTextures.Add(content.Load<Texture2D>("EnemiesSprites\\elf1.png"));
-        }
+	    }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
         {

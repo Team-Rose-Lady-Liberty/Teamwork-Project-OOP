@@ -185,20 +185,7 @@
     <Content Include="Content\Menu Items\character select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-<<<<<<< HEAD
-    <Content Include="Content\Menu Items\charTest.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Menu Items\game story.png">
-=======
-    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Menu Items\elf select.png">
->>>>>>> origin/master
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\human select.png">
