@@ -25,7 +25,7 @@ namespace RouteDefense.UI.GameplayScreens
             enemiesHealth.text = "Enemy health: " + wave.EnemyHealthMin + " - " + wave.EnemyHealthMax;
             enemiesGold.text = "Enemy gold: " + wave.GoldPerEnemyMin + " - " + wave.GoldPerEnemyMax;
             enemyDamage.text = "Enemy damage: " + wave.EnemyDamageMin + " - " + wave.EnemyDamageMax;
-            EnemySpeed.text = "Enemy speed: " + wave.EnemyMovementMin + " - " + wave.EnemyMovementMax;
+            EnemySpeed.text = "Enemy speed: 1";
         }
 
         public void Draw(SpriteBatch spriteBatch)

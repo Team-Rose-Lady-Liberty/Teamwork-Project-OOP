@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using RouteDefense.Models.GameObjects;
 using RouteDefense.Models.GameObjects.Units;
 
-using IUpdateable = RouteDefense.Interfaces.IUpdateable;
 using IDrawable = RouteDefense.Interfaces.IDrawable;
 
 namespace RouteDefense.Core.Gameplay
 {
-    public class Wave : IUpdateable, IDrawable
+    public class Wave : IDrawable
     {
         private List<Enemy> enemies;
         private int numberEnemies;
@@ -39,16 +40,34 @@ namespace RouteDefense.Core.Gameplay
 
         private Texture2D waveTexture;
 
-        public Wave(Texture2D enemyTexture, int numEnemies)
+        private Random randomizer;
+
+        public Wave(Texture2D enemyTexture, int numEnemies, int level)
         {
             waveTexture = enemyTexture;
             enemies = new List<Enemy>();
 
             this.numberEnemies = numEnemies;
 
+            randomizer = new Random();
+
             spawnedEnemiesCount = 0;
 
             IsOver = false;
+
+            int dmg = 4;
+
+            int gold = 7;
+
+            int health = 2;
+            EnemyDamageMin = level + dmg;
+            EnemyDamageMax = EnemyDamageMin + dmg;
+
+            GoldPerEnemyMin = level + gold;
+            GoldPerEnemyMax = GoldPerEnemyMin + gold;
+
+            EnemyHealthMin = level + health;
+            EnemyHealthMax = EnemyHealthMin + health;
         }
 
         public List<Enemy> GetEnemies()
@@ -64,7 +83,11 @@ namespace RouteDefense.Core.Gameplay
                 if (time >= spawnRate)
                 {
                     enemies.Add(new Enemy("temp",
-                        new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32), waveTexture, 20, 10, 5, 1));
+                        new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32),
+                        waveTexture, randomizer.Next(EnemyHealthMin, EnemyHealthMax + 1), 
+                        randomizer.Next(GoldPerEnemyMin, GoldPerEnemyMax + 1),
+                        randomizer.Next(EnemyDamageMin, EnemyDamageMax + 1),
+                        1));
                     time = 0;
                     spawnedEnemiesCount++;
                 }
@@ -73,6 +96,10 @@ namespace RouteDefense.Core.Gameplay
             {
                 if (enemies[enemy].IsAlive)
                     enemies[enemy].Update(gameTime, ref enemyPath);
+            }
+            if (enemies.Where(enemy => enemy.IsAlive == false).Count() == spawnedEnemiesCount && spawnedEnemiesCount > 1)
+            {
+                IsOver = true;
             }
         }
 
@@ -88,11 +115,6 @@ namespace RouteDefense.Core.Gameplay
                 if(enemy.IsAlive)
                 enemy.Draw(spriteBatch);
             }
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Remoting.Contexts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -33,21 +32,17 @@ namespace RouteDefense.UI.GUIElements
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.Rectangle.Contains(InputHandler.MouseState.Position))
+            if (this.Rectangle.Contains(InputHandler.CurrentMouseState.Position))
             {
-                if (GameEngine.CurrentMouseState.LeftButton == ButtonState.Pressed
-                    && GameEngine.OldMouseState.LeftButton == ButtonState.Released)
+                if (InputHandler.CurrentMouseState.LeftButton == ButtonState.Pressed
+                    && InputHandler.OldMouseState.LeftButton == ButtonState.Released)
                 {
+                    this.OnClick();
                     if (this.IsClicked == false)
                     {
-                        this.OnClick();
                         this.IsClicked = true;
                     }
                 }
-            }
-            if (InputHandler.MouseState.LeftButton == ButtonState.Released)
-            {
-                this.IsClicked = false;
             }
         }
 

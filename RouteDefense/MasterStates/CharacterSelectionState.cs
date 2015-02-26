@@ -1,5 +1,4 @@
-﻿using System.CodeDom.Compiler;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -71,7 +70,7 @@ namespace RouteDefense.MasterStates
 
         public override IMasterState HandleInput()
         {
-            if (InputHandler.KeyboardState.IsKeyDown(Keys.Escape))
+            if (InputHandler.IsClicked(Keys.Escape))
             {
                 return new MainMenuState(Context);
             }

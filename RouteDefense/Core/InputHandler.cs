@@ -7,56 +7,45 @@ namespace RouteDefense.Core
 {
     public class InputHandler
     {
-        private Dictionary<Keys, bool> handledKeys;
-        private Dictionary<Keys, Action> handledKeysActions;
+        public static KeyboardState CurrentKeyboardState;
+        public static KeyboardState OldKeyboardState;
+
+        public static MouseState CurrentMouseState;
+        public static MouseState OldMouseState;
 
         public InputHandler()
         {
-            handledKeys = new Dictionary<Keys, bool>();
-            handledKeysActions = new Dictionary<Keys, Action>();
+            CurrentKeyboardState = Keyboard.GetState();
+            CurrentMouseState = Mouse.GetState();
         }
 
-        public static MouseState MouseState
+        public static bool IsClicked(Keys key)
         {
-            get { return Mouse.GetState(); }
-        }
-
-        public static KeyboardState KeyboardState
-        {
-            get { return Keyboard.GetState(); }
-        }
-
-        public void AddKeyToHandle(Keys key, Action actionToPerform)
-        {
-            if (!this.handledKeys.ContainsKey(key))
+            if (CurrentKeyboardState.IsKeyUp(key) && OldKeyboardState.IsKeyDown(key))
             {
-                this.handledKeys.Add(key, false);
-                this.handledKeysActions.Add(key, actionToPerform);
+                return true;
             }
-            else
-            {
-                throw new Exception("There is already handler for the key you specified!");
-            }
+
+            return false;
         }
 
+        public static bool IsHolding(Keys key)
+        {
+            if (CurrentKeyboardState.IsKeyDown(key))
+            {
+                return true;
+            }
 
+            return false;
+        }
 
         public void Update()
         {
-            for (int key = 0; key < handledKeys.Keys.Count; key++)
-            {
-                if (KeyboardState.IsKeyDown(handledKeys.Keys.ElementAt(key))
-                    && handledKeys[handledKeys.Keys.ElementAt(key)] == false)
-                {
-                    this.handledKeysActions[handledKeys.Keys.ElementAt(key)]();
-                    this.handledKeys[handledKeys.Keys.ElementAt(key)] = true;
-                }
-                else if (KeyboardState.IsKeyUp(handledKeys.Keys.ElementAt(key))
-                         && handledKeys[handledKeys.Keys.ElementAt(key)] == true)
-                {
-                    this.handledKeys[handledKeys.Keys.ElementAt(key)] = false;
-                }
-            }
+            OldMouseState = CurrentMouseState;
+            CurrentMouseState = Mouse.GetState();
+            
+            OldKeyboardState = CurrentKeyboardState;
+            CurrentKeyboardState = Keyboard.GetState();
         }
     }
 }

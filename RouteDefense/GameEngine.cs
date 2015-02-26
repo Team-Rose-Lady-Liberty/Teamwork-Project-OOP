@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
+using RouteDefense.Core;
 using RouteDefense.MasterStates;
 
 namespace RouteDefense  
@@ -12,21 +13,13 @@ namespace RouteDefense
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public static KeyboardState CurrentKeyboardState;
-        public static KeyboardState OldKeyboardState;
-
-        public static MouseState CurrentMouseState;
-        public static MouseState OldMouseState;
-
-
         private List<IMasterState> masterStates;
 
         public IMasterState CurrentState;
 
         public Texture2D MouseCursor { get; set; }
 
-        public Texture2D NormalCursor { get; private set; }
-        public Texture2D AttackCursor { get; private set; }
+        private InputHandler inputHandler;
 
         public const int WindowWidth = 1024;
         public const int WindowHeight = 672;
@@ -43,18 +36,14 @@ namespace RouteDefense
             graphics.PreferredBackBufferHeight = WindowHeight;
 
             //this.IsMouseVisible = true;
+            inputHandler = new InputHandler();
 
-            CurrentKeyboardState = Keyboard.GetState();
-            CurrentMouseState = Mouse.GetState();
             Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
-            NormalCursor = Content.Load<Texture2D>("Mouse\\normal.png");
-            AttackCursor = Content.Load<Texture2D>("Mouse\\attack.png");
-
-            MouseCursor = NormalCursor;
+            MouseCursor = Content.Load<Texture2D>("Mouse\\normal.png");
 
             Textures = new Dictionary<string, Texture2D>();
             Textures.Add("button", Content.Load<Texture2D>("Menu Items\\blue_button03.png"));
@@ -92,11 +81,7 @@ namespace RouteDefense
 
         public void HandleInput()
         {
-            OldMouseState = CurrentMouseState;
-            CurrentMouseState = Mouse.GetState();
-
-            OldKeyboardState = CurrentKeyboardState;
-            CurrentKeyboardState = Keyboard.GetState();
+            inputHandler.Update();
 
             IMasterState returnedState = CurrentState.HandleInput();
             ChangeState(returnedState);
@@ -131,9 +116,7 @@ namespace RouteDefense
             CurrentState.Draw(spriteBatch);
             spriteBatch.Begin();
 
-            spriteBatch.Draw(MouseCursor, new Vector2(CurrentMouseState.X, CurrentMouseState.Y), Color.White);
-
-            //spriteBatch.Draw(Textures["button"], new Rectangle(CurrentMouseState.X, CurrentMouseState.Y, 3,3), Color.White);
+            spriteBatch.Draw(MouseCursor, new Vector2(InputHandler.CurrentMouseState.X, InputHandler.CurrentMouseState.Y), Color.White);
 
             spriteBatch.End();
             base.Draw(gameTime);

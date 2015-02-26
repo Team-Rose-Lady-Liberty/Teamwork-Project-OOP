@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using Microsoft.Xna.Framework;
@@ -34,9 +33,7 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public Rectangle DrawRectangle;
 
-        public MoveDirection MoveState { get; private set; }
-
-        public Point LastPosition;
+        protected Point LastPosition;
 
         protected Animation currentAnimation;
 
@@ -47,14 +44,14 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public int Gold;
 
-        public bool CanAttack;
+        public bool CanAttack { get; private set; }
 
         private Timer timer;
 
         private float seconds;
 
         public Character(string id, Rectangle rectangle,  ContentManager contentManager,
-            int range, int movementSpeed, int attack, int attackSpeed)
+            int range, int movementSpeed, int attack, float attackSpeed)
             : base(id, rectangle)
         {
             seconds = 0;
@@ -66,6 +63,8 @@ namespace RouteDefense.Models.GameObjects.Units
             Range = range;
             Attack = attack;
             AttackSpeed = attackSpeed;
+
+            Gold = 0;
 
             weaponLevel = 0;
             armorLevel = 0;
@@ -115,8 +114,7 @@ namespace RouteDefense.Models.GameObjects.Units
         {
             if (IsAttacking)
             {
-                currentAnimation.Reset();
-                IsAttacking = false;
+                attackAnimations.Values.Where(anim => anim != currentAnimation).ToList().ForEach(anim => anim.Reset());
             }
 
             int speedX = 0;
@@ -205,6 +203,11 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public virtual void UpgradeArmor()
         {
+            if (Speed < 5)
+            {
+                Speed += 1;
+            }
+
             if (armorLevel < maxArmorLevel)
             {
                 this.armorLevel++;
@@ -214,6 +217,13 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public virtual void UpgradeWeapon()
         {
+            if (AttackSpeed > 0.3f)
+            {
+                AttackSpeed -= 0.2f;
+            }
+
+            Attack += 5;
+
             if (weaponLevel < maxWeaponLevel)
             {
                 this.weaponLevel++;

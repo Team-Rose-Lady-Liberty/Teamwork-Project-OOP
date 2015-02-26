@@ -15,8 +15,9 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public Rectangle temp;
 
-        public Warrior(string id, Rectangle rectangle, ContentManager contentManager) 
-            : base(id, rectangle, contentManager, 32, 2, 12, 2)
+        public Warrior(string id, Rectangle rectangle, ContentManager contentManager)
+            : base(id, rectangle, contentManager, Constants.WarriorDefaultRange, Constants.WarriorDefaultMovementSpeed,
+            Constants.WarriorDefaultAttackDamage, Constants.WarriorDefaultAttackSpeed)
         {
             WeaponType = "";
             textures = new Dictionary<string, Texture2D>();
@@ -89,6 +90,7 @@ namespace RouteDefense.Models.GameObjects.Units
                 if (weaponLevel == 3 || weaponLevel == 4)
                 {
                     WeaponType = "sword";
+
                 }
                 else
                 {

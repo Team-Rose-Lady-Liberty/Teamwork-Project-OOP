@@ -27,7 +27,7 @@ namespace RouteDefense.UI
 
         public virtual void Update(GameTime game)
         {
-            if (this.Rectangle.Contains(InputHandler.MouseState.Position))
+            if (this.Rectangle.Contains(InputHandler.CurrentMouseState.Position))
             {
                 if (IsHovered == false && OnHover != null)
                 {

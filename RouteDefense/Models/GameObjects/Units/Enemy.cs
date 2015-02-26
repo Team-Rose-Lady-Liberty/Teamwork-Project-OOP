@@ -24,7 +24,7 @@ namespace RouteDefense.Models.GameObjects.Units
 
             this.Health = health;
             this.Gold = gold;
-            this.Attack = Attack;
+            this.Attack = attack;
             this.Speed = speed;
 
             this.texture = texture;

@@ -19,7 +19,8 @@ namespace RouteDefense.Models.GameObjects.Units
         public List<Arrow> arrows;
 
         public Archer(string id, Rectangle rectangle, ContentManager contentManager)
-            : base(id, rectangle, contentManager, 64, 2, 20, 4)
+            : base(id, rectangle, contentManager, Constants.ArcherDefaultRange, Constants.ArcherDefaultMovementSpeed,
+            Constants.ArcherDefaultAttackDamage, Constants.ArcherDefaultAttackSpeed)
         {
             arrows = new List<Arrow>();
             
@@ -106,7 +107,7 @@ namespace RouteDefense.Models.GameObjects.Units
                 arrows[i].Update();
                 if (arrows[i].Rectangle.X + arrows[i].Rectangle.Width / 2 > map.MapWidth
                     || arrows[i].Rectangle.X < 0 || arrows[i].Rectangle.Y < 0
-                    || arrows[i].Rectangle.Y + arrows[i].Rectangle.Height> map.MapHeight)
+                    || arrows[i].Rectangle.Y + arrows[i].Rectangle.Height> map.MapHeight || !RangeRectangle.Contains(arrows[i].Rectangle))
                 {
                     arrows.Remove(arrows[i]);
                 }

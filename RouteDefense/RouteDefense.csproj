@@ -133,20 +133,33 @@
     <Content Include="Content\ArcherSprites\arrows\arrowUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemyBaby0.png">
+    <Content Include="Content\Castle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemyBaby1stUpgrade.png" />
-    <Content Include="Content\EnemiesSprites\EnemyOrc0.png">
+    <Content Include="Content\EnemiesSprites\Enemy0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemyOrc1stUpgrade.png" />
-    <Content Include="Content\EnemiesSprites\EnemyOrc2ndUpgrade.png">
+    <Content Include="Content\EnemiesSprites\Enemy1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
-    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
-    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\Enemy2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\Enemy3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\Enemy4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\Enemy5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\Enemy6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\Enemy7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\archerSelectionMenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -172,12 +185,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\charTest.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\game story.png">
@@ -334,9 +341,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\GameObjects\Units\Enemies\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Content\Fonts\Font.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

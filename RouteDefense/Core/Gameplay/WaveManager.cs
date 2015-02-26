@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
+using System.Timers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -27,42 +27,68 @@ namespace RouteDefense.Core.Gameplay
 
         private Timer timer;
 
+        private int seconds;
+
         public WaveManager(Tile[] pathTile, ContentManager content)
         {
+            seconds = 0;
             this.enemyPath = pathTile;
             canUpdate = false;
             LoadContent(content);
             WaveLevel = 1;
-            
-            NextWave();
+
+            CurrentWave = new Wave(EnemyTextures[(new Random()).Next(0, EnemyTextures.Count)], 10 + WaveLevel, WaveLevel);
+            timer = new Timer(1000);
+            timer.Elapsed += timer_Elapsed;
+            timer.Start();
+        }
+
+        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            seconds += 1;
         }
 
         private void LoadContent(ContentManager content)
         {
             EnemyTextures = new List<Texture2D>();
-            EnemyTextures.Add(content.Load<Texture2D>("EnemiesSprites\\EnemyBaby0.png"));
-        }
-
-        public void Start()
-        {
-            canUpdate = true;
-        }
-
-        public void Stop()
-        {
-            canUpdate = false;
+            for (int i = 0; i <= 7; i++)
+            {
+                EnemyTextures.Add(content.Load<Texture2D>("EnemiesSprites\\Enemy" + i + ".png"));
+            }    
         }
 
         public void Update(GameTime gameTime)
         {
+            if (canUpdate == false)
+            {
+                if (seconds >= timeBetweenWave)
+                {
+                    canUpdate = true;
+                    NextWave();
+                    seconds = 0;
+                }
+            }
+            else
+            {
+                seconds = 0;
+            }
             if(canUpdate == true)
                 CurrentWave.Update(gameTime, enemyPath);
+            if (CurrentWave.IsOver)
+            {
+                canUpdate = false;
+            }
         }
 
         public void NextWave()
         {
-            WaveLevel++;
-            CurrentWave = new Wave(EnemyTextures[(new Random()).Next(0, EnemyTextures.Count)], 10);
+            if (CurrentWave.IsOver == true)
+            {
+                canUpdate = true;
+                seconds = 0;
+                WaveLevel++;
+                CurrentWave = new Wave(EnemyTextures[(new Random()).Next(0, EnemyTextures.Count)], 10 + WaveLevel, WaveLevel);
+            }
         }
 
         public List<Enemy> GetSpawnedList()
@@ -72,7 +98,8 @@ namespace RouteDefense.Core.Gameplay
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            CurrentWave.Draw(spriteBatch);
+            if(CurrentWave != null)
+                CurrentWave.Draw(spriteBatch);
         }
     }
 }
