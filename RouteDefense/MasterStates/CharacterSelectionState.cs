@@ -21,6 +21,8 @@ namespace RouteDefense.MasterStates
             this.Context = context;
             characters = new List<GUIElement>()
             {
+                new Picture(new Rectangle(0, 0, 1024, 672), Context.Content.Load<Texture2D>("Menu Items/backgroundTransperant.png")),
+
                 new Button(new Rectangle(360, 50, 305, 42),
                     Context.Content.Load<Texture2D>("Menu Items/character select.png"), "",
                     delegate() {}),

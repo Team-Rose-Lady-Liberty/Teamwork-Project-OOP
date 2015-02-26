@@ -147,6 +147,9 @@
     <Content Include="Content\Menu Items\archerSelectionMenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Menu Items\backgroundTransperant.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\blue_button03.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

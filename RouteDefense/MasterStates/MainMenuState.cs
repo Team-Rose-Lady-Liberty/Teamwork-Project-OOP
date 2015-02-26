@@ -21,17 +21,17 @@ namespace RouteDefense.MasterStates
 
                 new Picture(new Rectangle(240, 75, 544, 87), Context.Content.Load<Texture2D>("Menu Items/castle defense.png")),
 
-                new Picture(new Rectangle(413, 235, 255, 200), Context.Content.Load<Texture2D>("Menu Items/panel_brown.png")),
+                new Picture(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 127, 235, 255, 200), Context.Content.Load<Texture2D>("Menu Items/panel_brown.png")),
 
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 65, 266, 190, 45),
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 95, 266, 190, 45),
                     Context.Textures["button"], "New Game",
                     delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }),
 
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2  - 65, 316, 190, 45),
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2  - 95, 316, 190, 45),
                     Context.Textures["button"], "Temp",
                     delegate(){this.Context.ChangeState(new CharacterSelectionState(Context));}),
 
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 65, 366, 190, 45), 
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 95, 366, 190, 45), 
                     Context.Textures["button"], "Quit Game",
                     delegate(){Context.Exit();}),
             };

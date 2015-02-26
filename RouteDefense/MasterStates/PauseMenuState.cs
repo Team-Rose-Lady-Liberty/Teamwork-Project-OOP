@@ -16,6 +16,8 @@ namespace RouteDefense.MasterStates
             
             elements = new List<GUIElement>()
             {
+                new Picture(new Rectangle(0, 0, 1024, 672), Context.Content.Load<Texture2D>("Menu Items/backgroundTransperant.png")),
+
                 new Button(new Rectangle(447, 300, 130, 40), Context.Textures["button"], "Resume",
                     delegate()
                     {
