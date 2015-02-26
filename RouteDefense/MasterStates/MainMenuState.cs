@@ -25,9 +25,16 @@ namespace RouteDefense.MasterStates
 
                 new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 95, 301, 190, 45),
                     Context.Textures["button"], "New Game",
-                    delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }),
+                    delegate() { this.Context.ChangeState(new RaceSelectionState(Context)); }),
 
-                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 95, 346, 190, 45), 
+
+                //new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 95, 346, 190, 45), 
+
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2  - 95, 316, 190, 45),
+                    Context.Textures["button"], "About",
+                    delegate(){this.Context.ChangeState(new CharacterSelectionState(Context));}),
+
+                new Button(new Rectangle(Context.GraphicsDevice.Viewport.Width / 2 - 95, 366, 190, 45), 
                     Context.Textures["button"], "Quit Game",
                     delegate(){Context.Exit();}),
             };

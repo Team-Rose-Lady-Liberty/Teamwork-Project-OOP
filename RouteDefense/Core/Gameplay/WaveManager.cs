@@ -37,10 +37,17 @@ namespace RouteDefense.Core.Gameplay
             LoadContent(content);
             WaveLevel = 1;
 
+
             CurrentWave = new Wave(EnemyTextures[(new Random()).Next(0, EnemyTextures.Count)], 10 + WaveLevel, WaveLevel);
             timer = new Timer(1000);
             timer.Elapsed += timer_Elapsed;
             timer.Start();
+	}
+
+        private void LoadContent(ContentManager content)
+        {
+            EnemyTextures = new List<Texture2D>();
+            EnemyTextures.Add(content.Load<Texture2D>("EnemiesSprites\\elf1.png"));
         }
 
         void timer_Elapsed(object sender, ElapsedEventArgs e)
