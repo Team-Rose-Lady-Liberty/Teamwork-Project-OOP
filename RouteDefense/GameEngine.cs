@@ -57,7 +57,7 @@ namespace RouteDefense
             MouseCursor = NormalCursor;
 
             Textures = new Dictionary<string, Texture2D>();
-            Textures.Add("button", Content.Load<Texture2D>("Menu Items\\button.png"));
+            Textures.Add("button", Content.Load<Texture2D>("Menu Items\\blue_button03.png"));
             GameFont = Content.Load<SpriteFont>("Fonts\\TestFont");
 
             masterStates = new List<IMasterState>();
