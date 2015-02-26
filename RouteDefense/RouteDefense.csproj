@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MasterStates\RaceSelectionState.cs" />
     <Compile Include="UI\GameplayScreens\CharacterInfoUI.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Interfaces\ICollidable.cs" />
@@ -133,20 +134,36 @@
     <Content Include="Content\ArcherSprites\arrows\arrowUp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\EnemiesSprites\elf0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\elf1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\EnemiesSprites\EnemyBaby0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemyBaby1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyBaby1stUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\EnemiesSprites\EnemyOrc0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemyOrc1stUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemyOrc1stUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\EnemiesSprites\EnemyOrc2ndUpgrade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\EnemiesSprites\EnemySkull0.png" />
-    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png" />
-    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png" />
+    <Content Include="Content\EnemiesSprites\EnemySkull0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\archerSelectionMenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -171,31 +188,34 @@
     <Content Include="Content\Menu Items\character select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Menu Items\charTest.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\EnemiesSprites\EnemySkull1stUpgrade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\EnemiesSprites\EnemySkull2ndUpgrade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Menu Items\game story.png">
+    <Content Include="Content\Menu Items\elf select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Menu Items\menu background.png">
+    <Content Include="Content\Menu Items\human select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\menu background2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Menu Items\new game.png">
+    <Content Include="Content\Menu Items\orc select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\panel_brown.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\quit game.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\raceSelect.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\skeleton select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\warriorSelectionMenu.png">
