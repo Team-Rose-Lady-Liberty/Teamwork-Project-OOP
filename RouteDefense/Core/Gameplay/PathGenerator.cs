@@ -15,7 +15,7 @@ namespace RouteDefense.Core.Gameplay
 
         public class Path : List<Direction>
         {
-            private static double curve = 1.0;
+            public static double curve = 1.0;
             private static double curveDecreaser;
 
 

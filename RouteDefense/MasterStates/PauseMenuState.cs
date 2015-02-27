@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using RouteDefense.UI;
 using RouteDefense.UI.GUIElements;
+using RouteDefense.Core.Gameplay;
 
 namespace RouteDefense.MasterStates
 {
@@ -32,6 +33,7 @@ namespace RouteDefense.MasterStates
                         Context.DeleteState(Context.GetStates().Where(state => state.GetType().Name == "GameplayState").First());
                         
                         Context.ChangeState(new MainMenuState(context));
+                        PathGenerator.Path.curve = 1;
                     })
             };
         }

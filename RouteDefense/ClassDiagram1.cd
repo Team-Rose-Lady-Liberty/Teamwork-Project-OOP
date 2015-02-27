@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RouteDefense.Constants" Collapsed="true">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAIBAACAAAAAIAAQAAAAAAAA=</HashCode>
+      <FileName>Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.GameEngine" Collapsed="true">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAkECQAgACBwBAAAAAACAAgAAICBgAAAAAAAAIAAQ=</HashCode>
+      <FileName>GameEngine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Animation" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQDAAAAACAABBAAAAgAAAQAAABAQAAgJAAAAAAAACA=</HashCode>
+      <FileName>HelperClasses\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.MasterState" Collapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\MasterState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RouteDefense.RouteDefense" Collapsed="true">
+    <Position X="20.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>RouteDefense.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.CharacterInfoUI" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAAAAAAgAAAAAAEAAAAAAAAAAIAAAAAAIAAAA=</HashCode>
+      <FileName>UI\GameplayScreens\CharacterInfoUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Core.Gameplay.Map" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAQIFAIAAEAAMhIAAQAIACAAAIAgAgACAAAAAQAQEJ0=</HashCode>
+      <FileName>Core\Gameplay\Map.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteDefense.Core.Gameplay.PathGenerator" Collapsed="true">
+    <Position X="19" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Core\Gameplay\PathGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Core.Gameplay.Wave" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ggQBApAAAAAAGgAAABAAAAwAAEAgAAABQAAAAACAEAA=</HashCode>
+      <FileName>Core\Gameplay\Wave.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteDefense.Core.Gameplay.WaveManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAACCAAgAAQACAIAAAAAAAgABAIAAAAABAAAQ=</HashCode>
+      <FileName>Core\Gameplay\WaveManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RouteDefense.Core.InputHandler" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAAQACAAAAAAAAAAAAAAAAAAAAAAQAAAAAABA=</HashCode>
+      <FileName>Core\InputHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.MasterStates.CharacterSelectionState" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAgAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MasterStates\CharacterSelectionState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.MasterStates.GameplayState" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAQAKABAAABgAAAAAAIQAACAAAAEAAAAAAAgAAAAA=</HashCode>
+      <FileName>MasterStates\GameplayState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.MasterStates.MainMenuState" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MasterStates\MainMenuState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.MasterStates.PauseMenuState" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MasterStates\PauseMenuState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.MasterStates.RaceSelectionState" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAgAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MasterStates\RaceSelectionState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObject" Collapsed="true">
+    <Position X="6.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Arrow" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAAAAAAEAAA=</HashCode>
+      <FileName>Models\GameObjects\Arrow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Item" Collapsed="true">
+    <Position X="12" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameObjects\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Tile" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIBAAAAiAAACAgAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameObjects\Tile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Unit" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAIAAAACgAAAAAAAAABAIAAAgAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\GameObjects\Unit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Items.Bridge" Collapsed="true">
+    <Position X="12" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAgQAEACAABAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\GameObjects\Items\Bridge.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Units.Character" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAMASQMgABkAAIAAgAIAAiAAgAgOAAAAYIAAAAQU=</HashCode>
+      <FileName>Models\GameObjects\Units\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Units.Archer" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAAIAAgAAABAAAAAAAAAAAAAIAAAAAAAKAAQ=</HashCode>
+      <FileName>Models\GameObjects\Units\Characters\Archer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Units.Warrior" Collapsed="true">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAgABAAAAAAAAAAAAAACAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\GameObjects\Units\Characters\Warrior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.Models.GameObjects.Units.Enemy" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAEAAIgAAAAAAAAAAAAAAEwAAAAAAAQAAAAE=</HashCode>
+      <FileName>Models\GameObjects\Units\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.UI.GameplayScreens.WaveInfoUI" Collapsed="true">
+    <Position X="17.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABYAAAAgAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\GameplayScreens\WaveInfoUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.UI.GUIElement" Collapsed="true">
+    <Position X="10.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAAAABAAAAAAAAgAAABAAAAAAAAAAA=</HashCode>
+      <FileName>UI\GUIElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RouteDefense.UI.GUIElements.Button" Collapsed="true">
+    <Position X="8.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAAAACAAAAgAAAAAAAAACAAAAAAAIAAAAgAAAAAA=</HashCode>
+      <FileName>UI\GUIElements\Button.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.UI.GUIElements.Label" Collapsed="true">
+    <Position X="10.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>UI\GUIElements\Label.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RouteDefense.UI.GUIElements.Picture" Collapsed="true">
+    <Position X="13" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\GUIElements\Picture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RouteDefense.IMasterState" Collapsed="true">
+    <Position X="19" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAgAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMasterState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RouteDefense.Interfaces.ICollidable" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICollidable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RouteDefense.Interfaces.IDrawable" Collapsed="true">
+    <Position X="17.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RouteDefense.Interfaces.IUpdateable" Collapsed="true">
+    <Position X="20.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IUpdateable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="RouteDefense.Enumerations.CharacterState" Collapsed="true">
+    <Position X="15.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Enumerations\CharacterState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RouteDefense.Enumerations.GameState" Collapsed="true">
+    <Position X="17.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAgAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Enumerations\GameState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RouteDefense.Enumerations.MenuState" Collapsed="true">
+    <Position X="20.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAQAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumerations\MenuState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RouteDefense.Enumerations.MoveDirection" Collapsed="true">
+    <Position X="15.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <FileName>Enumerations\MoveDirection.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RouteDefense.Enumerations.TileType" Collapsed="true">
+    <Position X="17.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Enumerations\TileType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RouteDefense.UI.GUIElementType" Collapsed="true">
+    <Position X="19" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UI\GUIElementType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

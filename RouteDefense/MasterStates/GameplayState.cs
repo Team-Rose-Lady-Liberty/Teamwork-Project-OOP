@@ -159,6 +159,7 @@ namespace RouteDefense.MasterStates
             if (castle.castleHealth <= 0)
             {
                 Context.DeleteState(this);
+                PathGenerator.Path.curve = 1;
                 return new MainMenuState(Context);
             }
 
