@@ -35,6 +35,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MasterStates\HowToPlayState.cs" />
     <Compile Include="MasterStates\RaceSelectionState.cs" />
     <Compile Include="Models\GameObjects\Castle.cs" />
     <Compile Include="UI\GameplayScreens\CastleUI.cs" />
@@ -163,6 +164,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\archerSelectionMenu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Menu Items\background how to play.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Menu Items\backgroundTransperant.png">
