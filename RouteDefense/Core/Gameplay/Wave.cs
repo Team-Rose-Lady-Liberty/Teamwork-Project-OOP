@@ -82,8 +82,7 @@ namespace RouteDefense.Core.Gameplay
                 time++;
                 if (time >= spawnRate)
                 {
-                    enemies.Add(new Enemy("temp",
-                        new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32),
+                    enemies.Add(new Enemy(new Rectangle(enemyPath[0].Rectangle.X, enemyPath[0].Rectangle.Y, 32, 32),
                         waveTexture, randomizer.Next(EnemyHealthMin, EnemyHealthMax + 1), 
                         randomizer.Next(GoldPerEnemyMin, GoldPerEnemyMax + 1),
                         randomizer.Next(EnemyDamageMin, EnemyDamageMax + 1),

@@ -16,8 +16,8 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public Rectangle temp;
 
-        public Warrior(string id, Rectangle rectangle, ContentManager contentManager)
-            : base(id, rectangle, contentManager, Constants.WarriorDefaultRange, Constants.WarriorDefaultMovementSpeed,
+        public Warrior(Rectangle rectangle, ContentManager contentManager)
+            : base(rectangle, contentManager, Constants.WarriorDefaultRange, Constants.WarriorDefaultMovementSpeed,
             Constants.WarriorDefaultAttackDamage, Constants.WarriorDefaultAttackSpeed)
         {
             WeaponType = "";

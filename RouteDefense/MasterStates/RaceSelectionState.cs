@@ -1,9 +1,9 @@
-﻿using System.CodeDom.Compiler;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using RouteDefense.Core;
 using RouteDefense.UI;
 using RouteDefense.UI.GUIElements;
@@ -26,8 +26,7 @@ namespace RouteDefense.MasterStates
                     delegate() {}),
 
                 new Button(new Rectangle(250, 150, 200, 200), 
-                    Context.Content.Load<Texture2D>("Menu Items/human select.png"), "", delegate(){}
-                    /*delegate() { this.Context.ChangeState(new CharacterSelectionState(Context)); }*/),
+                    Context.Content.Load<Texture2D>("Menu Items/human select.png"), "", delegate(){}),
                 new Label(new Rectangle(325, 180, 120, 50), "Human"), 
 
                 new Picture(new Rectangle(550, 150, 200, 200), Context.Content.Load<Texture2D>("Menu Items/skeleton select.png")),
@@ -41,7 +40,6 @@ namespace RouteDefense.MasterStates
                 new Picture(new Rectangle(550, 400, 200, 200), Context.Content.Load<Texture2D>("Menu Items/orc select.png")),
                 new Label(new Rectangle(635, 420, 120, 50), "Orc"), 
                 new Label(new Rectangle(590, 455, 120, 50), "Coming Soon"),
-
             };
         }
 

@@ -50,9 +50,9 @@ namespace RouteDefense.Models.GameObjects.Units
 
         private float seconds;
 
-        public Character(string id, Rectangle rectangle,  ContentManager contentManager,
+        public Character(Rectangle rectangle,  ContentManager contentManager,
             int range, int movementSpeed, int attack, float attackSpeed)
-            : base(id, rectangle)
+            : base(rectangle)
         {
             seconds = 0;
             timer = new Timer(100);

@@ -12,7 +12,8 @@ namespace RouteDefense
         private Label attackSpeed;
         private Label movementSpeed;
         private Label gold;
-        public CharacterInfoUI(Vector2 position)
+
+        public CharacterInfoUI()
         {
             characterType = new Label(new Rectangle(500, 535, 100, 40), "Class:");
             attackDamage = new Label(new Rectangle(500, 570, 100, 40), "Attack damage:");

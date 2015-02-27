@@ -2,8 +2,6 @@
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
 using RouteDefense.Core;
 
 using IDrawable = RouteDefense.Interfaces.IDrawable;

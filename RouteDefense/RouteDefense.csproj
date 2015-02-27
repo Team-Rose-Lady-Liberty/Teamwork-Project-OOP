@@ -36,9 +36,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MasterStates\RaceSelectionState.cs" />
+    <Compile Include="Models\GameObjects\Castle.cs" />
+    <Compile Include="UI\GameplayScreens\CastleUI.cs" />
     <Compile Include="UI\GameplayScreens\CharacterInfoUI.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Interfaces\ICollidable.cs" />
     <Compile Include="MasterStates\PauseMenuState.cs" />
     <Compile Include="Models\GameObjects\Arrow.cs" />
     <Compile Include="Models\GameObjects\Units\Characters\Archer.cs" />
@@ -215,9 +216,6 @@
     <Content Include="Content\Mouse\normal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Mouse\attack.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Terrain\bridge.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -272,9 +270,6 @@
     <Content Include="Content\Terrain\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\WarriorSprites\Warrior0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\WarriorSprites\Armor0Weapon0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -305,7 +300,6 @@
     <Content Include="Content\WarriorSprites\Armor1Weapon4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\WarriorSprites\Warrior1stArmorUpgradeNoWeaponUpgrade.png" />
     <Content Include="Content\WarriorSprites\Armor2Weapon0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -321,7 +315,6 @@
     <Content Include="Content\WarriorSprites\Armor2Weapon4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\WarriorSprites\Warrior2ndArmorUpgradeNoWeaponUpgrade.png" />
     <Content Include="Content\WarriorSprites\Armor3Weapon0.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -337,7 +330,6 @@
     <Content Include="Content\WarriorSprites\Armor3Weapon4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\WarriorSprites\Warrior3rdArmorUpgradeNoWeaponUpgrade.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

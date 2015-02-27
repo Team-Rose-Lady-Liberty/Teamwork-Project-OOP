@@ -4,8 +4,8 @@ namespace RouteDefense.Models.GameObjects
 {
     public class Item : GameObject
     {
-        public Item(string id, Rectangle rectangle)
-            : base(id, rectangle)
+        public Item(Rectangle rectangle)
+            : base(rectangle)
         {
         }
     }

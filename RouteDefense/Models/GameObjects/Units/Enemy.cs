@@ -17,8 +17,8 @@ namespace RouteDefense.Models.GameObjects.Units
 
         private const float animationFrameRate = 0.1f;
 
-        public Enemy(string id, Rectangle rectangle, Texture2D texture, int health, int gold, int attack, int speed) 
-            : base(id, rectangle)
+        public Enemy(Rectangle rectangle, Texture2D texture, int health, int gold, int attack, int speed) 
+            : base(rectangle)
         {
             currentPathNode = 0;
 

@@ -8,8 +8,8 @@ namespace RouteDefense.Models.GameObjects
         public Point Velocity;
         public Texture2D texture;
 
-        public Arrow(string id, Rectangle rectangle, Point Velocity, Texture2D texture)
-            : base(id, rectangle)
+        public Arrow(Rectangle rectangle, Point Velocity, Texture2D texture)
+            : base(rectangle)
         {
             this.Velocity = Velocity;
             this.texture = texture;

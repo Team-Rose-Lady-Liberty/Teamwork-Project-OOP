@@ -3,11 +3,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
 using RouteDefense.Core;
 using RouteDefense.Models.GameObjects.Units;
 using RouteDefense.UI;
 using RouteDefense.UI.GUIElements;
-
 
 namespace RouteDefense.MasterStates
 {
@@ -29,7 +29,7 @@ namespace RouteDefense.MasterStates
                 new Button(new Rectangle(212, 150, 200, 400), 
                     Context.Content.Load<Texture2D>("Menu Items/warriorSelectionMenu.png"), "",
                     delegate() { this.Context.ChangeState(new GameplayState(Context, 
-                        new Warrior("temp", new Rectangle(0, 0, 48, 48), Context.Content))); }),
+                        new Warrior(new Rectangle(0, 0, 48, 48), Context.Content))); }),
 
                 new Label(new Rectangle(276, 180, 120, 50), "Warrior"), 
                 new Label(new Rectangle(230, 370, 120, 50), "Melee Fighter"), 
@@ -39,12 +39,11 @@ namespace RouteDefense.MasterStates
                 new Button(new Rectangle(612, 150, 200, 400),
                     Context.Content.Load<Texture2D>("Menu Items/archerSelectionMenu.png"), "",
                     delegate() { this.Context.ChangeState(new GameplayState(Context, 
-                        new Archer("temp", new Rectangle(0, 0, 48, 48), Context.Content)));}),
+                        new Archer(new Rectangle(0, 0, 48, 48), Context.Content)));}),
 
                 new Label(new Rectangle(682, 180, 120, 50), "Archer"), 
                 new Label(new Rectangle(632, 370, 120, 50), "Range Fighter"), 
                 new Label(new Rectangle(632, 400, 120, 50), "Using Bows"), 
-
             };
         }
 

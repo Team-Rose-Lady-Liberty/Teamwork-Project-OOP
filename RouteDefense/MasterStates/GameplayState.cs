@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 using System.Linq;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -20,34 +19,20 @@ namespace RouteDefense.MasterStates
 {
     public class GameplayState : MasterState
     {
-        private Map theMap;
-        private Character theCharacter;
-        private WaveManager waveManager;
-
-        private List<GUIElement> uiElements;
-
-        private Stopwatch timer;
-
-        private List<GameObject> gameObjects;
-
-        private CharacterInfoUI characterBar;
-        private WaveInfoUI waveBar;
-
-        private int castleHealth = 100;
-        private GameObject castleObject;
-
-        private int priceToUpgradeCastle = 20;
-
+        private readonly CharacterInfoUI characterBar;
+        private CastleUI castleUI;
+        private readonly List<GameObject> gameObjects;
+        
+        private readonly Character theCharacter;
+        private readonly Map theMap;
+        private readonly List<GUIElement> uiElements;
+        private readonly WaveInfoUI waveBar;
+        private readonly WaveManager waveManager;
+        
         private int priceToUpgradeWeapon = 14;
 
-        private Texture2D castleTexture;
-        private Rectangle castleRectangle;
-
-        private int castleLevel = 1;
-        private Label castleHealthLabel;
-        private Label priceToUpgradeCastleLabel;
-        private Label castleLevelLabel;
-
+        private Castle castle;
+        
         public GameplayState(GameEngine context, Character selectedCharacter)
         {
             gameObjects = new List<GameObject>();
@@ -55,58 +40,48 @@ namespace RouteDefense.MasterStates
             Context = context;
             theCharacter = selectedCharacter;
 
-            timer = new Stopwatch();
-            timer.Start();
+            theMap = new Map(Context.Content, 32, 32, 32, 16);
+            waveManager = new WaveManager(theMap.PathTiles, Context.Content);
 
-            this.theMap = new Map(Context.Content, 32, 32, 32, 16);
-            
-            waveManager = new WaveManager(this.theMap.PathTiles, Context.Content);
+            characterBar = new CharacterInfoUI();
+            waveBar = new WaveInfoUI();  
+            castleUI = new CastleUI();
 
-            characterBar = new CharacterInfoUI(Vector2.Zero);
-            waveBar = new WaveInfoUI(Vector2.Zero);
-
-            castleHealthLabel = new Label(new Rectangle(250, 535, 100, 40), "Health:");
-            priceToUpgradeCastleLabel = new Label(new Rectangle(250, 595, 100, 40), "Gold to upgrade:");
-            castleLevelLabel = new Label(new Rectangle(250, 570, 100, 40), "Level:");
-
-            uiElements = new List<GUIElement>()
+            uiElements = new List<GUIElement>
             {
                 new Button(new Rectangle(0, 515, 130, 40), Context.Textures["button"], "Next Wave",
-                    delegate() { waveManager.NextWave();  }),
+                    delegate { waveManager.NextWave(); }),
 
-                new Label(new Rectangle(0, 550, 100,40), "Wave Info:"),
+                new Label(new Rectangle(0, 550, 100, 40), "Wave Info:"),
+                new Label(new Rectangle(250, 510, 100, 40), "Castle Info:"),
+                new Label(new Rectangle(500, 510, 100, 40), "Character Info:"),
+                new Label(new Rectangle(800, 540, 100, 40), "Upgrades:"),
 
-                new Label(new Rectangle(250, 510, 100,40), "Castle Info:"),
-                
-                new Label(new Rectangle(500, 510, 100,40), "Character Info:"),
-
-                new Label(new Rectangle(800, 540, 100,40), "Upgrades:"),
-                new Button(new Rectangle(750, 580, 100,40), Context.Textures["button"], "Castle", delegate()
+                new Button(new Rectangle(750, 580, 100, 40), Context.Textures["button"], "Castle", delegate
                 {
-                    if (theCharacter.Gold >= priceToUpgradeCastle)
+                    if (theCharacter.Gold >= castle.PriceToUpgrade)
                     {
                         theCharacter.UpgradeArmor();
-                        castleHealth += 20;
-                        theCharacter.Gold -= priceToUpgradeCastle;
-                        priceToUpgradeCastle *= 2;             
+                        castle.castleHealth += 20;
+                        theCharacter.Gold -= castle.PriceToUpgrade;
+                        castle.PriceToUpgrade *= 2;
                     }
                 }),
-                new Button(new Rectangle(870, 580, 100,40), Context.Textures["button"], "Weapon", delegate()
+                new Button(new Rectangle(870, 580, 100, 40), Context.Textures["button"], "Weapon", delegate
                 {
                     if (theCharacter.Gold >= priceToUpgradeWeapon)
                     {
                         theCharacter.UpgradeWeapon();
                         theCharacter.Gold -= priceToUpgradeWeapon;
-                        priceToUpgradeWeapon += priceToUpgradeWeapon / 2;    
+                        priceToUpgradeWeapon += priceToUpgradeWeapon/2;
                     }
-                }),
-                
+                })
             };
 
-            castleTexture = Context.Content.Load<Texture2D>("Castle.png");
+            Rectangle tempRectangle = theMap.PathTiles.Last().Rectangle;
 
-            castleRectangle = theMap.PathTiles.Last().Rectangle;
-            castleRectangle = new Rectangle(castleRectangle.X - 2 * 32, castleRectangle.Y - 2 * 32, castleTexture.Width / 3, castleTexture.Height / 3);
+            castle = new Castle(new Rectangle(tempRectangle.X - 2 * 32, tempRectangle.Y - 2 * 32, tempRectangle.Width * 4,
+                tempRectangle.Height * 4), Context.Content.Load<Texture2D>("Castle.png"));
 
             gameObjects.Add(theCharacter);
             gameObjects.AddRange(theMap.PathTiles);
@@ -124,19 +99,19 @@ namespace RouteDefense.MasterStates
                 theCharacter.IsMoving = true;
                 if (InputHandler.IsHolding(Keys.D))
                 {
-                    this.theCharacter.Move(MoveDirection.Right);
+                    theCharacter.Move(MoveDirection.Right);
                 }
                 else if (InputHandler.IsHolding(Keys.A))
                 {
-                    this.theCharacter.Move(MoveDirection.Left);
+                    theCharacter.Move(MoveDirection.Left);
                 }
                 else if (InputHandler.IsHolding(Keys.W))
                 {
-                    this.theCharacter.Move(MoveDirection.Up);
+                    theCharacter.Move(MoveDirection.Up);
                 }
                 else if (InputHandler.IsHolding(Keys.S))
                 {
-                    this.theCharacter.Move(MoveDirection.Down);
+                    theCharacter.Move(MoveDirection.Down);
                 }
             }
             else if (!InputHandler.IsHolding(Keys.A) && !InputHandler.IsHolding(Keys.S)
@@ -147,7 +122,7 @@ namespace RouteDefense.MasterStates
 
             if (InputHandler.IsHolding(Keys.Space))
             {
-                if(theCharacter.CanAttack)
+                if (theCharacter.CanAttack)
                     theCharacter.IsAttacking = true;
             }
 
@@ -158,10 +133,7 @@ namespace RouteDefense.MasterStates
         {
             characterBar.Update(theCharacter);
             waveBar.Update(waveManager.CurrentWave);
-
-            castleHealthLabel.text = "Health: " + castleHealth;
-            priceToUpgradeCastleLabel.text = "Gold to upgrade: " + priceToUpgradeCastle;
-            castleLevelLabel.text = "Level: " + castleLevel;
+            castleUI.Upgrade(castle);
 
             foreach (var element in uiElements)
             {
@@ -177,14 +149,14 @@ namespace RouteDefense.MasterStates
             waveManager.Update(gameTime);
             foreach (var enemy in waveManager.GetSpawnedList())
             {
-                if (enemy.Rectangle.Intersects(castleRectangle))
+                if (enemy.Rectangle.Intersects(castle.Rectangle))
                 {
-                    castleHealth -= enemy.Attack;
+                    castle.castleHealth -= enemy.Attack;
                     enemy.Kill();
                 }
             }
 
-            if (castleHealth <= 0)
+            if (castle.castleHealth <= 0)
             {
                 Context.DeleteState(this);
                 return new MainMenuState(Context);
@@ -192,24 +164,20 @@ namespace RouteDefense.MasterStates
 
             return null;
         }
- 
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             characterBar.Draw(spriteBatch);
             waveBar.Draw(spriteBatch);
-            
-            spriteBatch.Begin();
+            castleUI.Draw(spriteBatch);
 
-            priceToUpgradeCastleLabel.Draw(spriteBatch);
-            castleHealthLabel.Draw(spriteBatch);
-            castleLevelLabel.Draw(spriteBatch);
+            spriteBatch.Begin();
             foreach (var element in uiElements)
             {
                 element.Draw(spriteBatch);
-            }
-
+            }       
             theMap.Draw(spriteBatch);
-            spriteBatch.Draw(castleTexture, castleRectangle, Color.White);
+            castle.Draw(spriteBatch);
             waveManager.Draw(spriteBatch);
             theCharacter.Draw(spriteBatch);
             spriteBatch.End();
@@ -217,28 +185,29 @@ namespace RouteDefense.MasterStates
 
         public void HandleCollisions()
         {
-            for (int first = 0; first < gameObjects.Count; first++)
+            for (var first = 0; first < gameObjects.Count; first++)
             {
-                for (int second = 0; second < gameObjects.Count; second++)
+                for (var second = 0; second < gameObjects.Count; second++)
                 {
                     if (first != second)
                     {
                         if (gameObjects[first] is Character && gameObjects[second] is Tile
-                            && ((Character) gameObjects[first]).ActualRectangle.Intersects(gameObjects[second].Rectangle))
+                            &&
+                            ((Character) gameObjects[first]).ActualRectangle.Intersects(gameObjects[second].Rectangle))
                         {
-                            ((Character)gameObjects[first]).ReturnLastPosition();
+                            ((Character) gameObjects[first]).ReturnLastPosition();
                         }
                     }
                 }
-            }        
+            }
         }
 
         public void DoPlayerBoundaries()
         {
-            if (theCharacter.ActualRectangle.X < 0 
-                || theCharacter.ActualRectangle.X + theCharacter.ActualRectangle.Width > this.theMap.MapWidth
+            if (theCharacter.ActualRectangle.X < 0
+                || theCharacter.ActualRectangle.X + theCharacter.ActualRectangle.Width > theMap.MapWidth
                 || theCharacter.ActualRectangle.Y < 0
-                || theCharacter.ActualRectangle.Y + theCharacter.ActualRectangle.Height > this.theMap.MapHeight)
+                || theCharacter.ActualRectangle.Y + theCharacter.ActualRectangle.Height > theMap.MapHeight)
             {
                 theCharacter.ReturnLastPosition();
             }

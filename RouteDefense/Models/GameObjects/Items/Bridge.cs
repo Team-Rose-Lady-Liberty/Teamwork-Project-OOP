@@ -11,8 +11,8 @@ namespace RouteDefense.Models.GameObjects.Items
         private bool isActive;
         private bool isMoovable = true;
 
-        public Bridge(string id, Rectangle rectangle)
-            : base(id, rectangle)
+        public Bridge(Rectangle rectangle)
+            : base(rectangle)
         {
             //this.texture = SubGameEngine.ContentManager.Load<Texture2D>("Terrain/bridge");         
             this.rotation = true;

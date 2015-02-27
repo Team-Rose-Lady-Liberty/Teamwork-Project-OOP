@@ -9,8 +9,8 @@ namespace RouteDefense.Models.GameObjects
     {
         private Texture2D tileTexture;
 
-        public Tile(string id, Rectangle rectangle, Texture2D texture)
-            : base(id, rectangle)
+        public Tile(Rectangle rectangle, Texture2D texture)
+            : base(rectangle)
         {
             this.TileType = TileType.Decoration;
             this.TileTexture = texture;

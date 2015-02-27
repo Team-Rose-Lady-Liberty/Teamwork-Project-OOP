@@ -5,14 +5,13 @@ namespace RouteDefense.Models
 {
     public class GameObject
     {
-        public GameObject(string id, Rectangle rectangle)
+        public GameObject(Rectangle rectangle)
         {
             this.Rectangle = rectangle;
-            this.ID = id;
         }
 
         public Rectangle Rectangle { get; protected set; }
 
-        public string ID { get; private set; }
+        //public string ID { get; private set; }
     }
 }

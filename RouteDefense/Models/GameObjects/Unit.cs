@@ -9,8 +9,8 @@ namespace RouteDefense.Models.GameObjects
         private Texture2D texture;
         private int range;
 
-        public Unit(string id, Rectangle rectangle) 
-            : base(id, rectangle)
+        public Unit(Rectangle rectangle) 
+            : base(rectangle)
         {
         }
 

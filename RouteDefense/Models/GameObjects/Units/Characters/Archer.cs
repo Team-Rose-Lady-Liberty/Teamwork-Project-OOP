@@ -18,8 +18,8 @@ namespace RouteDefense.Models.GameObjects.Units
 
         public List<Arrow> arrows;
 
-        public Archer(string id, Rectangle rectangle, ContentManager contentManager)
-            : base(id, rectangle, contentManager, Constants.ArcherDefaultRange, Constants.ArcherDefaultMovementSpeed,
+        public Archer(Rectangle rectangle, ContentManager contentManager)
+            : base(rectangle, contentManager, Constants.ArcherDefaultRange, Constants.ArcherDefaultMovementSpeed,
             Constants.ArcherDefaultAttackDamage, Constants.ArcherDefaultAttackSpeed)
         {
             arrows = new List<Arrow>();
@@ -66,19 +66,19 @@ namespace RouteDefense.Models.GameObjects.Units
             switch (FaceDirection)
             {
                 case MoveDirection.Up:
-                    arrows.Add(new Arrow("temp", new Rectangle(ActualRectangle.X + 8, ActualRectangle.Y + 32, 4, 24),
+                    arrows.Add(new Arrow(new Rectangle(ActualRectangle.X + 8, ActualRectangle.Y + 32, 4, 24),
                         new Point(0, -speed), arrowUp));
                     break;
                 case MoveDirection.Down:
-                    arrows.Add(new Arrow("temp", new Rectangle(ActualRectangle.X + 8, ActualRectangle.Y, 4, 24),
+                    arrows.Add(new Arrow(new Rectangle(ActualRectangle.X + 8, ActualRectangle.Y, 4, 24),
                         new Point(0, speed), arrowDown));
                     break;
                 case MoveDirection.Right:
-                    arrows.Add(new Arrow("temp", new Rectangle(ActualRectangle.X, ActualRectangle.Y + 28, 24, 4),
+                    arrows.Add(new Arrow(new Rectangle(ActualRectangle.X, ActualRectangle.Y + 28, 24, 4),
                         new Point(speed, 0), arrowRight));
                     break;
                 case MoveDirection.Left:
-                    arrows.Add(new Arrow("temp", new Rectangle(ActualRectangle.X + 16, ActualRectangle.Y + 28, 24, 4),
+                    arrows.Add(new Arrow(new Rectangle(ActualRectangle.X + 16, ActualRectangle.Y + 28, 24, 4),
                         new Point(-speed, 0), arrowLeft));
                     break;
                 default:

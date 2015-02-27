@@ -15,21 +15,10 @@ namespace RouteDefense.Core.Gameplay
         private int tileHeight;
         private int mapRowCells;
         private int mapColumnCells;
-        private Texture2D grassTexture;
-        private Texture2D pathTexture;
-        private Texture2D dirtTexture;
         private Tile[,] map;
         private List<PathGenerator.Direction> mobDirections;
-        private Texture2D topLeftCorner;
-        private Texture2D topBorder;
-        private Texture2D topRightCorner;
-        private Texture2D leftCorner;
-        private Texture2D rightCorner;
-        private Texture2D bottomLeftCorner;
-        private Texture2D bottomRightCorner;
-        private Texture2D bottomBorder;
-        //private Bridge bridge;
 
+        private Dictionary<string, Texture2D> textures; 
 
         public Map(ContentManager contentManager, int tileWidth, int tileHeight, int rowCells = 16, int columnCells = 16)
         {
@@ -37,39 +26,28 @@ namespace RouteDefense.Core.Gameplay
             this.TileHeight = tileHeight;
             this.MapRowCells = rowCells;
             this.MapColumnCells = columnCells;
+            
+            textures = new Dictionary<string, Texture2D>();
 
-            grassTexture = contentManager.Load<Texture2D>("Terrain/rpgTile039.png");
-            pathTexture = contentManager.Load<Texture2D>("Terrain/rpgTile052.png");
+            LoadContent(contentManager);
 
-            topLeftCorner = contentManager.Load<Texture2D>("Terrain/rpgTile000.png");
-            topBorder = contentManager.Load<Texture2D>("Terrain/rpgTile001.png");
-            topRightCorner = contentManager.Load<Texture2D>("Terrain/rpgTile002.png");
-            leftCorner = contentManager.Load<Texture2D>("Terrain/rpgTile018.png");
-            rightCorner = contentManager.Load<Texture2D>("Terrain/rpgTile020.png");
-            bottomLeftCorner = contentManager.Load<Texture2D>("Terrain/rpgTile036.png");
-            bottomRightCorner = contentManager.Load<Texture2D>("Terrain/rpgTile038.png");
-            bottomBorder = contentManager.Load<Texture2D>("Terrain/rpgTile037.png");
             map = new Tile[this.MapRowCells, this.MapColumnCells];
             
-            this.CreateMap(grassTexture);
-            //bridge = new Bridge(contentManager, "bridge", new Rectangle(32, 32, 64, 96));
+            this.CreateMap(textures["grass"]);
         }
 
-        /*private void OnPress()
+        private void LoadContent(ContentManager content)
         {
-            if (bridge.IsMoovable)
-            {
-                var bridgeCordinates = Mouse.GetState().Position;
-                this.PlaceBridge(bridgeCordinates);
-            }
-        }*/
-
-        public void Update()
-        {
-            /*if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                this.OnPress();
-            }*/
+            textures.Add("grass", content.Load<Texture2D>("Terrain/rpgTile039.png"));
+            textures.Add("path", content.Load<Texture2D>("Terrain/rpgTile052.png"));
+            textures.Add("topLeftCorner", content.Load<Texture2D>("Terrain/rpgTile000.png"));
+            textures.Add("topBorder", content.Load<Texture2D>("Terrain/rpgTile001.png"));
+            textures.Add("topRightCorner", content.Load<Texture2D>("Terrain/rpgTile002.png"));
+            textures.Add("leftCorner", content.Load<Texture2D>("Terrain/rpgTile018.png"));
+            textures.Add("rightCorner", content.Load<Texture2D>("Terrain/rpgTile020.png"));
+            textures.Add("bottomLeftCorner", content.Load<Texture2D>("Terrain/rpgTile036.png"));
+            textures.Add("bottomRightCorner", content.Load<Texture2D>("Terrain/rpgTile038.png"));
+            textures.Add("bottomBorder", content.Load<Texture2D>("Terrain/rpgTile037.png"));
         }
 
         public Tile[,] MapCells { get { return this.map; } }
@@ -142,8 +120,7 @@ namespace RouteDefense.Core.Gameplay
             {
                 for (int column = 0; column < this.MapColumnCells; column++)
                 {
-                    this.map[row, column] = new Tile("grass_tile",
-                        new Rectangle(row * this.TileWidth, column * this.TileHeight,
+                    this.map[row, column] = new Tile(new Rectangle(row * this.TileWidth, column * this.TileHeight,
                             TileWidth, TileHeight), texture);
                 }
             }
@@ -168,7 +145,7 @@ namespace RouteDefense.Core.Gameplay
 
             for (int i = 0; i < path.Count; i++)
             {
-                this.map[path[i].Item1, path[i].Item2].TileTexture = pathTexture;
+                this.map[path[i].Item1, path[i].Item2].TileTexture = textures["path"];
                 this.map[path[i].Item1, path[i].Item2].TileType = Enumerations.TileType.Path;
                 pathTiles.Add(this.map[path[i].Item1, path[i].Item2]);
             }
@@ -185,35 +162,35 @@ namespace RouteDefense.Core.Gameplay
                     {
                         if (row == 0 && column == 0)
                         {
-                            this.map[row, column].TileTexture = topLeftCorner;
+                            this.map[row, column].TileTexture = textures["topLeftCorner"];
                         }
                         else if (row > 0 && row != this.MapRowCells - 1 && column == 0)
                         {
-                            this.map[row, column].TileTexture = topBorder;
+                            this.map[row, column].TileTexture = textures["topBorder"];
                         }
                         else if (row == this.MapRowCells - 1 && column == 0)
                         {
-                            this.map[row, column].TileTexture = topRightCorner;
+                            this.map[row, column].TileTexture = textures["topRightCorner"];
                         }
                         else if (row == 0 && column > 0 && column != this.MapColumnCells - 1)
                         {
-                            this.map[row, column].TileTexture = leftCorner;
+                            this.map[row, column].TileTexture = textures["leftCorner"];
                         }
                         else if (row == this.mapRowCells - 1 && column > 0 && column != this.MapColumnCells - 1)
                         {
-                            this.map[row, column].TileTexture = rightCorner;
+                            this.map[row, column].TileTexture = textures["rightCorner"];
                         }
                         else if (row == 0 && column == this.mapColumnCells - 1)
                         {
-                            this.map[row, column].TileTexture = bottomLeftCorner;
+                            this.map[row, column].TileTexture = textures["bottomLeftCorner"];
                         }
                         else if (row == this.mapRowCells - 1 && column == this.mapColumnCells - 1)
                         {
-                            this.map[row, column].TileTexture = bottomRightCorner;
+                            this.map[row, column].TileTexture = textures["bottomRightCorner"];
                         }
                         else
                         {
-                            this.map[row, column].TileTexture = bottomBorder;
+                            this.map[row, column].TileTexture = textures["bottomBorder"];
                         }
                     }
                 }
@@ -222,7 +199,6 @@ namespace RouteDefense.Core.Gameplay
         
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Begin();
             for (int row = 0; row < this.MapRowCells; row++)
             {
                 for (int column = 0; column < this.MapColumnCells; column++)
@@ -230,15 +206,6 @@ namespace RouteDefense.Core.Gameplay
                     this.map[row, column].Draw(spriteBatch);
                 }
             }
-           // this.bridge.Draw(spriteBatch);
         }
-
-        /*public void PlaceBridge(Point cordinates)
-        {
-            bridge.IsActive = true;
-            Rectangle rect = new Rectangle(cordinates.X, cordinates.Y, bridge.Rectangle.Width, bridge.Rectangle.Height);
-            bridge.Rectangle = rect;
-            bridge.IsMoovable = false;
-        }*/
     }
 }
