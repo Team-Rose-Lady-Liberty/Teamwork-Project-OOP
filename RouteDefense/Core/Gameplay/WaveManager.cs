@@ -52,7 +52,7 @@ namespace RouteDefense.Core.Gameplay
         private void LoadContent(ContentManager content)
         {
             EnemyTextures = new List<Texture2D>();
-            for (int i = 0; i <= 7; i++)
+            for (int i = 0; i <= 9; i++)
             {
                 EnemyTextures.Add(content.Load<Texture2D>("EnemiesSprites\\Enemy" + i + ".png"));
             }    

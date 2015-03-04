@@ -163,6 +163,12 @@
     <Content Include="Content\EnemiesSprites\Enemy7.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\EnemiesSprites\Enemy8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\EnemiesSprites\Enemy9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Menu Items\archerSelectionMenu.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -343,6 +349,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="ClassDiagram2.cd" />
     <None Include="Content\Fonts\Font.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
